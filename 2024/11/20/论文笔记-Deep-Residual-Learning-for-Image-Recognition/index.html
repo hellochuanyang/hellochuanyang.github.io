@@ -26,15 +26,15 @@
 <meta property="og:site_name" content="Ayang&#39;s home">
 <meta property="og:description" content="1. InformationTitle: Deep Residual Learning for Image RecognitionLink: Deep Residual Learning for Image RecognitionSource: IEEE Conference on Computer Vision and Pattern Recognition, CVPRDate: 2015 2.">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://hellochuanyang.github.io/2024/11/20/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Deep-Residual-Learning-for-Image-Recognition/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Deep-Residual-Learning-for-Image-Recognition/1.png">
+<meta property="og:image" content="http://hellochuanyang.github.io/2024/11/20/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Deep-Residual-Learning-for-Image-Recognition/1.png">
 <meta property="article:published_time" content="2024-11-20T03:30:31.000Z">
-<meta property="article:modified_time" content="2024-11-20T11:45:51.856Z">
+<meta property="article:modified_time" content="2024-11-20T11:57:46.606Z">
 <meta property="article:author" content="阿阳">
 <meta property="article:tag" content="深度学习">
 <meta property="article:tag" content="训练加速">
 <meta property="article:tag" content="算法优化">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://hellochuanyang.github.io/2024/11/20/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Deep-Residual-Learning-for-Image-Recognition/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Deep-Residual-Learning-for-Image-Recognition/1.png">
+<meta name="twitter:image" content="http://hellochuanyang.github.io/2024/11/20/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Deep-Residual-Learning-for-Image-Recognition/1.png">
   
   
   
@@ -240,7 +240,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          750 字
+          749 字
         
       </span>
     
@@ -305,14 +305,16 @@
                 <h2 id="1-Information"><a href="#1-Information" class="headerlink" title="1. Information"></a>1. Information</h2><p><strong>Title</strong>: Deep Residual Learning for Image Recognition<br><strong>Link</strong>: <a target="_blank" rel="noopener" href="https://openaccess.thecvf.com/content_cvpr_2016/papers/He_Deep_Residual_Learning_CVPR_2016_paper.pdf">Deep Residual Learning for Image Recognition</a><br><strong>Source</strong>: IEEE Conference on Computer Vision and Pattern Recognition, CVPR<br><strong>Date</strong>: 2015</p>
 <h2 id="2-Summary"><a href="#2-Summary" class="headerlink" title="2. Summary"></a>2. Summary</h2><p>本论文提出了一种新型的深度学习架构——残差网络（ResNet），它通过引入<strong>残差连接</strong>来解决传统深度神经网络在训练过程中遇到的梯度消失和退化问题。作者通过实验证明，残差网络在多个图像识别任务中，特别是在ImageNet图像分类任务上，超越了现有的深度网络架构，达到了更好的效果。该方法可以加速深层网络的训练，并显著提高模型的性能。</p>
 <h2 id="3-Background"><a href="#3-Background" class="headerlink" title="3. Background"></a>3. Background</h2><p>随着深度学习技术的发展，深度神经网络的应用逐渐取得了许多成功。然而，当网络层数增多时，模型的训练难度也随之增加，通常会遇到梯度消失、过拟合、训练退化等问题。传统的做法是通过增加层数来提升模型的表现，但实际效果往往没有预期那么好，这也成为深度学习研究中的一个瓶颈。因此，如何构建更深且更易训练的网络结构成为研究的热点。</p>
-<h2 id="4-Research-Objective"><a href="#4-Research-Objective" class="headerlink" title="4. Research Objective"></a>4. Research Objective</h2><p>本研究的主要目标是通过引入<strong>残差学习</strong>来<strong>改进非常深的网络</strong>训练，使其能够更好地进行图像识别任务。</p>
+<h2 id="4-Research-Objective"><a href="#4-Research-Objective" class="headerlink" title="4. Research Objective"></a>4. Research Objective</h2><p>本研究的主要目标是通过引入<strong>残差学习</strong>来改进非常深的网络训练，使其能够更好地进行图像识别任务。</p>
 <h2 id="5-Method"><a href="#5-Method" class="headerlink" title="5. Method"></a>5. Method</h2><ul>
 <li><strong>残差学习</strong>：ResNet不是直接学习输入和输出之间的映射，而是学习输入与输出之间的残差，即 $\mathcal{F}(x)&#x3D;H(x)-x$，其中$H(x)$是期望的映射。</li>
 </ul>
-<img src="./论文笔记-Deep-Residual-Learning-for-Image-Recognition/1.png" srcset="/img/loading.gif" lazyload style="zoom:67%;" />
+<p align="center">
+  <img src="1.png" srcset="/img/loading.gif" lazyload style="zoom:67%;" />
+</p>
 
 <ul>
-<li><p><strong>网络模块</strong>：该架构由<strong>残差块（Residual Block）</strong>组成，每个残差块中包含一个快捷连接（identity mapping），该连接绕过一个或多个层。</p>
+<li><p><strong>网络模块</strong>：该架构由<strong>残差块（Residual Block）</strong>组成，每个残差块中包含一个快捷连接，该连接绕过一个或多个层。</p>
 </li>
 <li><p><strong>深层网络</strong>：通过残差学习，ResNet能够构建任意深度的网络（如152层），同时避免性能退化。</p>
 </li>
