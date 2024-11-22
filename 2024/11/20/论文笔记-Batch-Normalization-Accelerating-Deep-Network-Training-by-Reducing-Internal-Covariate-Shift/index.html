@@ -27,7 +27,7 @@
 <meta property="og:description" content="1. InformationTitle: Batch Normalization Accelerating Deep Network Training by  Reducing Internal Covariate ShiftLink: Batch Normalization PaperSource: International Conference on Machine Learning (IC">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-11-20T00:13:54.000Z">
-<meta property="article:modified_time" content="2024-11-21T09:17:57.872Z">
+<meta property="article:modified_time" content="2024-11-22T17:30:00.847Z">
 <meta property="article:author" content="阿阳">
 <meta property="article:tag" content="深度学习">
 <meta property="article:tag" content="训练加速">
@@ -301,48 +301,48 @@
               <div class="markdown-body">
                 
                 <h2 id="1-Information"><a href="#1-Information" class="headerlink" title="1. Information"></a>1. Information</h2><p><strong>Title</strong>: Batch Normalization Accelerating Deep Network Training by  Reducing Internal Covariate Shift<br><strong>Link</strong>: <a target="_blank" rel="noopener" href="https://asvk.cs.msu.ru/~sveta/%D1%80%D0%B5%D1%84%D0%B5%D1%80%D0%B0%D1%82/batch_normalization.pdf">Batch Normalization Paper</a><br><strong>Source</strong>: International Conference on Machine Learning (ICML)<br><strong>Date</strong>: 2015</p>
-<h2 id="2-Summary"><a href="#2-Summary" class="headerlink" title="2. Summary"></a>2. Summary</h2><p>本文提出了批量归一化（Batch Normalization，BN）技术，通过减少深度神经网络中的内部协变量偏移（internal covariate shift），加速网络训练。内部协变量偏移是指在训练过程中，层输入的分布发生变化。BN的核心创新是对每一层的输入进行归一化，使其均值为零，方差为1，然后进行一个学习的线性变换。BN加速了收敛速度，允许使用更高的学习率，并且缓解了梯度消失和梯度爆炸的问题。BN还具有一定的正则化效果，减少了对dropout的需求。</p>
-<h2 id="3-Background"><a href="#3-Background" class="headerlink" title="3. Background"></a>3. Background</h2><p>深度神经网络在训练时常常面临内部协变量偏移问题，即随着参数的更新，层输入的分布发生变化。这种不稳定性会导致优化过程效率低下，需要精心设计的初始化和学习率调优。之前的解决方法，如预训练和权重初始化，间接解决了这一问题，而BN通过直接归一化层输入来解决根本问题。</p>
+<h2 id="2-Summary"><a href="#2-Summary" class="headerlink" title="2. Summary"></a>2. Summary</h2><p>本文提出了批量归一化（Batch Normalization，BN）技术，通过减少深度神经网络中的内部协变量偏移（internal covariate shift），加速网络训练。内部协变量偏移是指在训练过程中，层输入的分布发生变化。BN 的核心创新是对每一层的输入进行归一化，使其均值为 0，方差为 1，然后进行一个学习的线性变换。BN 加速了收敛速度，允许使用更高的学习率，并且缓解了梯度消失和梯度爆炸的问题。BN 还具有一定的正则化效果，减少了对 Dropout 的需求。</p>
+<h2 id="3-Background"><a href="#3-Background" class="headerlink" title="3. Background"></a>3. Background</h2><p>深度神经网络在训练时常常面临内部协变量偏移问题，即随着参数的更新，层输入的分布发生变化。这种不稳定性会导致优化过程效率低下，需要精心设计的初始化和学习率调优。之前的解决方法，如预训练和权重初始化，间接解决了这一问题，而 BN 通过直接归一化层输入来解决根本问题。</p>
 <h2 id="4-Research-Objective"><a href="#4-Research-Objective" class="headerlink" title="4. Research Objective"></a>4. Research Objective</h2><ul>
 <li>提出批量归一化方法来减少内部协变量偏移。</li>
 <li>证明BN能够加速训练并提升模型性能。</li>
-<li>评估BN与常用优化方法（如SGD）兼容性。</li>
+<li>评估BN与常用优化方法（如 SGD）兼容性。</li>
 <li>探讨BN的正则化效果及对超参数调节的影响。</li>
 </ul>
 <h2 id="5-Method"><a href="#5-Method" class="headerlink" title="5. Method"></a>5. Method</h2><ul>
-<li><p><strong>归一化</strong>：<br>对每个mini-batch中的激活值$x$，进行归一化：<br>$$<br>\hat{x}&#x3D;\frac{x-\mu_B}{\sqrt{\sigma_B^2+\epsilon}}<br>$$<br>其中，$\mu_B$和$\sigma_B^2$分别是mini-batch的均值和方差，$\epsilon$用于防止除零错误。</p>
+<li><p><strong>归一化</strong>：<br>对每个 mini-batch 中的激活值 $x$，进行归一化：<br>$$<br>\hat{x}&#x3D;\frac{x-\mu_B}{\sqrt{\sigma_B^2+\epsilon}}<br>$$<br>其中，$\mu_B$ 和 $\sigma_B^2$ 分别是 mini-batch 的均值和方差，$\epsilon$ 用于防止除零错误。</p>
 </li>
-<li><p><strong>仿射变换</strong>：<br>归一化之后，使用可学习的参数$\gamma$（缩放）和$\beta$（平移）对激活值进行缩放和偏移：</p>
+<li><p><strong>仿射变换</strong>：<br>归一化之后，使用可学习的参数 $\gamma$ （缩放）和 $\beta$（平移） 对激活值进行缩放和偏移：</p>
 </li>
 </ul>
 <p>$$<br>y&#x3D;\gamma \hat{x}+\beta<br>$$</p>
 <ul>
-<li><p><strong>训练阶段</strong>：<br>在训练过程中，使用mini-batch的统计量进行归一化。同时，利用移动平均对均值$\mu_B$和方差$\sigma_B^2$进行估算，以便在推理时使用。</p>
+<li><p><strong>训练阶段</strong>：<br>在训练过程中，使用 mini-batch 的统计量进行归一化。同时，利用移动平均对均值 $\mu_B$ 和方差 $\sigma_B^2$ 进行估算，以便在推理时使用。</p>
 </li>
 <li><p><strong>推理阶段</strong>：<br>在推理阶段，使用固定的均值和方差（训练时的全局统计量）进行归一化，确保输出是确定的。</p>
 </li>
 </ul>
 <h2 id="6-Evaluation"><a href="#6-Evaluation" class="headerlink" title="6. Evaluation"></a>6. Evaluation</h2><ul>
-<li><p><strong>数据集</strong>：在CIFAR-10、ImageNet等基准数据集上进行测试。</p>
+<li><p><strong>数据集</strong>：在 CIFAR-10、ImageNet 等基准数据集上进行测试。</p>
 </li>
 <li><p><strong>结果</strong>：</p>
 <ul>
-<li><p>BN显著加速了收敛（例如在ImageNet上，训练时间减少了多达14倍）。</p>
+<li><p>BN显著加速了收敛（例如在 ImageNet 上，训练时间减少了多达 14 倍）。</p>
 </li>
-<li><p>与没有BN的模型相比，BN提高了模型的准确率。</p>
+<li><p>与没有BN的模型相比，BN 提高了模型的准确率。</p>
 </li>
 </ul>
 </li>
 <li><p><strong>消融实验</strong>：</p>
 <ul>
-<li><p>显示了$\gamma$和$\beta$的重要性，以及mini-batch归一化的有效性。</p>
+<li><p>显示了 $\gamma$ 和 $\beta$ 的重要性，以及 mini-batch 归一化的有效性。</p>
 </li>
-<li><p>BN具有一定的正则化效果，减少了对dropout的需求。</p>
-</li>
-</ul>
+<li><p>BN 具有一定的正则化效果，减少了对 Dropout 的需求。</p>
 </li>
 </ul>
-<h2 id="7-Conclusion"><a href="#7-Conclusion" class="headerlink" title="7. Conclusion"></a>7. Conclusion</h2><p>批量归一化提出了一种简单有效的方法来稳定并加速深度神经网络的训练。它通过减少内部协变量偏移，能够加快收敛速度并提高泛化能力。BN的普适性和有效性使其成为现代深度学习架构中的标准组件。研究强调了解决网络内部分布变化问题对提升训练效率的重要性。</p>
+</li>
+</ul>
+<h2 id="7-Conclusion"><a href="#7-Conclusion" class="headerlink" title="7. Conclusion"></a>7. Conclusion</h2><p>批量归一化提出了一种简单有效的方法来稳定并加速深度神经网络的训练。它通过减少内部协变量偏移，能够加快收敛速度并提高泛化能力。BN 的普适性和有效性使其成为现代深度学习架构中的标准组件。研究强调了解决网络内部分布变化问题对提升训练效率的重要性。</p>
 <h2 id="8-Notes"><a href="#8-Notes" class="headerlink" title="8. Notes"></a>8. Notes</h2><ul>
 <li><p>为什么要进行归一化？</p>
 <blockquote>
@@ -477,6 +477,12 @@
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2024/11/19/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Going-Deeper-with-Convolutions/" title="论文笔记 - Going Deeper with Convolutions">
+                        <span class="hidden-mobile">论文笔记 - Going Deeper with Convolutions</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>
