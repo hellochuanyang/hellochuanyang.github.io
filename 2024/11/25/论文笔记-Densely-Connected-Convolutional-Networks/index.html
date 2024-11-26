@@ -19,27 +19,26 @@
   <meta name="author" content="阿阳">
   <meta name="keywords" content="">
   
-    <meta name="description" content="1. InformationTitle: Aggregated Residual Transformations for Deep Neural NetworksLink: ResNeXt PaperSource: IEEE Conference on Computer Vision and Pattern Recognition (CVPR)Date: 2017 2. Summary本文提出了">
+    <meta name="description" content="1. InformationTitle: Densely Connected Convolutional NetworksLink: DenseNet PaperSource: IEEE Conference on Computer Vision and Pattern Recognition (CVPR)Date: 2017 2. Summary本文提出了 DenseNet，一种新的深度学习架构">
 <meta property="og:type" content="article">
-<meta property="og:title" content="论文笔记 - Aggregated Residual Transformations for Deep Neural Networks">
-<meta property="og:url" content="http://hellochuanyang.github.io/2024/11/25/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Aggregated-Residual-Transformations-for-Deep-Neural-Networks/index.html">
+<meta property="og:title" content="论文笔记 - Densely Connected Convolutional Networks">
+<meta property="og:url" content="http://hellochuanyang.github.io/2024/11/25/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Densely-Connected-Convolutional-Networks/index.html">
 <meta property="og:site_name" content="Ayang&#39;s home">
-<meta property="og:description" content="1. InformationTitle: Aggregated Residual Transformations for Deep Neural NetworksLink: ResNeXt PaperSource: IEEE Conference on Computer Vision and Pattern Recognition (CVPR)Date: 2017 2. Summary本文提出了">
+<meta property="og:description" content="1. InformationTitle: Densely Connected Convolutional NetworksLink: DenseNet PaperSource: IEEE Conference on Computer Vision and Pattern Recognition (CVPR)Date: 2017 2. Summary本文提出了 DenseNet，一种新的深度学习架构">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://hellochuanyang.github.io/2024/11/25/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Aggregated-Residual-Transformations-for-Deep-Neural-Networks/1.png">
-<meta property="og:image" content="http://hellochuanyang.github.io/2024/11/25/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Aggregated-Residual-Transformations-for-Deep-Neural-Networks/2.png">
-<meta property="article:published_time" content="2024-11-25T00:03:54.000Z">
-<meta property="article:modified_time" content="2024-11-25T08:12:33.031Z">
+<meta property="og:image" content="http://hellochuanyang.github.io/2024/11/25/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Densely-Connected-Convolutional-Networks/1.png">
+<meta property="article:published_time" content="2024-11-25T23:21:27.000Z">
+<meta property="article:modified_time" content="2024-11-26T07:27:54.726Z">
 <meta property="article:author" content="阿阳">
 <meta property="article:tag" content="深度学习">
 <meta property="article:tag" content="训练加速">
 <meta property="article:tag" content="算法优化">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://hellochuanyang.github.io/2024/11/25/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Aggregated-Residual-Transformations-for-Deep-Neural-Networks/1.png">
+<meta name="twitter:image" content="http://hellochuanyang.github.io/2024/11/25/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Densely-Connected-Convolutional-Networks/1.png">
   
   
   
-  <title>论文笔记 - Aggregated Residual Transformations for Deep Neural Networks - Ayang&#39;s home</title>
+  <title>论文笔记 - Densely Connected Convolutional Networks - Ayang&#39;s home</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -218,7 +217,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="论文笔记 - Aggregated Residual Transformations for Deep Neural Networks"></span>
+            <span id="subtitle" data-typed-text="论文笔记 - Densely Connected Convolutional Networks"></span>
           
         </div>
 
@@ -229,8 +228,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-11-25 08:03" pubdate>
-          2024年11月25日 早上
+        <time datetime="2024-11-26 07:21" pubdate>
+          2024年11月26日 早上
         </time>
       </span>
     
@@ -241,7 +240,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.2k 字
+          706 字
         
       </span>
     
@@ -252,7 +251,7 @@
         
         
         
-          11 分钟
+          6 分钟
         
       </span>
     
@@ -298,134 +297,25 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">论文笔记 - Aggregated Residual Transformations for Deep Neural Networks</h1>
+            <h1 id="seo-header">论文笔记 - Densely Connected Convolutional Networks</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="1-Information"><a href="#1-Information" class="headerlink" title="1. Information"></a>1. Information</h2><p><strong>Title</strong>: Aggregated Residual Transformations for Deep Neural Networks<br><strong>Link</strong>: <a target="_blank" rel="noopener" href="https://openaccess.thecvf.com/content_cvpr_2017/papers/Xie_Aggregated_Residual_Transformations_CVPR_2017_paper.pdf">ResNeXt Paper</a><br><strong>Source</strong>: IEEE Conference on Computer Vision and Pattern Recognition (CVPR)<br><strong>Date</strong>: 2017</p>
-<h2 id="2-Summary"><a href="#2-Summary" class="headerlink" title="2. Summary"></a>2. Summary</h2><p>本文提出了 <strong>ResNeXt</strong>，一种改进的残差网络架构，通过引入<strong>聚合变换（Aggregated Transformations）</strong>增强模型表达能力。核心创新是引入了<strong>基数（Cardinality）</strong>的概念，即网络中路径的数量。ResNeXt 在显著提升性能的同时，保持了较低的计算复杂度，并在 ImageNet、CIFAR-10 和 CIFAR-100 等基准数据集上达到了最先进的性能。</p>
-<h2 id="3-Background"><a href="#3-Background" class="headerlink" title="3. Background"></a>3. Background</h2><p>深度神经网络（如 ResNet）通过堆叠多个层及跳跃连接在视觉任务中取得了显著成功。然而，仅增加网络的深度或宽度带来的性能提升逐渐减小，同时计算成本迅速增加。受 Inception 等多分支架构的启发，ResNeXt 提出了一个更简单且更高效的聚合策略，通过<strong>并行路径的聚合变换</strong>在性能与效率之间取得了平衡。</p>
-<h2 id="4-Research-Objective"><a href="#4-Research-Objective" class="headerlink" title="4. Research Objective"></a>4. Research Objective</h2><p>本文的研究目标是通过引入<strong>基数（Cardinality）</strong>提升深度网络的表达能力，同时保持计算效率。具体目标包括：</p>
-<ol>
-<li>提供一种更简洁的多分支架构设计方法；</li>
-<li>验证 ResNeXt 的可扩展性及其在不同任务中的通用性；</li>
-<li>在不显著增加计算成本的情况下实现最先进的性能。</li>
-</ol>
-<h2 id="5-Method"><a href="#5-Method" class="headerlink" title="5. Method"></a>5. Method</h2><ul>
-<li><p><strong>关键创新</strong>：</p>
-<p>引入了基数的概念，下图左边为原始的 ResNet 架构；右边为增加了基数的改进版本，每个残差模块包含多条路径，路径数由基数控制，所有路径的输出聚合后再与输入进行残差连接。</p>
+                <h2 id="1-Information"><a href="#1-Information" class="headerlink" title="1. Information"></a>1. Information</h2><p><strong>Title</strong>: Densely Connected Convolutional Networks<br><strong>Link</strong>: <a target="_blank" rel="noopener" href="https://openaccess.thecvf.com/content_cvpr_2017/papers/Huang_Densely_Connected_Convolutional_CVPR_2017_paper.pdf">DenseNet Paper</a><br><strong>Source</strong>: IEEE Conference on Computer Vision and Pattern Recognition (CVPR)<br><strong>Date</strong>: 2017</p>
+<h2 id="2-Summary"><a href="#2-Summary" class="headerlink" title="2. Summary"></a>2. Summary</h2><p>本文提出了 DenseNet，一种新的深度学习架构，在该架构中，每一层都接收来自所有前面层的输入，形成密集的连接。与传统的卷积神经网络只传递前一层的信息不同，DenseNet 为每一层创建了来自所有前一层的直接连接。该设计显著改善了梯度流动并促进了特征重用，从而实现了更高效的网络，并且参数更少。</p>
+<h2 id="3-Background"><a href="#3-Background" class="headerlink" title="3. Background"></a>3. Background</h2><p>DenseNet 基于传统 CNN 架构，解决了梯度消失和参数冗余等关键问题。密集连接的概念受到残差网络（ResNet）成功的启发，但DenseNet 通过完全连接每一层的方式进行了更为激进的改进。这项研究在深度学习领域具有重要意义，特别是在提高图像分类、物体检测等任务的网络效率和性能方面。</p>
+<h2 id="4-Research-Objective"><a href="#4-Research-Objective" class="headerlink" title="4. Research Objective"></a>4. Research Objective</h2><p>本研究的主要目标是提出并验证 DenseNet 作为一种更高效的深度学习架构，旨在缓解传统 CNN 中梯度消失和特征冗余的问题。研究旨在展示 DenseNet 在准确性和参数效率方面相较于传统架构的优势。</p>
+<h2 id="5-Method"><a href="#5-Method" class="headerlink" title="5. Method"></a>5. Method</h2><p>DenseNet 架构由多个层块组成，层块内的每一层都与之前的所有层进行连接，如下图所示：</p>
 <p align="center">
-<img src="1.png" srcset="/img/loading.gif" lazyload style="zoom:60%;" />
+  <img src="1.png" srcset="/img/loading.gif" lazyload style="zoom:80%;" />
 </p>
 
-<p>引入<strong>分组卷积（Grouped Convolution）</strong>以实现多路径聚合变换，下图 (a) 和 (b) 表示相同，图 (c) 使用了分组卷积，降低了计算复杂度。</p>
-<ul>
-<li><p>分组卷积将输入通道划分为多个组，每组独立进行卷积操作，降低了计算复杂度。</p>
-</li>
-<li><p>各组的输出通过聚合操作合并，实现模块化和可扩展性。</p>
-</li>
-</ul>
-<p align="center">
-<img src="2.png" srcset="/img/loading.gif" lazyload style="zoom:60%;" />
-</p>
-</li>
-<li><p><strong>架构设计</strong>：</p>
-<ul>
-<li>ResNeXt 的残差模块在 ResNet 的基础上，将瓶颈层的单一卷积替换为分组卷积。</li>
-<li>基数（Cardinality）表示分组的数量，是控制并行路径数量的超参数。</li>
-</ul>
-</li>
-<li><p><strong>与其他架构的比较</strong>：</p>
-<ul>
-<li>ResNeXt 在深度（ResNet）和宽度（VGG）之外，提出了新的扩展维度——基数，通过增加基数实现性能提升，同时保持计算效率。</li>
-</ul>
-</li>
-</ul>
-<h2 id="6-Evaluation"><a href="#6-Evaluation" class="headerlink" title="6. Evaluation"></a>6. Evaluation</h2><ul>
-<li><p><strong>数据集</strong>：ImageNet、CIFAR-10 和 CIFAR-100。</p>
-</li>
-<li><p><strong>评估指标</strong>：分类任务的 Top-1 和 Top-5 准确率。</p>
-</li>
-<li><p><strong>实验结果</strong>：</p>
-<ul>
-<li><p>在相同的深度和宽度下，ResNeXt 比 ResNet 表现更优，准确率更高。</p>
-</li>
-<li><p>实验证明，增加基数相比单纯增加深度或宽度更能显著提升网络性能。</p>
-</li>
-</ul>
-</li>
-<li><p><strong>消融实验</strong>：验证了分组卷积的有效性，以及基数对模型性能的影响。</p>
-</li>
-</ul>
-<h2 id="7-Conclusion"><a href="#7-Conclusion" class="headerlink" title="7. Conclusion"></a>7. Conclusion</h2><p>ResNeXt 提供了一种通过聚合变换改进神经网络性能的简单方法。通过增加基数，ResNeXt 实现了更高的准确率，同时保持了较低的计算成本。研究表明，基数是扩展深度网络性能的重要维度，提供了增加深度或宽度之外的一种灵活替代方案。</p>
-<h2 id="8-Notes"><a href="#8-Notes" class="headerlink" title="8. Notes"></a>8. Notes</h2><ol>
-<li><strong>什么是分组卷积</strong>？</li>
-</ol>
-<blockquote>
-<p>分组卷积的核心思想是将卷积操作的输入通道和输出通道分组，然后在每组上独立执行卷积操作，最后将各组的输出拼接在一起。</p>
-<ul>
-<li><strong>传统卷积</strong>：<ul>
-<li>输入特征图和卷积核的所有通道之间会进行完全连接的卷积操作。</li>
-<li>假设输入的通道数为 $C_{\text {in }}$，输出通道数为 $C_{\text {out }}$，卷积核大小为 $k \times k$，传统卷积需要的参数量为：</li>
-</ul>
-</li>
-</ul>
-<p>$$<br>C_{\text {in }} \times C_{\text {out }} \times k \times k<br>$$</p>
-<ul>
-<li><strong>分组卷积</strong>：<ul>
-<li>将输入通道划分为 $g$ 组（每组有 $C_{\text {in }}$ &#x2F; $g$ 个通道），输出通道也划分为 $g$ 组（每组有 $C_{\text {out }}$ &#x2F; $g$ 个通道）。</li>
-<li>每组卷积仅计算输入通道的一部分，从而减少了计算量。</li>
-<li>参数量为：</li>
-</ul>
-</li>
-</ul>
-<p>$$<br>\left(C_{\text {in }} &#x2F; g\right) \times\left(C_{\text {out }} &#x2F; g\right) \times k \times k \times g&#x3D;\frac{C_{\text {in }} \times C_{\text {out }} \times k \times k}{g}<br>$$</p>
-</blockquote>
-<ol start="2">
-<li><strong>ResNeXt 与 Inception-ResNet 的对比</strong></li>
-</ol>
-<blockquote>
-<table>
-<thead>
-<tr>
-<th><strong>特性</strong></th>
-<th><strong>ResNeXt</strong></th>
-<th><strong>Inception-ResNet</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>路径结构</strong></td>
-<td>等价路径（分组卷积）</td>
-<td>非等价路径（不同卷积核和池化操作）</td>
-</tr>
-<tr>
-<td><strong>模块复杂度</strong></td>
-<td>简单、模块化</td>
-<td>复杂、需手动调优</td>
-</tr>
-<tr>
-<td><strong>计算复杂度</strong></td>
-<td>更低，参数更少</td>
-<td>较高，参数较多</td>
-</tr>
-<tr>
-<td><strong>特征表达能力</strong></td>
-<td>高效，通过增加基数捕获更多特征</td>
-<td>优秀，能捕获多尺度特征</td>
-</tr>
-<tr>
-<td><strong>扩展性和通用性</strong></td>
-<td>高，易于在深层网络中扩展</td>
-<td>中等，适合特定任务（如多尺度特征处理）</td>
-</tr>
-<tr>
-<td><strong>适用场景</strong></td>
-<td>大规模训练、深层分类网络</td>
-<td>需要多尺度特征融合的任务（如检测、分割）</td>
-</tr>
-</tbody></table>
-</blockquote>
+<p>在每个层块内，特征图的大小保持不变，而层块之间通过过渡层实现特征图的下采样。</p>
+<p>DenseNet 的显著特点之一是每一层的输出特征图维度非常窄，输出通道数被称为增长率 $k$。虽然每层的输出维度固定为 $k$，但输入特征图的维度随着网络深度的增加而逐步增多。为提升计算效率，DenseNet 在每个 3×3 卷积之前引入 1×1 卷积作为瓶颈层，以减少输入特征图的数量。</p>
+<p>此外，通过在过渡层引入压缩因子 $\theta$，进一步提升了模型的紧凑性，使 DenseNet 更高效地利用计算资源。</p>
+<h2 id="6-Evaluation"><a href="#6-Evaluation" class="headerlink" title="6. Evaluation"></a>6. Evaluation</h2><p>作者使用标准数据集（如 CIFAR-10、CIFAR-100 和 ImageNet）对 DenseNet 进行了评估，结果表明 DenseNet 在准确性和参数数量方面都显著优于传统 CNN，显示出更强的泛化能力。通过广泛的消融研究，分析了密集连接对性能的影响。</p>
+<h2 id="7-Conclusion"><a href="#7-Conclusion" class="headerlink" title="7. Conclusion"></a>7. Conclusion</h2><p>DenseNet 通过引入密集层连接，提供了一种有效的解决方案，提升了深度神经网络的效率。这一创新使得网络训练更快、准确性更高，同时参数更少。研究表明，DenseNet 可以成为处理大数据集和深度学习任务中的一个有价值的架构。</p>
 
                 
               </div>
@@ -475,8 +365,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>论文笔记 - Aggregated Residual Transformations for Deep Neural Networks</div>
-      <div>http://hellochuanyang.github.io/2024/11/25/论文笔记-Aggregated-Residual-Transformations-for-Deep-Neural-Networks/</div>
+      <div>论文笔记 - Densely Connected Convolutional Networks</div>
+      <div>http://hellochuanyang.github.io/2024/11/25/论文笔记-Densely-Connected-Convolutional-Networks/</div>
     </div>
     <div class="license-meta">
       
@@ -488,7 +378,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年11月25日</div>
+          <div>2024年11月26日</div>
         </div>
       
       
@@ -520,18 +410,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/11/25/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Densely-Connected-Convolutional-Networks/" title="论文笔记 - Densely Connected Convolutional Networks">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">论文笔记 - Densely Connected Convolutional Networks</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/11/22/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Rethinking-the-Inception-Architecture-for-Computer-Vision/" title="论文笔记 - Rethinking the Inception Architecture for Computer Vision">
-                        <span class="hidden-mobile">论文笔记 - Rethinking the Inception Architecture for Computer Vision</span>
+                      <a href="/2024/11/25/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Aggregated-Residual-Transformations-for-Deep-Neural-Networks/" title="论文笔记 - Aggregated Residual Transformations for Deep Neural Networks">
+                        <span class="hidden-mobile">论文笔记 - Aggregated Residual Transformations for Deep Neural Networks</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
