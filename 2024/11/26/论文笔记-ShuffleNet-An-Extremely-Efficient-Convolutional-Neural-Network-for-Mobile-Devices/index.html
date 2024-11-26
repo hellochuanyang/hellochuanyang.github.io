@@ -29,7 +29,7 @@
 <meta property="og:image" content="http://hellochuanyang.github.io/2024/11/26/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-ShuffleNet-An-Extremely-Efficient-Convolutional-Neural-Network-for-Mobile-Devices/1.png">
 <meta property="og:image" content="http://hellochuanyang.github.io/2024/11/26/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-ShuffleNet-An-Extremely-Efficient-Convolutional-Neural-Network-for-Mobile-Devices/2.png">
 <meta property="article:published_time" content="2024-11-26T00:43:11.000Z">
-<meta property="article:modified_time" content="2024-11-26T08:48:08.381Z">
+<meta property="article:modified_time" content="2024-11-26T08:50:47.837Z">
 <meta property="article:author" content="阿阳">
 <meta property="article:tag" content="深度学习">
 <meta property="article:tag" content="训练加速">
@@ -316,7 +316,7 @@
 <li>确保模型在内存使用和模型大小方面高效，以便在实际移动设备中使用。</li>
 </ol>
 <h2 id="5-Method"><a href="#5-Method" class="headerlink" title="5. Method"></a>5. Method</h2><h4 id="Channel-Shuffle-for-Group-Convolutions"><a href="#Channel-Shuffle-for-Group-Convolutions" class="headerlink" title="Channel Shuffle for Group Convolutions"></a>Channel Shuffle for Group Convolutions</h4><p>现有的模型在使用组卷积时，往往忽视了 1×1 卷积（逐点卷积），导致该操作占据了大量计算开销。本文提出了在 1×1 卷积中使用分组卷积，以减少计算量。</p>
-<p>然而，分组卷积会使得每个通道的输出仅来自部分输入通道。为了解决这一问题，作者提出了通道洗牌技术，如下图（b）和（c）所示。假设某个卷积层被划分为 g 组，每组的输出特征维度为 n，首先将其堆叠成形状为（g, n）的张量，再对其进行转置操作，最后将其拉平，完成通道之间的信息洗牌。</p>
+<p>然而，分组卷积会使得每个通道的输出仅来自部分输入通道。为了解决这一问题，作者提出了通道混洗技术，如下图（b）和（c）所示。假设某个卷积层被划分为 g 组，每组的输出特征维度为 n，首先将其堆叠成形状为（g, n）的张量，再对其进行转置操作，最后将其拉平，完成通道之间的信息融合。</p>
 <p align="center">
   <img src="1.png" srcset="/img/loading.gif" lazyload style="zoom:67%;" />
 </p>
