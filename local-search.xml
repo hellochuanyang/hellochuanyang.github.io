@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>论文笔记 - MobileNets: Efficient Convolutional Neural Networks for Mobile </title>
+    <link href="/2024/11/27/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-MobileNets-Efficient-Convolutional-Neural-Networks-for-Mobile/"/>
+    <url>/2024/11/27/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-MobileNets-Efficient-Convolutional-Neural-Networks-for-Mobile/</url>
+    
+    <content type="html"><![CDATA[<h2 id="information">1. Information</h2><p><strong>Title</strong>: MobileNets: Efficient Convolutional NeuralNetworks for Mobile Vision Applications <strong>Link</strong>:https://arxiv.org/pdf/1704.04861 <strong>Source</strong>: IEEEConference on Computer Vision and Pattern Recognition (CVPR)<strong>Date</strong>: 2017</p><h2 id="summary">2. Summary</h2><p>MobileNets提出了一种轻量化、高效的卷积神经网络架构，专为移动设备和嵌入式视觉应用设计。论文的核心贡献在于引入<strong>深度可分离卷积（DepthwiseSeparableConvolutions）</strong>，大幅减少模型的计算量和参数量，同时保证精度的相对稳定。此外，作者还设计了两个超参数（宽度乘子和分辨率乘子），以实现模型精度与效率之间的灵活权衡，满足不同设备的资源限制需求。</p><h2 id="background">3. Background</h2><p>传统的卷积神经网络（如 AlexNet 或VGG）计算量庞大，对内存和处理能力要求较高，不适用于移动设备。而随着移动设备对实时图像处理和智能应用需求的增加，设计高效且准确的深度学习模型成为一个关键研究方向。MobileNets的研究背景正是针对这一需求，提出了一种在资源受限环境下优化卷积层的方法。</p><h2 id="research-objective">4. Research Objective</h2><p>本研究的目标包括：</p><ol type="1"><li>设计一种轻量化、高效的卷积神经网络架构，适用于移动和嵌入式视觉任务。</li><li>提供可调超参数以平衡模型的精度和计算效率。</li><li>验证 MobileNets在图像分类、目标检测和语义分割等任务中的性能表现。</li></ol><h2 id="method">5. Method</h2><p>核心方法为<strong>深度可分离卷积</strong>，将标准卷积分解为以下两个步骤：</p><ol type="1"><li><strong>深度卷积（DepthwiseConvolution）</strong>：对每个输入通道单独应用一个卷积核。</li><li><strong>逐点卷积（Pointwise Convolution）</strong>：通过 1x1卷积将深度卷积的输出通道进行线性组合。 此分解方法将计算复杂度降低约 8-9倍。</li></ol><p>此外，作者引入了两个超参数以进一步优化网络：</p><ul><li><strong>宽度乘子（α）</strong>：缩小每层卷积核的数量。</li><li><strong>分辨率乘子（ρ）</strong>：缩小输入图像的分辨率。</li></ul><p>通过调节 α 和 ρ，MobileNets可以灵活适应不同的硬件资源和任务需求。</p><h2 id="conclusion">6. Conclusion</h2><p>MobileNets提供了一种适用于移动和嵌入式设备的高效深度学习模型解决方案。通过引入深度可分离卷积和可调超参数，架构显著减少了计算量和内存占用，同时保持了良好的精度表现。这项工作为资源受限环境下的实时视觉任务提供了广泛的应用可能性。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>论文阅读</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>深度学习</tag>
+      
+      <tag>算法优化</tag>
+      
+      <tag>轻量化</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>论文笔记 - ShuffleNet: An Extremely Efficient Convolutional Neural Network for Mobile Devices</title>
     <link href="/2024/11/26/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-ShuffleNet-An-Extremely-Efficient-Convolutional-Neural-Network-for-Mobile-Devices/"/>
     <url>/2024/11/26/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-ShuffleNet-An-Extremely-Efficient-Convolutional-Neural-Network-for-Mobile-Devices/</url>
@@ -22,9 +51,9 @@
       
       <tag>深度学习</tag>
       
-      <tag>训练加速</tag>
-      
       <tag>算法优化</tag>
+      
+      <tag>轻量化</tag>
       
     </tags>
     
