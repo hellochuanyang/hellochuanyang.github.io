@@ -19,12 +19,12 @@
   <meta name="author" content="阿阳">
   <meta name="keywords" content="">
   
-    <meta name="description" content="1. InformationTitle: Aggregated Residual Transformations for Deep Neural NetworksLink: ResNeXt PaperSource: IEEE Conference on Computer Vision and Pattern Recognition (CVPR)Date: 2017 2. Summary本文提出了">
+    <meta name="description" content="1. Information Title: Aggregated Residual Transformations for Deep Neural Networks Link: ResNeXt Paper Source: IEEE Conference on Computer Vision and Pattern Recognition (CVPR) Date: 2017 2. Summary 本">
 <meta property="og:type" content="article">
 <meta property="og:title" content="论文笔记 - Aggregated Residual Transformations for Deep Neural Networks">
 <meta property="og:url" content="http://hellochuanyang.github.io/2024/11/25/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Aggregated-Residual-Transformations-for-Deep-Neural-Networks/index.html">
 <meta property="og:site_name" content="Ayang&#39;s home">
-<meta property="og:description" content="1. InformationTitle: Aggregated Residual Transformations for Deep Neural NetworksLink: ResNeXt PaperSource: IEEE Conference on Computer Vision and Pattern Recognition (CVPR)Date: 2017 2. Summary本文提出了">
+<meta property="og:description" content="1. Information Title: Aggregated Residual Transformations for Deep Neural Networks Link: ResNeXt Paper Source: IEEE Conference on Computer Vision and Pattern Recognition (CVPR) Date: 2017 2. Summary 本">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://hellochuanyang.github.io/2024/11/25/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Aggregated-Residual-Transformations-for-Deep-Neural-Networks/1.png">
 <meta property="og:image" content="http://hellochuanyang.github.io/2024/11/25/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Aggregated-Residual-Transformations-for-Deep-Neural-Networks/2.png">
@@ -303,128 +303,162 @@
             
               <div class="markdown-body">
                 
-                <h2 id="1-Information"><a href="#1-Information" class="headerlink" title="1. Information"></a>1. Information</h2><p><strong>Title</strong>: Aggregated Residual Transformations for Deep Neural Networks<br><strong>Link</strong>: <a target="_blank" rel="noopener" href="https://openaccess.thecvf.com/content_cvpr_2017/papers/Xie_Aggregated_Residual_Transformations_CVPR_2017_paper.pdf">ResNeXt Paper</a><br><strong>Source</strong>: IEEE Conference on Computer Vision and Pattern Recognition (CVPR)<br><strong>Date</strong>: 2017</p>
-<h2 id="2-Summary"><a href="#2-Summary" class="headerlink" title="2. Summary"></a>2. Summary</h2><p>本文提出了 <strong>ResNeXt</strong>，一种改进的残差网络架构，通过引入<strong>聚合变换（Aggregated Transformations）</strong>增强模型表达能力。核心创新是引入了<strong>基数（Cardinality）</strong>的概念，即网络中路径的数量。ResNeXt 在显著提升性能的同时，保持了较低的计算复杂度，并在 ImageNet、CIFAR-10 和 CIFAR-100 等基准数据集上达到了最先进的性能。</p>
-<h2 id="3-Background"><a href="#3-Background" class="headerlink" title="3. Background"></a>3. Background</h2><p>深度神经网络（如 ResNet）通过堆叠多个层及跳跃连接在视觉任务中取得了显著成功。然而，仅增加网络的深度或宽度带来的性能提升逐渐减小，同时计算成本迅速增加。受 Inception 等多分支架构的启发，ResNeXt 提出了一个更简单且更高效的聚合策略，通过<strong>并行路径的聚合变换</strong>在性能与效率之间取得了平衡。</p>
-<h2 id="4-Research-Objective"><a href="#4-Research-Objective" class="headerlink" title="4. Research Objective"></a>4. Research Objective</h2><p>本文的研究目标是通过引入<strong>基数（Cardinality）</strong>提升深度网络的表达能力，同时保持计算效率。具体目标包括：</p>
-<ol>
+                <h2 id="information">1. Information</h2>
+<p><strong>Title</strong>: Aggregated Residual Transformations for Deep
+Neural Networks <strong>Link</strong>: <a
+target="_blank" rel="noopener" href="https://openaccess.thecvf.com/content_cvpr_2017/papers/Xie_Aggregated_Residual_Transformations_CVPR_2017_paper.pdf">ResNeXt
+Paper</a> <strong>Source</strong>: IEEE Conference on Computer Vision
+and Pattern Recognition (CVPR) <strong>Date</strong>: 2017</p>
+<h2 id="summary">2. Summary</h2>
+<p>本文提出了
+<strong>ResNeXt</strong>，一种改进的残差网络架构，通过引入<strong>聚合变换（Aggregated
+Transformations）</strong>增强模型表达能力。核心创新是引入了<strong>基数（Cardinality）</strong>的概念，即网络中路径的数量。ResNeXt
+在显著提升性能的同时，保持了较低的计算复杂度，并在 ImageNet、CIFAR-10 和
+CIFAR-100 等基准数据集上达到了最先进的性能。</p>
+<h2 id="background">3. Background</h2>
+<p>深度神经网络（如
+ResNet）通过堆叠多个层及跳跃连接在视觉任务中取得了显著成功。然而，仅增加网络的深度或宽度带来的性能提升逐渐减小，同时计算成本迅速增加。受
+Inception 等多分支架构的启发，ResNeXt
+提出了一个更简单且更高效的聚合策略，通过<strong>并行路径的聚合变换</strong>在性能与效率之间取得了平衡。</p>
+<h2 id="research-objective">4. Research Objective</h2>
+<p>本文的研究目标是通过引入<strong>基数（Cardinality）</strong>提升深度网络的表达能力，同时保持计算效率。具体目标包括：</p>
+<ol type="1">
 <li>提供一种更简洁的多分支架构设计方法；</li>
 <li>验证 ResNeXt 的可扩展性及其在不同任务中的通用性；</li>
 <li>在不显著增加计算成本的情况下实现最先进的性能。</li>
 </ol>
-<h2 id="5-Method"><a href="#5-Method" class="headerlink" title="5. Method"></a>5. Method</h2><ul>
-<li><p><strong>关键创新</strong>：</p>
-<p>引入了基数的概念，下图左边为原始的 ResNet 架构；右边为增加了基数的改进版本，每个残差模块包含多条路径，路径数由基数控制，所有路径的输出聚合后再与输入进行残差连接。</p>
-<p align="center">
-  <img src="1.png" srcset="/img/loading.gif" lazyload style="zoom:60%;" />
-</p>
-
-<p>引入<strong>分组卷积（Grouped Convolution）</strong>以实现多路径聚合变换，下图 (a) 和 (b) 表示相同，图 (c) 使用了分组卷积，降低了计算复杂度。</p>
+<h2 id="method">5. Method</h2>
 <ul>
-<li><p>分组卷积将输入通道划分为多个组，每组独立进行卷积操作，降低了计算复杂度。</p>
-</li>
-<li><p>各组的输出通过聚合操作合并，实现模块化和可扩展性。</p>
-</li>
+<li><p><strong>关键创新</strong>：</p>
+<p>引入了基数的概念，下图左边为原始的 ResNet
+架构；右边为增加了基数的改进版本，每个残差模块包含多条路径，路径数由基数控制，所有路径的输出聚合后再与输入进行残差连接。</p>
+<p align="center">
+<p><img src="1.png" srcset="/img/loading.gif" lazyload style="zoom:60%;" /></p>
+</p>
+<p>引入<strong>分组卷积（Grouped
+Convolution）</strong>以实现多路径聚合变换，下图 (a) 和 (b) 表示相同，图
+(c) 使用了分组卷积，降低了计算复杂度。</p>
+<ul>
+<li><p>分组卷积将输入通道划分为多个组，每组独立进行卷积操作，降低了计算复杂度。</p></li>
+<li><p>各组的输出通过聚合操作合并，实现模块化和可扩展性。</p></li>
 </ul>
 <p align="center">
-  <img src="2.png" srcset="/img/loading.gif" lazyload style="zoom:60%;" />
-</p>
-</li>
+<p><img src="2.png" srcset="/img/loading.gif" lazyload style="zoom:60%;" /></p>
+</p></li>
 <li><p><strong>架构设计</strong>：</p>
 <ul>
-<li>ResNeXt 的残差模块在 ResNet 的基础上，将瓶颈层的单一卷积替换为分组卷积。</li>
+<li>ResNeXt 的残差模块在 ResNet
+的基础上，将瓶颈层的单一卷积替换为分组卷积。</li>
 <li>基数（Cardinality）表示分组的数量，是控制并行路径数量的超参数。</li>
-</ul>
-</li>
+</ul></li>
 <li><p><strong>与其他架构的比较</strong>：</p>
 <ul>
-<li>ResNeXt 在深度（ResNet）和宽度（VGG）之外，提出了新的扩展维度——基数，通过增加基数实现性能提升，同时保持计算效率。</li>
+<li>ResNeXt
+在深度（ResNet）和宽度（VGG）之外，提出了新的扩展维度——基数，通过增加基数实现性能提升，同时保持计算效率。</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h2 id="6-Evaluation"><a href="#6-Evaluation" class="headerlink" title="6. Evaluation"></a>6. Evaluation</h2><ul>
-<li><p><strong>数据集</strong>：ImageNet、CIFAR-10 和 CIFAR-100。</p>
-</li>
-<li><p><strong>评估指标</strong>：分类任务的 Top-1 和 Top-5 准确率。</p>
-</li>
+<h2 id="evaluation">6. Evaluation</h2>
+<ul>
+<li><p><strong>数据集</strong>：ImageNet、CIFAR-10 和
+CIFAR-100。</p></li>
+<li><p><strong>评估指标</strong>：分类任务的 Top-1 和 Top-5
+准确率。</p></li>
 <li><p><strong>实验结果</strong>：</p>
 <ul>
-<li><p>在相同的深度和宽度下，ResNeXt 比 ResNet 表现更优，准确率更高。</p>
-</li>
-<li><p>实验证明，增加基数相比单纯增加深度或宽度更能显著提升网络性能。</p>
-</li>
+<li><p>在相同的深度和宽度下，ResNeXt 比 ResNet
+表现更优，准确率更高。</p></li>
+<li><p>实验证明，增加基数相比单纯增加深度或宽度更能显著提升网络性能。</p></li>
+</ul></li>
+<li><p><strong>消融实验</strong>：验证了分组卷积的有效性，以及基数对模型性能的影响。</p></li>
 </ul>
-</li>
-<li><p><strong>消融实验</strong>：验证了分组卷积的有效性，以及基数对模型性能的影响。</p>
-</li>
-</ul>
-<h2 id="7-Conclusion"><a href="#7-Conclusion" class="headerlink" title="7. Conclusion"></a>7. Conclusion</h2><p>ResNeXt 提供了一种通过聚合变换改进神经网络性能的简单方法。通过增加基数，ResNeXt 实现了更高的准确率，同时保持了较低的计算成本。研究表明，基数是扩展深度网络性能的重要维度，提供了增加深度或宽度之外的一种灵活替代方案。</p>
-<h2 id="8-Notes"><a href="#8-Notes" class="headerlink" title="8. Notes"></a>8. Notes</h2><ol>
+<h2 id="conclusion">7. Conclusion</h2>
+<p>ResNeXt
+提供了一种通过聚合变换改进神经网络性能的简单方法。通过增加基数，ResNeXt
+实现了更高的准确率，同时保持了较低的计算成本。研究表明，基数是扩展深度网络性能的重要维度，提供了增加深度或宽度之外的一种灵活替代方案。</p>
+<h2 id="notes">8. Notes</h2>
+<ol type="1">
 <li><strong>什么是分组卷积</strong>？</li>
 </ol>
 <blockquote>
 <p>分组卷积的核心思想是将卷积操作的输入通道和输出通道分组，然后在每组上独立执行卷积操作，最后将各组的输出拼接在一起。</p>
 <ul>
-<li><strong>传统卷积</strong>：<ul>
-<li>输入特征图和卷积核的所有通道之间会进行完全连接的卷积操作。</li>
-<li>假设输入的通道数为 $C_{\text {in }}$，输出通道数为 $C_{\text {out }}$，卷积核大小为 $k \times k$，传统卷积需要的参数量为：</li>
-</ul>
-</li>
-</ul>
-<p>$$<br>C_{\text {in }} \times C_{\text {out }} \times k \times k<br>$$</p>
+<li><strong>传统卷积</strong>：
 <ul>
-<li><strong>分组卷积</strong>：<ul>
-<li>将输入通道划分为 $g$ 组（每组有 $C_{\text {in }}$ &#x2F; $g$ 个通道），输出通道也划分为 $g$ 组（每组有 $C_{\text {out }}$ &#x2F; $g$ 个通道）。</li>
+<li>输入特征图和卷积核的所有通道之间会进行完全连接的卷积操作。</li>
+<li>假设输入的通道数为 <span class="math inline">\(C_{\text {in
+}}\)</span>，输出通道数为 <span class="math inline">\(C_{\text {out
+}}\)</span>，卷积核大小为 <span class="math inline">\(k \times
+k\)</span>，传统卷积需要的参数量为：</li>
+</ul></li>
+</ul>
+<p><span class="math display">\[
+C_{\text {in }} \times C_{\text {out }} \times k \times k
+\]</span></p>
+<ul>
+<li><strong>分组卷积</strong>：
+<ul>
+<li>将输入通道划分为 <span class="math inline">\(g\)</span> 组（每组有
+<span class="math inline">\(C_{\text {in }}\)</span> / <span
+class="math inline">\(g\)</span> 个通道），输出通道也划分为 <span
+class="math inline">\(g\)</span> 组（每组有 <span
+class="math inline">\(C_{\text {out }}\)</span> / <span
+class="math inline">\(g\)</span> 个通道）。</li>
 <li>每组卷积仅计算输入通道的一部分，从而减少了计算量。</li>
 <li>参数量为：</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<p>$$<br>\left(C_{\text {in }} &#x2F; g\right) \times\left(C_{\text {out }} &#x2F; g\right) \times k \times k \times g&#x3D;\frac{C_{\text {in }} \times C_{\text {out }} \times k \times k}{g}<br>$$</p>
+<p><span class="math display">\[
+\left(C_{\text {in }} / g\right) \times\left(C_{\text {out }} / g\right)
+\times k \times k \times g=\frac{C_{\text {in }} \times C_{\text {out }}
+\times k \times k}{g}
+\]</span></p>
 </blockquote>
-<ol start="2">
+<ol start="2" type="1">
 <li><strong>ResNeXt 与 Inception-ResNet 的对比</strong></li>
 </ol>
 <blockquote>
 <table>
+
 <thead>
-<tr>
+<tr class="header">
 <th><strong>特性</strong></th>
 <th><strong>ResNeXt</strong></th>
 <th><strong>Inception-ResNet</strong></th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr class="odd">
 <td><strong>路径结构</strong></td>
 <td>等价路径（分组卷积）</td>
 <td>非等价路径（不同卷积核和池化操作）</td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>模块复杂度</strong></td>
 <td>简单、模块化</td>
 <td>复杂、需手动调优</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><strong>计算复杂度</strong></td>
 <td>更低，参数更少</td>
 <td>较高，参数较多</td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>特征表达能力</strong></td>
 <td>高效，通过增加基数捕获更多特征</td>
 <td>优秀，能捕获多尺度特征</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><strong>扩展性和通用性</strong></td>
 <td>高，易于在深层网络中扩展</td>
 <td>中等，适合特定任务（如多尺度特征处理）</td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>适用场景</strong></td>
 <td>大规模训练、深层分类网络</td>
 <td>需要多尺度特征融合的任务（如检测、分割）</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 </blockquote>
 
                 

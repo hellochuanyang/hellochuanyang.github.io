@@ -19,12 +19,12 @@
   <meta name="author" content="阿阳">
   <meta name="keywords" content="">
   
-    <meta name="description" content="1. InformationTitle: ShuffleNet: An Extremely Efficient Convolutional Neural Network for Mobile DevicesLink: ShuffleNet PaperSource: IEEE Conference on Computer Vision and Pattern Recognition (CVPR)Da">
+    <meta name="description" content="1. Information Title: ShuffleNet: An Extremely Efficient Convolutional Neural Network for Mobile Devices Link: ShuffleNet Paper Source: IEEE Conference on Computer Vision and Pattern Recognition (CVPR">
 <meta property="og:type" content="article">
 <meta property="og:title" content="论文笔记 - ShuffleNet: An Extremely Efficient Convolutional Neural Network for Mobile Devices">
 <meta property="og:url" content="http://hellochuanyang.github.io/2024/11/26/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-ShuffleNet-An-Extremely-Efficient-Convolutional-Neural-Network-for-Mobile-Devices/index.html">
 <meta property="og:site_name" content="Ayang&#39;s home">
-<meta property="og:description" content="1. InformationTitle: ShuffleNet: An Extremely Efficient Convolutional Neural Network for Mobile DevicesLink: ShuffleNet PaperSource: IEEE Conference on Computer Vision and Pattern Recognition (CVPR)Da">
+<meta property="og:description" content="1. Information Title: ShuffleNet: An Extremely Efficient Convolutional Neural Network for Mobile Devices Link: ShuffleNet Paper Source: IEEE Conference on Computer Vision and Pattern Recognition (CVPR">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://hellochuanyang.github.io/2024/11/26/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-ShuffleNet-An-Extremely-Efficient-Convolutional-Neural-Network-for-Mobile-Devices/1.png">
 <meta property="og:image" content="http://hellochuanyang.github.io/2024/11/26/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-ShuffleNet-An-Extremely-Efficient-Convolutional-Neural-Network-for-Mobile-Devices/2.png">
@@ -303,39 +303,67 @@
             
               <div class="markdown-body">
                 
-                <h2 id="1-Information"><a href="#1-Information" class="headerlink" title="1. Information"></a>1. Information</h2><p><strong>Title</strong>: ShuffleNet: An Extremely Efficient Convolutional Neural Network for Mobile Devices<br><strong>Link</strong>: <a target="_blank" rel="noopener" href="https://openaccess.thecvf.com/content_cvpr_2018/papers/Zhang_ShuffleNet_An_Extremely_CVPR_2018_paper.pdf">ShuffleNet Paper</a><br><strong>Source</strong>: IEEE Conference on Computer Vision and Pattern Recognition (CVPR)<br><strong>Date</strong>: 2018</p>
-<h2 id="2-Summary"><a href="#2-Summary" class="headerlink" title="2. Summary"></a>2. Summary</h2><p>本文提出了 ShuffleNet，一种针对移动设备的高效卷积神经网络。核心创新是<strong>通道混洗（channel shuffle）</strong>操作，它在不牺牲准确性的情况下，减少了计算量和模型大小。文章提出了两项关键技术：</p>
-<ol>
-<li><strong>逐点组卷积（pointwise group convolution）</strong>：通过将 1x1 卷积操作分组，减少了参数和计算量。</li>
-<li><strong>通道混洗（channel shuffle）</strong>：这一操作在组卷积后重排特征通道，提升了网络的表示能力。</li>
+                <h2 id="information">1. Information</h2>
+<p><strong>Title</strong>: ShuffleNet: An Extremely Efficient
+Convolutional Neural Network for Mobile Devices <strong>Link</strong>:
+<a
+target="_blank" rel="noopener" href="https://openaccess.thecvf.com/content_cvpr_2018/papers/Zhang_ShuffleNet_An_Extremely_CVPR_2018_paper.pdf">ShuffleNet
+Paper</a> <strong>Source</strong>: IEEE Conference on Computer Vision
+and Pattern Recognition (CVPR) <strong>Date</strong>: 2018</p>
+<h2 id="summary">2. Summary</h2>
+<p>本文提出了
+ShuffleNet，一种针对移动设备的高效卷积神经网络。核心创新是<strong>通道混洗（channel
+shuffle）</strong>操作，它在不牺牲准确性的情况下，减少了计算量和模型大小。文章提出了两项关键技术：</p>
+<ol type="1">
+<li><strong>逐点组卷积（pointwise group convolution）</strong>：通过将
+1x1 卷积操作分组，减少了参数和计算量。</li>
+<li><strong>通道混洗（channel
+shuffle）</strong>：这一操作在组卷积后重排特征通道，提升了网络的表示能力。</li>
 </ol>
-<h2 id="3-Background"><a href="#3-Background" class="headerlink" title="3. Background"></a>3. Background</h2><p>由于移动设备面临资源受限的挑战，如何设计高效的神经网络模型变得尤为重要。传统的 CNN 架构计算开销大，限制了它们在移动平台上的应用。</p>
-<h2 id="4-Research-Objective"><a href="#4-Research-Objective" class="headerlink" title="4. Research Objective"></a>4. Research Objective</h2><p>本研究的主要目标是设计一种计算高效且能够保持高准确率的CNN架构，特别是针对移动设备的部署。具体来说，研究目标是：</p>
-<ol>
+<h2 id="background">3. Background</h2>
+<p>由于移动设备面临资源受限的挑战，如何设计高效的神经网络模型变得尤为重要。传统的
+CNN 架构计算开销大，限制了它们在移动平台上的应用。</p>
+<h2 id="research-objective">4. Research Objective</h2>
+<p>本研究的主要目标是设计一种计算高效且能够保持高准确率的CNN架构，特别是针对移动设备的部署。具体来说，研究目标是：</p>
+<ol type="1">
 <li>在保证高准确度的同时，减少模型的计算开销（FLOPs）。</li>
 <li>确保模型在内存使用和模型大小方面高效，以便在实际移动设备中使用。</li>
 </ol>
-<h2 id="5-Method"><a href="#5-Method" class="headerlink" title="5. Method"></a>5. Method</h2><h4 id="Channel-Shuffle-for-Group-Convolutions"><a href="#Channel-Shuffle-for-Group-Convolutions" class="headerlink" title="Channel Shuffle for Group Convolutions"></a>Channel Shuffle for Group Convolutions</h4><p>现有的模型在使用组卷积时，往往忽视了 1×1 卷积（逐点卷积），导致该操作占据了大量计算开销。本文提出了在 1×1 卷积中使用分组卷积，以减少计算量。</p>
-<p>然而，分组卷积会使得每个通道的输出仅来自部分输入通道。为了解决这一问题，作者提出了通道混洗技术，如下图（b）和（c）所示。假设某个卷积层被划分为 g 组，每组的输出特征维度为 n，首先将其堆叠成形状为（g, n）的张量，再对其进行转置操作，最后将其拉平，完成通道之间的信息融合。</p>
+<h2 id="method">5. Method</h2>
+<h4 id="channel-shuffle-for-group-convolutions">Channel Shuffle for
+Group Convolutions</h4>
+<p>现有的模型在使用组卷积时，往往忽视了 1×1
+卷积（逐点卷积），导致该操作占据了大量计算开销。本文提出了在 1×1
+卷积中使用分组卷积，以减少计算量。</p>
+<p>然而，分组卷积会使得每个通道的输出仅来自部分输入通道。为了解决这一问题，作者提出了通道混洗技术，如下图（b）和（c）所示。假设某个卷积层被划分为
+g 组，每组的输出特征维度为 n，首先将其堆叠成形状为（g,
+n）的张量，再对其进行转置操作，最后将其拉平，完成通道之间的信息融合。</p>
 <p align="center">
-  <img src="1.png" srcset="/img/loading.gif" lazyload style="zoom:67%;" />
+<img src="1.png" srcset="/img/loading.gif" lazyload style="zoom:67%;" />
 </p>
-
-<h4 id="ShuffleNet-Unit"><a href="#ShuffleNet-Unit" class="headerlink" title="ShuffleNet Unit"></a>ShuffleNet Unit</h4><p>基于通道混洗操作，本文提出了 ShuffleNet 单元，如下图所示。</p>
+<h4 id="shufflenet-unit">ShuffleNet Unit</h4>
+<p>基于通道混洗操作，本文提出了 ShuffleNet 单元，如下图所示。</p>
 <p align="center">
-  <img src="2.png" srcset="/img/loading.gif" lazyload style="zoom:67%;" />
+<img src="2.png" srcset="/img/loading.gif" lazyload style="zoom:67%;" />
 </p>
-
-<p>其中，(a) 为 ResNet 中的基本块，本文将其中的 1×1 卷积替换为分组卷积，并在第一个分组卷积之后加入了通道混洗操作。</p>
-<p>在需要缩减图像尺寸的情况下，如图(c)所示，在直接连接路径上使用 3×3 的平均池化操作，并将原本在 ResNet 中的相加操作替换为通道串联操作，从而增加通道维度。</p>
-<h2 id="6-Evaluation"><a href="#6-Evaluation" class="headerlink" title="6. Evaluation"></a>6. Evaluation</h2><p>作者通过以下方式评估了ShuffleNet的性能：</p>
+<p>其中，(a) 为 ResNet 中的基本块，本文将其中的 1×1
+卷积替换为分组卷积，并在第一个分组卷积之后加入了通道混洗操作。</p>
+<p>在需要缩减图像尺寸的情况下，如图(c)所示，在直接连接路径上使用 3×3
+的平均池化操作，并将原本在 ResNet
+中的相加操作替换为通道串联操作，从而增加通道维度。</p>
+<h2 id="evaluation">6. Evaluation</h2>
+<p>作者通过以下方式评估了ShuffleNet的性能：</p>
 <ul>
 <li>在 ImageNet 数据集上的<strong>Top-1和Top-5准确率</strong>。</li>
 <li><strong>FLOPs</strong>（浮点运算）用于衡量计算效率。</li>
 <li><strong>模型大小</strong>和<strong>内存使用</strong>，评估其在移动设备上的可行性。</li>
 </ul>
-<p>ShuffleNet 在准确率和效率上超越了其他高效 CNN 架构（如 MobileNet），实现了性能与计算开销的良好平衡。</p>
-<h2 id="7-Conclusion"><a href="#7-Conclusion" class="headerlink" title="7. Conclusion"></a>7. Conclusion</h2><p>ShuffleNet 通过创新地结合组卷积和通道混洗操作，设计出了极高效的卷积神经网络，特别适合移动设备使用。实验结果表明，ShuffleNet 在计算开销大幅降低的同时，依然能够保持良好的准确率。该方法在实时移动应用中具有很大的潜力，尤其是在速度和内存效率至关重要的场景下。</p>
+<p>ShuffleNet 在准确率和效率上超越了其他高效 CNN 架构（如
+MobileNet），实现了性能与计算开销的良好平衡。</p>
+<h2 id="conclusion">7. Conclusion</h2>
+<p>ShuffleNet
+通过创新地结合组卷积和通道混洗操作，设计出了极高效的卷积神经网络，特别适合移动设备使用。实验结果表明，ShuffleNet
+在计算开销大幅降低的同时，依然能够保持良好的准确率。该方法在实时移动应用中具有很大的潜力，尤其是在速度和内存效率至关重要的场景下。</p>
 
                 
               </div>
