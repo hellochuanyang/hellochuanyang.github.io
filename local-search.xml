@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>论文笔记 - ShuffleNet V2: Practical Guidelines for Efficient CNN Architecture Design</title>
+    <link href="/2024/11/27/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-ShuffleNet-V2-Practical-Guidelines-for-Efficient-CNN-Architecture-Design/"/>
+    <url>/2024/11/27/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-ShuffleNet-V2-Practical-Guidelines-for-Efficient-CNN-Architecture-Design/</url>
+    
+    <content type="html"><![CDATA[<h2 id="information">1. Information</h2><p><strong>Title</strong>: ShuffleNet V2: Practical Guidelines forEfficient CNN Architecture Design<br /><strong>Link</strong>: <ahref="https://openaccess.thecvf.com/content_ECCV_2018/papers/Ningning_Light-weight_CNN_Architecture_ECCV_2018_paper.pdf">ShuffleNetV2 Paper</a><br /><strong>Source</strong>: European Conference on Computer Vision(ECCV)<br /><strong>Date</strong>: 2018</p><h2 id="summary">2. Summary</h2><p>本文提出了 ShuffleNetV2，一种新的轻量级卷积神经网络架构，旨在提高计算效率，特别适用于计算能力受限的移动设备。研究指出，直接度量（如速度）不仅取决于FLOPs（乘加数），还受到存储访问量和硬件平台特性等因素的影响。因此，本文基于直接度量评估目标平台上的性能，并提出了几个实用指南来指导高效的网络设计。</p><h2 id="background">3. Background</h2><p>卷积神经网络（CNN）在计算机视觉任务中取得了显著的成功，但其庞大的模型体积和高计算需求，使其在移动设备和嵌入式系统等资源受限的设备上应用时面临挑战。之前的轻量级CNN 模型，如 MobileNet 和ShuffleNet，尝试通过减少参数和计算量来解决这一问题。然而，这些模型在速度和资源使用上的效率仍然存在不足，尤其是在移动和嵌入式设备应用场景中。</p><h2 id="research-objective">4. Research Objective</h2><p>本研究的目标是提供一套设计高效 CNN架构的实用指南，尤其是在移动设备和嵌入式系统应用中。作者旨在通过分析模型的准确度、计算复杂度和资源约束之间的关系，提出ShuffleNet V2 作为一种更高效的轻量级替代方案。</p><h2 id="method">5. Method</h2><p>在设计轻量化网络时不应简单的只考虑间接指标（FLOPs），需要满足以下的设计原则：</p><ol type="1"><li><strong>相同通道宽度能够最小化内存访问成本（MAC）</strong>：当卷积层的输入和输出通道数相同时，所需的内存访问成本（MAC）最小。这是因为在这种情况下，卷积操作可以更高效地利用缓存，减少内存访问次数。</li><li><strong>过度的组卷积会增加MAC</strong>：使用大的分组数进行卷积运算会增加内存访问成本，因为不同组之间的数据无法共享，导致更多的内存访问。</li><li><strong>网络碎片化会降低并行程度</strong>：网络中过多的分支和基本单元会导致计算资源无法充分利用，降低并行计算的效率。</li><li><strong>Element-wise 操作的影响不可忽略</strong>：Element-wise操作（如 ReLU激活函数）虽然计算量不大，但在网络中广泛存在，对整体性能有不可忽视的影响。</li></ol><p>根据上述设计原则，ShuffleNet V2 对 ShuffleNet V1进行了若干优化，提升了模型的计算效率和内存访问效率。以下是对 V2网络架构的改进：</p><p align="center"><img src="1.png" style="zoom:67%;" /></p><p>在 ShuffleNet V1 中，网络结构基于通道混洗和深度可分卷积（depthwiseseparable convolution）两大核心技术进行设计。然而，ShuffleNet V1中的某些设计存在计算效率上的瓶颈，特别是在内存访问和网络碎片化方面。</p><h5 id="shufflenet-v2-的改进"><strong>ShuffleNet V2 的改进</strong></h5><ol type="1"><li><strong>通道划分与跳跃链接</strong> 在 ShuffleNet V2中，首先对特征图进行通道划分，一部分通道通过跳跃链接直接传递到下一层，另一部分通道经过卷积处理。在卷积操作中，V2去除了 1x1的分组卷积操作，因为在通道划分阶段，已经对通道进行了分组，从而不再需要额外的分组卷积。这一优化不仅降低了计算量，还减小了内存访问成本。</li><li><strong>替换 Add 操作为 Concat 操作</strong> ShuffleNet V2中将原有的 Add 操作替换成了 Concat操作。在V1中，Add操作通常会导致不同分支的特征图相加，可能带来一些计算上的冗余。而通过Concat操作，将特征图在通道维度上拼接，不仅能够保留更多的信息，还能更好地进行后续的通道混洗操作。</li><li><strong>通道混洗的优化</strong> 在 V2中，进行了优化的通道混洗操作进一步提升了特征图之间的信息交换效率。通道混洗确保了不同通道之间的信息能够流畅传递，而不至于造成信息瓶颈。通过减少计算冗余和提升信息流动效率，通道混洗有效提升了模型的表达能力，同时保持了较低的计算成本。</li><li><strong>下采样操作优化</strong> 对于需要进行下采样的部分，ShuffleNetV2 去除了原始 ShuffleNet V1中的通道分离步骤，而是通过加倍输出通道数来进行下采样。这一变化使得网络结构更加简洁，同时减少了冗余的操作步骤。通过优化下采样策略，V2能够在不牺牲计算效率的情况下，更加平滑地进行空间尺寸的压缩。</li></ol><h2 id="conclusion">6. Conclusion</h2><p>ShuffleNetV2提出了一种实用且高效的CNN架构，通过优化原ShuffleNet的操作，针对移动设备和嵌入式系统的应用需求，提供了一种更轻量、高效的方案。本文提出的设计原则为未来轻量级CNN的研究提供了重要参考，能够在减少计算量的同时保持较高的准确度。与现有的轻量级模型如MobileNetV2相比，ShuffleNetV2在多个方面表现出色，具有较大的应用潜力。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>论文阅读</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>深度学习</tag>
+      
+      <tag>算法优化</tag>
+      
+      <tag>轻量化</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>论文笔记 - MobileNets: Efficient Convolutional Neural Networks for Mobile </title>
     <link href="/2024/11/27/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-MobileNets-Efficient-Convolutional-Neural-Networks-for-Mobile/"/>
     <url>/2024/11/27/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-MobileNets-Efficient-Convolutional-Neural-Networks-for-Mobile/</url>
