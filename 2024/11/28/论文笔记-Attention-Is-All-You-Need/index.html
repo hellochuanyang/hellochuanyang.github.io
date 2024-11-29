@@ -19,26 +19,24 @@
   <meta name="author" content="阿阳">
   <meta name="keywords" content="">
   
-    <meta name="description" content="1. Information Title: ShuffleNet V2: Practical Guidelines for Efficient CNN Architecture Design Link: ShuffleNet V2 Paper Source: European Conference on Computer Vision (ECCV) Date: 2018 2. Summary 本文">
+    <meta name="description" content="1. Information Title: Attention Is All You Need Link: Transformer Source: Conference on Neural Information Processing Systems (NeurIPS) Date: 2017 2. Summary 本文提出了 Transformer 模型，这是一种用于序列转换任务（特别是机器翻译）">
 <meta property="og:type" content="article">
-<meta property="og:title" content="论文笔记 - ShuffleNet V2: Practical Guidelines for Efficient CNN Architecture Design">
-<meta property="og:url" content="http://hellochuanyang.github.io/2024/11/27/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-ShuffleNet-V2-Practical-Guidelines-for-Efficient-CNN-Architecture-Design/index.html">
+<meta property="og:title" content="论文笔记 - Attention Is All You Need">
+<meta property="og:url" content="http://hellochuanyang.github.io/2024/11/28/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Attention-Is-All-You-Need/index.html">
 <meta property="og:site_name" content="Ayang&#39;s home">
-<meta property="og:description" content="1. Information Title: ShuffleNet V2: Practical Guidelines for Efficient CNN Architecture Design Link: ShuffleNet V2 Paper Source: European Conference on Computer Vision (ECCV) Date: 2018 2. Summary 本文">
+<meta property="og:description" content="1. Information Title: Attention Is All You Need Link: Transformer Source: Conference on Neural Information Processing Systems (NeurIPS) Date: 2017 2. Summary 本文提出了 Transformer 模型，这是一种用于序列转换任务（特别是机器翻译）">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://hellochuanyang.github.io/2024/11/27/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-ShuffleNet-V2-Practical-Guidelines-for-Efficient-CNN-Architecture-Design/1.png">
-<meta property="article:published_time" content="2024-11-27T23:51:14.000Z">
-<meta property="article:modified_time" content="2024-11-28T07:51:55.354Z">
+<meta property="article:published_time" content="2024-11-28T22:32:20.000Z">
+<meta property="article:modified_time" content="2024-11-29T06:37:04.046Z">
 <meta property="article:author" content="阿阳">
 <meta property="article:tag" content="深度学习">
-<meta property="article:tag" content="算法优化">
-<meta property="article:tag" content="轻量化">
+<meta property="article:tag" content="NLP">
+<meta property="article:tag" content="Transformer">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://hellochuanyang.github.io/2024/11/27/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-ShuffleNet-V2-Practical-Guidelines-for-Efficient-CNN-Architecture-Design/1.png">
   
   
   
-  <title>论文笔记 - ShuffleNet V2: Practical Guidelines for Efficient CNN Architecture Design - Ayang&#39;s home</title>
+  <title>论文笔记 - Attention Is All You Need - Ayang&#39;s home</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -217,7 +215,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="论文笔记 - ShuffleNet V2: Practical Guidelines for Efficient CNN Architecture Design"></span>
+            <span id="subtitle" data-typed-text="论文笔记 - Attention Is All You Need"></span>
           
         </div>
 
@@ -228,8 +226,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-11-28 07:51" pubdate>
-          2024年11月28日 早上
+        <time datetime="2024-11-29 06:32" pubdate>
+          2024年11月29日 早上
         </time>
       </span>
     
@@ -240,7 +238,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.3k 字
+          2.8k 字
         
       </span>
     
@@ -251,7 +249,7 @@
         
         
         
-          12 分钟
+          24 分钟
         
       </span>
     
@@ -297,73 +295,242 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">论文笔记 - ShuffleNet V2: Practical Guidelines for Efficient CNN Architecture Design</h1>
+            <h1 id="seo-header">论文笔记 - Attention Is All You Need</h1>
             
             
               <div class="markdown-body">
                 
                 <h2 id="information">1. Information</h2>
-<p><strong>Title</strong>: ShuffleNet V2: Practical Guidelines for
-Efficient CNN Architecture Design<br />
+<p><strong>Title</strong>: Attention Is All You Need<br />
 <strong>Link</strong>: <a
-target="_blank" rel="noopener" href="https://openaccess.thecvf.com/content_ECCV_2018/papers/Ningning_Light-weight_CNN_Architecture_ECCV_2018_paper.pdf">ShuffleNet
-V2 Paper</a><br />
-<strong>Source</strong>: European Conference on Computer Vision
-(ECCV)<br />
-<strong>Date</strong>: 2018</p>
+target="_blank" rel="noopener" href="https://arxiv.org/pdf/1706.03762">Transformer</a><br />
+<strong>Source</strong>: Conference on Neural Information Processing
+Systems (NeurIPS)<br />
+<strong>Date</strong>: 2017</p>
 <h2 id="summary">2. Summary</h2>
-<p>本文提出了 ShuffleNet
-V2，一种新的轻量级卷积神经网络架构，旨在提高计算效率，特别适用于计算能力受限的移动设备。研究指出，直接度量（如速度）不仅取决于FLOPs（乘加数），还受到存储访问量和硬件平台特性等因素的影响。因此，本文基于直接度量评估目标平台上的性能，并提出了几个实用指南来指导高效的网络设计。</p>
+<p>本文提出了 <strong>Transformer</strong>
+模型，这是一种用于序列转换任务（特别是机器翻译）的新型深度学习架构。Transformer
+的核心创新是<strong>自注意力机制</strong>，该机制使得模型能够高效地处理序列数据，而不依赖于循环神经网络（RNN）或卷积神经网络（CNN）。该模型在编码和解码阶段均使用自注意力和前馈神经网络，显著提高了并行化能力，减少了训练时间。实验结果表明，Transformer
+在机器翻译任务中超越了基于 LSTM 和 GRU
+的传统模型，取得了更好的性能。</p>
 <h2 id="background">3. Background</h2>
-<p>卷积神经网络（CNN）在计算机视觉任务中取得了显著的成功，但其庞大的模型体积和高计算需求，使其在移动设备和嵌入式系统等资源受限的设备上应用时面临挑战。之前的轻量级
-CNN 模型，如 MobileNet 和
-ShuffleNet，尝试通过减少参数和计算量来解决这一问题。然而，这些模型在速度和资源使用上的效率仍然存在不足，尤其是在移动和嵌入式设备应用场景中。</p>
+<p>在 Transformer
+提出之前，序列到序列任务（如机器翻译）通常由<strong>循环神经网络（RNN）及其改进版本（如
+LSTM 和
+GRU）</strong>来处理。这些模型是逐步处理数据，因此存在并行化难度，长依赖关系的处理也存在瓶颈。<strong>卷积神经网络（CNN）</strong>在某些序列处理任务中也有应用，但它们在捕捉长程依赖关系时的能力较弱。</p>
 <h2 id="research-objective">4. Research Objective</h2>
-<p>本研究的目标是提供一套设计高效 CNN
-架构的实用指南，尤其是在移动设备和嵌入式系统应用中。作者旨在通过分析模型的准确度、计算复杂度和资源约束之间的关系，提出
-ShuffleNet V2 作为一种更高效的轻量级替代方案。</p>
+<p>本文的研究目标是提出一种新的模型架构，能够在不依赖循环或卷积层的情况下高效处理序列转换任务，尤其是机器翻译。具体目标包括：</p>
+<ol type="1">
+<li>设计一个易于并行化的模型，从而提高训练效率。</li>
+<li>开发一个能够捕捉长程依赖关系的模型，不受传统RNN模型的限制。</li>
+<li>证明该模型在标准基准任务中超越传统RNN模型的表现。</li>
+</ol>
 <h2 id="method">5. Method</h2>
-<p>在设计轻量化网络时不应简单的只考虑间接指标（FLOPs），需要满足以下的设计原则：</p>
+<h3 id="自注意力机制self-attention">5.1
+自注意力机制（Self-Attention）</h3>
+<p>自注意力机制是 Transformer
+的核心创新之一。它允许模型在处理每个输入位置时，对序列中所有位置的其他元素进行加权求和，从而捕捉词语间的依赖关系。自注意力机制通过计算每个词与其他词之间的相似度，来决定其在表示中的重要性。</p>
+<h5 id="计算过程">计算过程</h5>
+<p>自注意力机制的关键计算过程可以通过以下三个向量来描述：</p>
+<ul>
+<li><strong>Query（查询向量）</strong>：代表当前词需要从其他词中获取信息的“查询”。</li>
+<li><strong>Key（键向量）</strong>：表示当前词的特征，用于与查询进行比较。</li>
+<li><strong>Value（值向量）</strong>：包含关于当前词的实际信息，用于加权求和。</li>
+</ul>
+<p>具体公式如下： <span class="math display">\[
+\operatorname{Attention}(Q, K, V)=\operatorname{softmax}\left(\frac{Q
+K^T}{\sqrt{d_k}}\right) V
+\]</span></p>
+<ul>
+<li><span class="math inline">\(Q\)</span> 是查询矩阵，<span
+class="math inline">\(K\)</span> 是键矩阵，<span
+class="math inline">\(V\)</span> 是值矩阵。</li>
+<li><span class="math inline">\(d_k\)</span> 是键向量的维度。</li>
+<li><span class="math inline">\(Q K^T\)</span>
+计算查询和键之间的点积相似度，然后通过 <span
+class="math inline">\(\sqrt{d_k}\)</span>
+进行缩放，以防止点积值过大。</li>
+<li>经过 softmax 操作后，获得的权重矩阵用于对值向量 <span
+class="math inline">\(V\)</span> 进行加权求和。</li>
+</ul>
+<p>这个公式的核心思想是通过对每个词的查询向量与所有其他词的键向量进行点积，得到一个权重分布，再利用该权重对值向量进行加权和求和，从而得到每个词的新的表示。</p>
+<h3 id="多头注意力机制multi-head-attention">5.2
+多头注意力机制（Multi-Head Attention）</h3>
+<p>多头注意力机制是对自注意力的扩展，它通过多个并行的自注意力计算来捕捉输入序列中的不同特征。每个注意力头（head）学习一个不同的投影，从不同的角度来关注输入序列中的各个部分。</p>
+<p>具体操作如下：</p>
 <ol type="1">
-<li><strong>相同通道宽度能够最小化内存访问成本（MAC）</strong>：当卷积层的输入和输出通道数相同时，所需的内存访问成本（MAC）最小。这是因为在这种情况下，卷积操作可以更高效地利用缓存，减少内存访问次数。</li>
-<li><strong>过度的组卷积会增加
-MAC</strong>：使用大的分组数进行卷积运算会增加内存访问成本，因为不同组之间的数据无法共享，导致更多的内存访问。</li>
-<li><strong>网络碎片化会降低并行程度</strong>：网络中过多的分支和基本单元会导致计算资源无法充分利用，降低并行计算的效率。</li>
-<li><strong>Element-wise 操作的影响不可忽略</strong>：Element-wise
-操作（如 ReLU
-激活函数）虽然计算量不大，但在网络中广泛存在，对整体性能有不可忽视的影响。</li>
+<li>输入的查询、键和值分别被映射到多个不同的子空间，每个子空间对应一个注意力头。</li>
+<li>每个注意力头独立计算自注意力（如上述公式所示），得到一个加权的表示。</li>
+<li>最后，将所有头的输出拼接在一起，并通过一个线性变换来得到最终的输出。</li>
 </ol>
-<p>根据上述设计原则，ShuffleNet V2 对 ShuffleNet V1
-进行了若干优化，提升了模型的计算效率和内存访问效率。以下是对 V2
-网络架构的改进：</p>
-<p align="center">
-<img src="1.png" srcset="/img/loading.gif" lazyload style="zoom:67%;" />
-</p>
-<p>在 ShuffleNet V1 中，网络结构基于通道混洗和深度可分卷积（depthwise
-separable convolution）两大核心技术进行设计。然而，ShuffleNet V1
-中的某些设计存在计算效率上的瓶颈，特别是在内存访问和网络碎片化方面。</p>
-<h5 id="shufflenet-v2-的改进"><strong>ShuffleNet V2 的改进</strong></h5>
+<p>多头注意力机制的公式如下： <span class="math display">\[
+\operatorname{MultiHead}(Q, K,
+V)=\operatorname{Concat}\left(\operatorname{head}_1, \ldots, \text {
+head }_h\right) W^O
+\]</span> 其中，<span
+class="math inline">\(\operatorname{head}_i=\operatorname{Attention}\left(Q
+W_i^Q, K W_i^K, V W_i^V\right)\)</span>，表示第 <span
+class="math inline">\(i\)</span> 个注意力头的计算过程。</p>
+<ul>
+<li><span class="math inline">\(W_i^Q, W_i^K, W_i^V\)</span>
+是用于映射查询、键、值的权重矩阵。</li>
+<li><span class="math inline">\(W^O\)</span> 是输出映射的权重矩阵。</li>
+</ul>
+<p>通过这种方式，模型能够并行地关注输入序列的不同部分，并从多角度提取信息。</p>
+<h3 id="位置编码positional-encoding">5.3 位置编码（Positional
+Encoding）</h3>
+<p>由于 Transformer 没有像 RNN
+那样的序列顺序处理机制，因此需要引入位置编码来保持序列中每个单词的位置信息。位置编码将每个词的位置映射为一个向量，并加到词嵌入（embedding）中。位置编码的设计保证了每个词的位置信息可以被捕捉到，而不会影响自注意力的计算。</p>
+<p>位置编码使用正弦和余弦函数来生成不同频率的编码，公式如下： <span
+class="math display">\[
+\begin{gathered}
+\mathrm{PE}(p o s, 2 i)=\sin \left(\frac{p o s}{10000^{2 i / d_{\text
+{model }}}}\right) \\
+\mathrm{PE}(p o s, 2 i+1)=\cos \left(\frac{p o s}{10000^{2 i / d_{\text
+{model }}}}\right)
+\end{gathered}
+\]</span></p>
+<ul>
+<li><span class="math inline">\(pos\)</span> 是单词的位置，<span
+class="math inline">\(i\)</span> 是维度索引，<span
+class="math inline">\(d_{\text {model }}\)</span> 是词嵌入的维度。</li>
+</ul>
+<p>这种编码方式能够确保对于较远的词，正弦和余弦函数的值会呈现不同的周期性，能够捕捉到不同尺度的位置信息。</p>
+<h3 id="前馈神经网络feed-forward-neural-networks">5.4
+前馈神经网络（Feed-Forward Neural Networks）</h3>
+<p>Transformer
+中的每个层除了自注意力层之外，还包含一个前馈神经网络（Feed-Forward
+Neural Network）。该网络包含两个线性变换和一个 ReLU 激活函数，公式如下：
+<span class="math display">\[
+\operatorname{FFN}(x)=\max \left(0, x W_1+b_1\right) W_2+b_2
+\]</span></p>
+<ul>
+<li><span class="math inline">\(W_1, W_2\)</span> 和 <span
+class="math inline">\(b_1, b_2\)</span> 是可学习的权重和偏置。</li>
+<li><span class="math inline">\(\max (0, x)\)</span> 是 ReLU
+激活函数。</li>
+</ul>
+<p>前馈网络在每个位置独立地应用，因此它能够进一步增强每个词表示的非线性特征。</p>
+<h3
+id="残差连接和层归一化residual-connection-and-layer-normalization">5.5
+残差连接和层归一化（Residual Connection and Layer Normalization）</h3>
+<p>为了避免深层网络中的梯度消失问题，Transformer
+使用了<strong>残差连接（Residual
+Connection）</strong>。每个子层（如注意力层、前馈神经网络层）的输出都会加上其输入，即：
+<span class="math display">\[
+\text { output }=\text { LayerNorm }(x+\operatorname{Sublayer}(x))
+\]</span> 这里，Sublayer(x) 是该子层的输出，<span
+class="math inline">\(x\)</span>
+是该子层的输入。残差连接有助于确保信息能够直接流过网络的每一层，避免梯度消失问题，同时层归一化（LayerNorm）有助于加速训练。</p>
+<h2 id="evaluation">6. Evaluation</h2>
+<p>作者通过以下几个标准数据集对 Transformer 模型进行了评估：</p>
+<ul>
+<li><strong>WMT 2014 英德翻译和英法翻译任务</strong>。</li>
+<li>与传统的基于 RNN 的模型（如 LSTM）和 CNN 模型进行了比较。</li>
+</ul>
+<p>主要评估指标包括：</p>
+<ul>
+<li><strong>BLEU（Bilingual Evaluation
+Understudy）</strong>分数，这是衡量机器翻译质量的标准指标。</li>
+<li><strong>训练时间</strong>：由于 Transformer
+的高度并行化，训练时间显著低于基于 RNN 的模型。</li>
+</ul>
+<p>实验结果表明，Transformer 在翻译质量和训练效率上都显著超越了传统的
+RNN 模型。</p>
+<h2 id="conclusion">7. Conclusion</h2>
+<p>Transformer
+模型是序列到序列任务中的一项重大创新，证明了自注意力机制可以取代传统的循环和卷积层。本文的主要结论如下：</p>
 <ol type="1">
-<li><strong>通道划分与跳跃链接</strong> 在 ShuffleNet V2
-中，首先对特征图进行通道划分，一部分通道通过跳跃链接直接传递到下一层，另一部分通道经过卷积处理。在卷积操作中，V2
-去除了 1x1
-的分组卷积操作，因为在通道划分阶段，已经对通道进行了分组，从而不再需要额外的分组卷积。这一优化不仅降低了计算量，还减小了内存访问成本。</li>
-<li><strong>替换 Add 操作为 Concat 操作</strong> ShuffleNet V2
-中将原有的 Add 操作替换成了 Concat
-操作。在V1中，Add操作通常会导致不同分支的特征图相加，可能带来一些计算上的冗余。而通过
-Concat
-操作，将特征图在通道维度上拼接，不仅能够保留更多的信息，还能更好地进行后续的通道混洗操作。</li>
-<li><strong>通道混洗的优化</strong> 在 V2
-中，进行了优化的通道混洗操作进一步提升了特征图之间的信息交换效率。通道混洗确保了不同通道之间的信息能够流畅传递，而不至于造成信息瓶颈。通过减少计算冗余和提升信息流动效率，通道混洗有效提升了模型的表达能力，同时保持了较低的计算成本。</li>
-<li><strong>下采样操作优化</strong> 对于需要进行下采样的部分，ShuffleNet
-V2 去除了原始 ShuffleNet V1
-中的通道分离步骤，而是通过加倍输出通道数来进行下采样。这一变化使得网络结构更加简洁，同时减少了冗余的操作步骤。通过优化下采样策略，V2
-能够在不牺牲计算效率的情况下，更加平滑地进行空间尺寸的压缩。</li>
+<li><strong>高效性</strong>：Transformer
+在性能超越的同时，还具备了高度的并行化能力，显著降低了训练时间。</li>
+<li><strong>有效性</strong>：在机器翻译任务中，Transformer 超越了传统
+RNN 模型，能够有效捕捉长程依赖关系。</li>
+<li><strong>灵活性</strong>：Transformer
+架构具有很好的通用性，能够应用于其他序列相关任务，之后的 BERT、GPT、T5
+等模型也基于Transformer 架构发展而来。</li>
 </ol>
-<h2 id="conclusion">6. Conclusion</h2>
-<p>ShuffleNet
-V2提出了一种实用且高效的CNN架构，通过优化原ShuffleNet的操作，针对移动设备和嵌入式系统的应用需求，提供了一种更轻量、高效的方案。本文提出的设计原则为未来轻量级CNN的研究提供了重要参考，能够在减少计算量的同时保持较高的准确度。与现有的轻量级模型如MobileNetV2相比，ShuffleNet
-V2在多个方面表现出色，具有较大的应用潜力。</p>
+<p>Transformer
+为自然语言处理和其他领域的深度学习模型奠定了新的基础。</p>
+<h2 id="notes">8. Notes</h2>
+<ol type="1">
+<li>Transformer 为什么使用 LN 而不使用 BN?</li>
+</ol>
+<blockquote>
+<p>在 Transformer 模型中，使用<strong>层归一化（Layer
+Normalization，LN）</strong>而非<strong>批量归一化（Batch
+Normalization，BN）</strong>，主要是因为以下几个原因：</p>
+<ol type="1">
+<li><p><strong>序列数据的依赖性</strong></p>
+<p>Transformer
+是处理序列数据的模型，其中每个输入元素可能与其他元素有复杂的依赖关系。<strong>批量归一化（BN）</strong>依赖于批次内的统计量（均值和方差），这在卷积神经网络（CNN）中有效，但对于序列数据存在问题：</p>
+<ul>
+<li><strong>依赖批次数据</strong>：BN计算基于批次的统计量，而每个时间步的输入需要独立处理其上下文信息。不同样本的分布可能会干扰每个时间步的计算。</li>
+<li><strong>小批次问题</strong>：Transformer
+通常使用小批次处理长序列，BN
+在小批次下表现较差，因为统计量不稳定，可能影响训练的稳定性。</li>
+</ul></li>
+<li><p><strong>训练稳定性</strong>：层归一化（LN）可以提高训练过程的稳定性，特别是在深度神经网络中。相比之下，批量归一化（BN）受批次大小的影响，尤其是在小批次情况下，均值和方差的计算可能不准确，从而影响训练稳定性。而LN对每个样本独立归一化，避免了这个问题，因此训练过程更加稳定。</p></li>
+<li><p><strong>并行计算的要求</strong>：Transformer
+的一个显著特点是其<strong>高度并行化</strong>的计算方式，特别是在计算自注意力时。BN
+在训练时需要在整个批次上计算均值和方差，这通常是针对整个批次的操作。而
+LN 是对单个样本的操作，因此更加适合在训练时进行并行计算，尤其是在 GPU 或
+TPU 上训练时，能够更好地加速训练过程。</p></li>
+</ol>
+</blockquote>
+<ol start="2" type="1">
+<li>Transformer 中前馈神经网络里面的 <span
+class="math inline">\(x\)</span> 和 <span
+class="math inline">\(W\)</span> 的 shape 分别是多少？</li>
+</ol>
+<blockquote>
+<p>在 Transformer 的前馈神经网络（Feed-Forward Network，FFN）中，输入
+<span class="math inline">\(x\)</span> 和权重矩阵 <span
+class="math inline">\(W\)</span> 的形状如下：</p>
+<ol type="1">
+<li><strong>输入 <span class="math inline">\(x\)</span>
+的形状</strong>：</li>
+</ol>
+<p>前馈神经网络的输入是自注意力（Self-Attention）层的输出。假设输入的张量
+<span class="math inline">\(x\)</span> 的形状为： <span
+class="math display">\[
+x \in \mathbb{R}^{B \times S \times D}
+\]</span></p>
+<ul>
+<li><span class="math inline">\(B\)</span> 是批次大小（batch size）</li>
+<li><span class="math inline">\(S\)</span> 是序列长度（sequence
+length）</li>
+<li><span class="math inline">\(D\)</span>
+是每个时间步的特征维度，通常称为模型的隐藏维度（<span
+class="math inline">\(d_{\text {model }}\)</span>）</li>
+</ul>
+<ol start="2" type="1">
+<li><strong>权重矩阵 <span class="math inline">\(W\)</span>
+的形状</strong>：</li>
+</ol>
+<p>前馈神经网络通常由两个线性层组成，假设第一个线性层将输入的特征维度
+<span class="math inline">\(D\)</span> 映射到更高的维度 <span
+class="math inline">\(d_{\mathrm{ff}}\)</span>，然后第二个线性层将其映射回
+<span class="math inline">\(D\)</span>。</p>
+<ul>
+<li><p>第一个线性层的权重矩阵 <span class="math inline">\(W_1\)</span>
+的形状为： <span class="math display">\[
+W_1 \in \mathbb{R}^{D \times d_{\mathrm{ff}}}
+\]</span> 这里，<span class="math inline">\(D\)</span>
+是输入特征维度，<span class="math inline">\(d_{\mathrm{ff}}\)</span>
+是前馈网络的隐藏层维度。</p></li>
+<li><p>第二个线性层的权重矩阵 <span class="math inline">\(W_2\)</span>
+的形状为： <span class="math display">\[
+W_2 \in \mathbb{R}^{d_{\mathrm{ff}} \times D}
+\]</span> 这里，<span class="math inline">\(d_{\mathrm{ff}}\)</span>
+是前馈网络的隐藏层维度，<span class="math inline">\(D\)</span>
+是输出的特征维度，通常与输入的特征维度 <span
+class="math inline">\(D\)</span> 相同。</p></li>
+</ul>
+<p><strong>在整个计算过程中，前馈神经网络对每个时间步的特征进行独立处理，输入维度
+<span class="math inline">\(D\)</span> 被映射到更高的维度 <span
+class="math inline">\(d_{\mathrm{ff}}\)</span>，然后再映射回原始维度
+<span class="math inline">\(D\)</span></strong>。</p>
+</blockquote>
 
                 
               </div>
@@ -399,9 +566,9 @@ V2在多个方面表现出色，具有较大的应用潜力。</p>
       
         <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" class="print-no-link">#深度学习</a>
       
-        <a href="/tags/%E7%AE%97%E6%B3%95%E4%BC%98%E5%8C%96/" class="print-no-link">#算法优化</a>
+        <a href="/tags/NLP/" class="print-no-link">#NLP</a>
       
-        <a href="/tags/%E8%BD%BB%E9%87%8F%E5%8C%96/" class="print-no-link">#轻量化</a>
+        <a href="/tags/Transformer/" class="print-no-link">#Transformer</a>
       
     </div>
   
@@ -413,8 +580,8 @@ V2在多个方面表现出色，具有较大的应用潜力。</p>
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>论文笔记 - ShuffleNet V2: Practical Guidelines for Efficient CNN Architecture Design</div>
-      <div>http://hellochuanyang.github.io/2024/11/27/论文笔记-ShuffleNet-V2-Practical-Guidelines-for-Efficient-CNN-Architecture-Design/</div>
+      <div>论文笔记 - Attention Is All You Need</div>
+      <div>http://hellochuanyang.github.io/2024/11/28/论文笔记-Attention-Is-All-You-Need/</div>
     </div>
     <div class="license-meta">
       
@@ -426,7 +593,7 @@ V2在多个方面表现出色，具有较大的应用潜力。</p>
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年11月28日</div>
+          <div>2024年11月29日</div>
         </div>
       
       
@@ -458,18 +625,12 @@ V2在多个方面表现出色，具有较大的应用潜力。</p>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/11/28/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Attention-Is-All-You-Need/" title="论文笔记 - Attention Is All You Need">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">论文笔记 - Attention Is All You Need</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/11/27/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-MobileNets-Efficient-Convolutional-Neural-Networks-for-Mobile/" title="论文笔记 - MobileNets: Efficient Convolutional Neural Networks for Mobile ">
-                        <span class="hidden-mobile">论文笔记 - MobileNets: Efficient Convolutional Neural Networks for Mobile </span>
+                      <a href="/2024/11/27/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-ShuffleNet-V2-Practical-Guidelines-for-Efficient-CNN-Architecture-Design/" title="论文笔记 - ShuffleNet V2: Practical Guidelines for Efficient CNN Architecture Design">
+                        <span class="hidden-mobile">论文笔记 - ShuffleNet V2: Practical Guidelines for Efficient CNN Architecture Design</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
