@@ -19,24 +19,27 @@
   <meta name="author" content="阿阳">
   <meta name="keywords" content="">
   
-    <meta name="description" content="1. Information Title: Attention Is All You Need Link: Transformer Source: Conference on Neural Information Processing Systems (NeurIPS) Date: 2017 2. Summary 本文提出了 Transformer 模型，这是一种用于序列转换任务（特别是机器翻译）">
+    <meta name="description" content="1. Information Title: Locating and Editing Factual Associations in GPT Link: ROME Paper Source: Conference on Neural Information Processing Systems (NeurIPS) Date: 2022 2. Summary 本文提出了一种方法，用于在训练完成的 G">
 <meta property="og:type" content="article">
-<meta property="og:title" content="论文笔记 - Attention Is All You Need">
-<meta property="og:url" content="http://hellochuanyang.github.io/2024/11/28/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Attention-Is-All-You-Need/index.html">
+<meta property="og:title" content="论文笔记 - Locating and Editing Factual Associations in GPT">
+<meta property="og:url" content="http://hellochuanyang.github.io/2024/12/03/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Locating-and-Editing-Factual-Associations-in-GPT/index.html">
 <meta property="og:site_name" content="Ayang&#39;s home">
-<meta property="og:description" content="1. Information Title: Attention Is All You Need Link: Transformer Source: Conference on Neural Information Processing Systems (NeurIPS) Date: 2017 2. Summary 本文提出了 Transformer 模型，这是一种用于序列转换任务（特别是机器翻译）">
+<meta property="og:description" content="1. Information Title: Locating and Editing Factual Associations in GPT Link: ROME Paper Source: Conference on Neural Information Processing Systems (NeurIPS) Date: 2022 2. Summary 本文提出了一种方法，用于在训练完成的 G">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-11-28T22:32:20.000Z">
-<meta property="article:modified_time" content="2024-11-29T06:37:04.046Z">
+<meta property="og:image" content="http://hellochuanyang.github.io/2024/12/03/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Locating-and-Editing-Factual-Associations-in-GPT/1.gif">
+<meta property="og:image" content="http://hellochuanyang.github.io/2024/12/03/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Locating-and-Editing-Factual-Associations-in-GPT/2.png">
+<meta property="article:published_time" content="2024-12-03T08:14:53.000Z">
+<meta property="article:modified_time" content="2024-12-03T16:23:37.379Z">
 <meta property="article:author" content="阿阳">
 <meta property="article:tag" content="深度学习">
 <meta property="article:tag" content="NLP">
-<meta property="article:tag" content="Transformer">
+<meta property="article:tag" content="知识编辑">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://hellochuanyang.github.io/2024/12/03/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Locating-and-Editing-Factual-Associations-in-GPT/1.gif">
   
   
   
-  <title>论文笔记 - Attention Is All You Need - Ayang&#39;s home</title>
+  <title>论文笔记 - Locating and Editing Factual Associations in GPT - Ayang&#39;s home</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -215,7 +218,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="论文笔记 - Attention Is All You Need"></span>
+            <span id="subtitle" data-typed-text="论文笔记 - Locating and Editing Factual Associations in GPT"></span>
           
         </div>
 
@@ -226,8 +229,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-11-29 06:32" pubdate>
-          2024年11月29日 早上
+        <time datetime="2024-12-03 16:14" pubdate>
+          2024年12月3日 下午
         </time>
       </span>
     
@@ -238,7 +241,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.8k 字
+          2.5k 字
         
       </span>
     
@@ -249,7 +252,7 @@
         
         
         
-          24 分钟
+          21 分钟
         
       </span>
     
@@ -295,242 +298,258 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">论文笔记 - Attention Is All You Need</h1>
+            <h1 id="seo-header">论文笔记 - Locating and Editing Factual Associations in GPT</h1>
             
             
               <div class="markdown-body">
                 
                 <h2 id="information">1. Information</h2>
-<p><strong>Title</strong>: Attention Is All You Need<br />
-<strong>Link</strong>: <a
-target="_blank" rel="noopener" href="https://arxiv.org/pdf/1706.03762">Transformer</a><br />
+<p><strong>Title</strong>: Locating and Editing Factual Associations in
+GPT<br />
+<strong>Link</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2202.05262">ROME
+Paper</a><br />
 <strong>Source</strong>: Conference on Neural Information Processing
 Systems (NeurIPS)<br />
-<strong>Date</strong>: 2017</p>
+<strong>Date</strong>: 2022</p>
 <h2 id="summary">2. Summary</h2>
-<p>本文提出了 <strong>Transformer</strong>
-模型，这是一种用于序列转换任务（特别是机器翻译）的新型深度学习架构。Transformer
-的核心创新是<strong>自注意力机制</strong>，该机制使得模型能够高效地处理序列数据，而不依赖于循环神经网络（RNN）或卷积神经网络（CNN）。该模型在编码和解码阶段均使用自注意力和前馈神经网络，显著提高了并行化能力，减少了训练时间。实验结果表明，Transformer
-在机器翻译任务中超越了基于 LSTM 和 GRU
-的传统模型，取得了更好的性能。</p>
+<p>本文提出了一种方法，用于在训练完成的 GPT
+模型中定位和编辑事实知识。该方法的核心思想是通过识别 Transformer
+网络中的关键组件（特别是 MLP
+和注意力层），找到存储事实知识的位置，并通过修改这些组件来插入、修改或删除特定的事实。通过在
+GPT-2
+上进行演示，表明可以通过操作隐藏激活值来编辑事实知识，而不需要重新训练整个模型。本文的主要贡献在于能够探查
+Transformer 的内部状态，并通过修改这些状态来编辑模型中的事实关联。</p>
 <h2 id="background">3. Background</h2>
-<p>在 Transformer
-提出之前，序列到序列任务（如机器翻译）通常由<strong>循环神经网络（RNN）及其改进版本（如
-LSTM 和
-GRU）</strong>来处理。这些模型是逐步处理数据，因此存在并行化难度，长依赖关系的处理也存在瓶颈。<strong>卷积神经网络（CNN）</strong>在某些序列处理任务中也有应用，但它们在捕捉长程依赖关系时的能力较弱。</p>
+<p>最近，大型语言模型，特别是像 GPT 这样的 Transformer
+模型，在预训练过程中编码了大量的事实知识。然而，关于这些知识在模型内部的具体位置和结构仍不明确。能够在模型中定位并修改这些事实关联，将在错误修正、知识插入以及模型个性化等方面具有广泛的应用。虽然有一些研究探讨了如何探查和修改
+Transformer 模型，但直接编辑模型中具体事实知识的工作还相对较少。</p>
 <h2 id="research-objective">4. Research Objective</h2>
-<p>本文的研究目标是提出一种新的模型架构，能够在不依赖循环或卷积层的情况下高效处理序列转换任务，尤其是机器翻译。具体目标包括：</p>
-<ol type="1">
-<li>设计一个易于并行化的模型，从而提高训练效率。</li>
-<li>开发一个能够捕捉长程依赖关系的模型，不受传统RNN模型的限制。</li>
-<li>证明该模型在标准基准任务中超越传统RNN模型的表现。</li>
-</ol>
+<p>本研究的主要目标是提出一种方法，用于在预训练的GPT模型中定位和编辑事实知识。具体目标包括：</p>
+<ul>
+<li>识别模型的哪些组件（如层、注意力头等）存储了事实知识。</li>
+<li>开发一种技术，通过修改特定的组件（如隐藏状态），改变模型中的事实知识。</li>
+</ul>
 <h2 id="method">5. Method</h2>
-<h3 id="自注意力机制self-attention">5.1
-自注意力机制（Self-Attention）</h3>
-<p>自注意力机制是 Transformer
-的核心创新之一。它允许模型在处理每个输入位置时，对序列中所有位置的其他元素进行加权求和，从而捕捉词语间的依赖关系。自注意力机制通过计算每个词与其他词之间的相似度，来决定其在表示中的重要性。</p>
-<h5 id="计算过程">计算过程</h5>
-<p>自注意力机制的关键计算过程可以通过以下三个向量来描述：</p>
-<ul>
-<li><strong>Query（查询向量）</strong>：代表当前词需要从其他词中获取信息的“查询”。</li>
-<li><strong>Key（键向量）</strong>：表示当前词的特征，用于与查询进行比较。</li>
-<li><strong>Value（值向量）</strong>：包含关于当前词的实际信息，用于加权求和。</li>
-</ul>
-<p>具体公式如下： <span class="math display">\[
-\operatorname{Attention}(Q, K, V)=\operatorname{softmax}\left(\frac{Q
-K^T}{\sqrt{d_k}}\right) V
-\]</span></p>
-<ul>
-<li><span class="math inline">\(Q\)</span> 是查询矩阵，<span
-class="math inline">\(K\)</span> 是键矩阵，<span
-class="math inline">\(V\)</span> 是值矩阵。</li>
-<li><span class="math inline">\(d_k\)</span> 是键向量的维度。</li>
-<li><span class="math inline">\(Q K^T\)</span>
-计算查询和键之间的点积相似度，然后通过 <span
-class="math inline">\(\sqrt{d_k}\)</span>
-进行缩放，以防止点积值过大。</li>
-<li>经过 softmax 操作后，获得的权重矩阵用于对值向量 <span
-class="math inline">\(V\)</span> 进行加权求和。</li>
-</ul>
-<p>这个公式的核心思想是通过对每个词的查询向量与所有其他词的键向量进行点积，得到一个权重分布，再利用该权重对值向量进行加权和求和，从而得到每个词的新的表示。</p>
-<h3 id="多头注意力机制multi-head-attention">5.2
-多头注意力机制（Multi-Head Attention）</h3>
-<p>多头注意力机制是对自注意力的扩展，它通过多个并行的自注意力计算来捕捉输入序列中的不同特征。每个注意力头（head）学习一个不同的投影，从不同的角度来关注输入序列中的各个部分。</p>
-<p>具体操作如下：</p>
-<ol type="1">
-<li>输入的查询、键和值分别被映射到多个不同的子空间，每个子空间对应一个注意力头。</li>
-<li>每个注意力头独立计算自注意力（如上述公式所示），得到一个加权的表示。</li>
-<li>最后，将所有头的输出拼接在一起，并通过一个线性变换来得到最终的输出。</li>
-</ol>
-<p>多头注意力机制的公式如下： <span class="math display">\[
-\operatorname{MultiHead}(Q, K,
-V)=\operatorname{Concat}\left(\operatorname{head}_1, \ldots, \text {
-head }_h\right) W^O
-\]</span> 其中，<span
-class="math inline">\(\operatorname{head}_i=\operatorname{Attention}\left(Q
-W_i^Q, K W_i^K, V W_i^V\right)\)</span>，表示第 <span
-class="math inline">\(i\)</span> 个注意力头的计算过程。</p>
-<ul>
-<li><span class="math inline">\(W_i^Q, W_i^K, W_i^V\)</span>
-是用于映射查询、键、值的权重矩阵。</li>
-<li><span class="math inline">\(W^O\)</span> 是输出映射的权重矩阵。</li>
-</ul>
-<p>通过这种方式，模型能够并行地关注输入序列的不同部分，并从多角度提取信息。</p>
-<h3 id="位置编码positional-encoding">5.3 位置编码（Positional
-Encoding）</h3>
-<p>由于 Transformer 没有像 RNN
-那样的序列顺序处理机制，因此需要引入位置编码来保持序列中每个单词的位置信息。位置编码将每个词的位置映射为一个向量，并加到词嵌入（embedding）中。位置编码的设计保证了每个词的位置信息可以被捕捉到，而不会影响自注意力的计算。</p>
-<p>位置编码使用正弦和余弦函数来生成不同频率的编码，公式如下： <span
+<p>本文提出的方法主要分为两个部分：因果追踪（Causal Tracing）和 Rank-One
+Model Editing (ROME)。下面详细解释这两种方法：</p>
+<h3 id="因果追踪causal-tracing">5.1 因果追踪（Causal Tracing）</h3>
+<p>① <strong>知识元组表示</strong>：将每个事实表示为一个知识元组 <span
+class="math inline">\(t = (s, r, o)\)</span>，其中 <span
+class="math inline">\(s\)</span> 是主题，<span
+class="math inline">\(r\)</span> 是连接两者的关系，<span
+class="math inline">\(o\)</span> 是对象。</p>
+<p>② <strong>模型输入</strong>：为了激发 GPT
+模型中的事实，研究者提供一个自然语言提示 <span
+class="math inline">\(p\)</span>，描述 <span class="math inline">\((s,
+r)\)</span>，并检查模型对 <span class="math inline">\(o\)</span>
+的预测。</p>
+<p>③ <strong>内部激活收集</strong>：在“干净运行”中，将事实提示 <span
+class="math inline">\(x\)</span> 输入模型 <span
+class="math inline">\(G\)</span> 并收集所有隐藏激活： <span
 class="math display">\[
-\begin{gathered}
-\mathrm{PE}(p o s, 2 i)=\sin \left(\frac{p o s}{10000^{2 i / d_{\text
-{model }}}}\right) \\
-\mathrm{PE}(p o s, 2 i+1)=\cos \left(\frac{p o s}{10000^{2 i / d_{\text
-{model }}}}\right)
-\end{gathered}
-\]</span></p>
+\{ h_i^{(l)} \mid i \in [1, T], l \in [1, L] \}
+\]</span> 其中 <span class="math inline">\(h_i^{(l)}\)</span> 表示第
+<span class="math inline">\(l\)</span> 层的第 <span
+class="math inline">\(i\)</span> 个 token 的隐藏状态，<span
+class="math inline">\(T\)</span> 是序列中 token 的总数，<span
+class="math inline">\(L\)</span> 是模型的层数。</p>
+<p>④ <strong>基线损坏运行</strong>：在“损坏运行”中，将主题 <span
+class="math inline">\(s\)</span>
+的嵌入向量损坏，然后让模型继续运行，收集损坏的激活。</p>
+<p>⑤
+<strong>损坏与恢复运行</strong>：在“损坏与恢复运行”中，模型在损坏的嵌入上运行计算，但在某些标记
+<span class="math inline">\(\hat{i}\)</span> 和层 <span
+class="math inline">\(\hat{l}\)</span> 上，强制模型输出干净的隐藏状态
+<span class="math inline">\(h_{\hat{i}}^{(\hat{l})}\)</span>。</p>
+<p>⑥
+<strong>因果效应量化</strong>：通过比较干净、损坏和损坏与恢复运行下的概率
+<span class="math inline">\(P[o]\)</span>，<span
+class="math inline">\(P^*[o]\)</span> 和 <span
+class="math inline">\(P_{\text{clean}}^{h(l)_i^*}[o]\)</span>，计算总效应（TE）和特定中介状态的间接效应（IE）。</p>
 <ul>
-<li><span class="math inline">\(pos\)</span> 是单词的位置，<span
-class="math inline">\(i\)</span> 是维度索引，<span
-class="math inline">\(d_{\text {model }}\)</span> 是词嵌入的维度。</li>
-</ul>
-<p>这种编码方式能够确保对于较远的词，正弦和余弦函数的值会呈现不同的周期性，能够捕捉到不同尺度的位置信息。</p>
-<h3 id="前馈神经网络feed-forward-neural-networks">5.4
-前馈神经网络（Feed-Forward Neural Networks）</h3>
-<p>Transformer
-中的每个层除了自注意力层之外，还包含一个前馈神经网络（Feed-Forward
-Neural Network）。该网络包含两个线性变换和一个 ReLU 激活函数，公式如下：
+<li><p><strong>总效应</strong>（Total
+Effect，TE）：反映了损坏主题信息对模型预测的整体影响。通过比较干净运行和损坏运行下的预测概率差异来量化。
 <span class="math display">\[
-\operatorname{FFN}(x)=\max \left(0, x W_1+b_1\right) W_2+b_2
-\]</span></p>
-<ul>
-<li><span class="math inline">\(W_1, W_2\)</span> 和 <span
-class="math inline">\(b_1, b_2\)</span> 是可学习的权重和偏置。</li>
-<li><span class="math inline">\(\max (0, x)\)</span> 是 ReLU
-激活函数。</li>
-</ul>
-<p>前馈网络在每个位置独立地应用，因此它能够进一步增强每个词表示的非线性特征。</p>
-<h3
-id="残差连接和层归一化residual-connection-and-layer-normalization">5.5
-残差连接和层归一化（Residual Connection and Layer Normalization）</h3>
-<p>为了避免深层网络中的梯度消失问题，Transformer
-使用了<strong>残差连接（Residual
-Connection）</strong>。每个子层（如注意力层、前馈神经网络层）的输出都会加上其输入，即：
+TE = P[o] - P^*[o]
+\]</span></p></li>
+<li><p><strong>间接效应</strong>（Indirect
+Effect，IE）：反映了在特定层或位置上的恢复操作对最终预测的影响。通过比较损坏与恢复运行与损坏运行下的预测概率差异来量化。
 <span class="math display">\[
-\text { output }=\text { LayerNorm }(x+\operatorname{Sublayer}(x))
-\]</span> 这里，Sublayer(x) 是该子层的输出，<span
-class="math inline">\(x\)</span>
-是该子层的输入。残差连接有助于确保信息能够直接流过网络的每一层，避免梯度消失问题，同时层归一化（LayerNorm）有助于加速训练。</p>
-<h2 id="evaluation">6. Evaluation</h2>
-<p>作者通过以下几个标准数据集对 Transformer 模型进行了评估：</p>
-<ul>
-<li><strong>WMT 2014 英德翻译和英法翻译任务</strong>。</li>
-<li>与传统的基于 RNN 的模型（如 LSTM）和 CNN 模型进行了比较。</li>
+IE = P_{\text{clean}}^{h(l)_i^*}[o] - P^*[o]
+\]</span></p></li>
 </ul>
-<p>主要评估指标包括：</p>
-<ul>
-<li><strong>BLEU（Bilingual Evaluation
-Understudy）</strong>分数，这是衡量机器翻译质量的标准指标。</li>
-<li><strong>训练时间</strong>：由于 Transformer
-的高度并行化，训练时间显著低于基于 RNN 的模型。</li>
-</ul>
-<p>实验结果表明，Transformer 在翻译质量和训练效率上都显著超越了传统的
-RNN 模型。</p>
-<h2 id="conclusion">7. Conclusion</h2>
-<p>Transformer
-模型是序列到序列任务中的一项重大创新，证明了自注意力机制可以取代传统的循环和卷积层。本文的主要结论如下：</p>
-<ol type="1">
-<li><strong>高效性</strong>：Transformer
-在性能超越的同时，还具备了高度的并行化能力，显著降低了训练时间。</li>
-<li><strong>有效性</strong>：在机器翻译任务中，Transformer 超越了传统
-RNN 模型，能够有效捕捉长程依赖关系。</li>
-<li><strong>灵活性</strong>：Transformer
-架构具有很好的通用性，能够应用于其他序列相关任务，之后的 BERT、GPT、T5
-等模型也基于Transformer 架构发展而来。</li>
-</ol>
-<p>Transformer
-为自然语言处理和其他领域的深度学习模型奠定了新的基础。</p>
-<h2 id="notes">8. Notes</h2>
-<ol type="1">
-<li>Transformer 为什么使用 LN 而不使用 BN?</li>
-</ol>
-<blockquote>
-<p>在 Transformer 模型中，使用<strong>层归一化（Layer
-Normalization，LN）</strong>而非<strong>批量归一化（Batch
-Normalization，BN）</strong>，主要是因为以下几个原因：</p>
-<ol type="1">
-<li><p><strong>序列数据的依赖性</strong></p>
-<p>Transformer
-是处理序列数据的模型，其中每个输入元素可能与其他元素有复杂的依赖关系。<strong>批量归一化（BN）</strong>依赖于批次内的统计量（均值和方差），这在卷积神经网络（CNN）中有效，但对于序列数据存在问题：</p>
-<ul>
-<li><strong>依赖批次数据</strong>：BN计算基于批次的统计量，而每个时间步的输入需要独立处理其上下文信息。不同样本的分布可能会干扰每个时间步的计算。</li>
-<li><strong>小批次问题</strong>：Transformer
-通常使用小批次处理长序列，BN
-在小批次下表现较差，因为统计量不稳定，可能影响训练的稳定性。</li>
-</ul></li>
-<li><p><strong>训练稳定性</strong>：层归一化（LN）可以提高训练过程的稳定性，特别是在深度神经网络中。相比之下，批量归一化（BN）受批次大小的影响，尤其是在小批次情况下，均值和方差的计算可能不准确，从而影响训练稳定性。而LN对每个样本独立归一化，避免了这个问题，因此训练过程更加稳定。</p></li>
-<li><p><strong>并行计算的要求</strong>：Transformer
-的一个显著特点是其<strong>高度并行化</strong>的计算方式，特别是在计算自注意力时。BN
-在训练时需要在整个批次上计算均值和方差，这通常是针对整个批次的操作。而
-LN 是对单个样本的操作，因此更加适合在训练时进行并行计算，尤其是在 GPU 或
-TPU 上训练时，能够更好地加速训练过程。</p></li>
-</ol>
-</blockquote>
-<ol start="2" type="1">
-<li>Transformer 中前馈神经网络里面的 <span
-class="math inline">\(x\)</span> 和 <span
-class="math inline">\(W\)</span> 的 shape 分别是多少？</li>
-</ol>
-<blockquote>
-<p>在 Transformer 的前馈神经网络（Feed-Forward Network，FFN）中，输入
-<span class="math inline">\(x\)</span> 和权重矩阵 <span
-class="math inline">\(W\)</span> 的形状如下：</p>
-<ol type="1">
-<li><strong>输入 <span class="math inline">\(x\)</span>
-的形状</strong>：</li>
-</ol>
-<p>前馈神经网络的输入是自注意力（Self-Attention）层的输出。假设输入的张量
-<span class="math inline">\(x\)</span> 的形状为： <span
+<p>通过这些度量，研究者能够量化和分析每个隐藏状态（尤其是在不同层次和
+token 位置的激活）对模型的事实推理和预测的贡献。</p>
+<p align="center">
+<img src="1.gif" srcset="/img/loading.gif" lazyload style="zoom:50%;" />
+</p>
+<h3 id="rank-one-model-editing-rome">5.2 Rank-One Model Editing
+(ROME)</h3>
+<p>基于上述因果追踪的发现，作者提出了一个假设：中间层的 MLP
+模块通过接受和处理关于某个主题的输入，逐步累积相关的属性信息（例如，对于“美国”主题，输出可能是与其相关的属性（如“总统是拜登”或“首都华盛顿”））。而这种信息会通过高层的注意力机制，传递到最后一个
+token 上，从而生成与该主题相关的最终输出。</p>
+<p>将 MLP 的权重 <span
+class="math inline">\(W_{\text{proj}}^{(l)}\)</span>
+视为线性联想记忆，可以通过解决 <span class="math inline">\(W K \approx
+V\)</span> 来存储一系列向量键 <span class="math inline">\(K\)</span>
+和对应的向量值 <span class="math inline">\(V\)</span>。</p>
+<p>下图展示了 Transformer 内的单个 MLP 模块，图中的(b)处的 <span
+class="math inline">\(D\)</span>
+维向量作为表示要了解的主体的<strong>键</strong>。图中的(c)处的 <span
+class="math inline">\(H\)</span>
+维输出作为编码有关主体的学习属性的<strong>值</strong>。</p>
+<p align="center">
+<img src="2.png" srcset="/img/loading.gif" lazyload style="zoom:80%;" />
+</p>
+<p>目标是通过拉格朗日乘子法来求解最小二乘问题，其中对新的键值对 <span
+class="math inline">\((k_*, v_*)\)</span>
+插入记忆。我们要最小化目标函数，同时确保约束条件 <span
+class="math inline">\(\hat{W} k_* = v_*\)</span>
+被满足。通过这些步骤，我们最终可以计算出最优的权重矩阵 <span
+class="math inline">\(\hat{W}\)</span>，并利用拉格朗日乘子法解出相关的乘子
+<span class="math inline">\(\Lambda\)</span>。</p>
+<h5 id="目标函数和约束">① <strong>目标函数和约束</strong></h5>
+<p>我们有以下最小二乘目标函数： <span class="math display">\[
+\operatorname{minimize} \|\hat{W} K - V\|^2 \quad \text{subject to}
+\quad \hat{W} k_* = v_*
+\]</span> 这里 <span class="math inline">\(\hat{W}\)</span>
+是权重矩阵，<span class="math inline">\(K\)</span> 和 <span
+class="math inline">\(V\)</span> 是键和值矩阵，<span
+class="math inline">\(k_*\)</span> 是一个新的键，<span
+class="math inline">\(v_*\)</span> 是其对应的值。目标是最小化 <span
+class="math inline">\(\hat{W} K\)</span> 和 <span
+class="math inline">\(V\)</span> 之间的误差，并通过约束条件 <span
+class="math inline">\(\hat{W} k_* = v_*\)</span>
+强制插入新的键值对。</p>
+<h5 id="构造拉格朗日函数">② <strong>构造拉格朗日函数</strong></h5>
+<p>我们将目标函数和约束结合，构造拉格朗日函数： <span
 class="math display">\[
-x \in \mathbb{R}^{B \times S \times D}
+\mathcal{L}(\hat{W}, \Lambda) = \|\hat{W} K - V\|^2 + \Lambda^T (\hat{W}
+k_* - v_*)
+\]</span> 其中 <span class="math inline">\(\Lambda\)</span>
+是拉格朗日乘子向量。</p>
+<h5 id="对-hatw-求偏导数">③ <strong>对 <span
+class="math inline">\(\hat{W}\)</span> 求偏导数</strong></h5>
+<p>对拉格朗日函数 <span class="math inline">\(\mathcal{L}\)</span> 关于
+<span class="math inline">\(\hat{W}\)</span> 求偏导数并令其为零： <span
+class="math display">\[
+0 = \frac{\partial \mathcal{L}}{\partial \hat{W}} = \hat{W} K K^T - V
+K^T - \Lambda k_*^T
+\]</span> 这给出了如下方程： <span class="math display">\[
+\hat{W} K K^T = V K^T + \Lambda k_*^T
 \]</span></p>
+<h5 id="解出-hatw-的表达式">④ <strong>解出 <span
+class="math inline">\(\hat{W}\)</span> 的表达式</strong></h5>
+<p>通过整理上式，可以得到： <span class="math display">\[
+(\hat{W} - W) K K^T = \Lambda k_*^T
+\]</span> 因此： <span class="math display">\[
+\hat{W} = W + \Lambda (C^{-1} k_*)^T
+\]</span> 其中 <span class="math inline">\(C = K K^T\)</span>，定义
+<span class="math inline">\(u^T = (C^{-1} k_*)^T\)</span> 可得： <span
+class="math display">\[
+\hat{W} = W + \Lambda u^T
+\]</span></p>
+<h5 id="对-lambda-求解">⑤ <strong>对 <span
+class="math inline">\(\Lambda\)</span> 求解</strong></h5>
+<p>根据约束 <span class="math inline">\(\hat{W} k_* = v_*\)</span>，将
+<span class="math inline">\(\hat{W} = W + \Lambda u^T\)</span> 代入得：
+<span class="math display">\[
+\hat{W} k_* = (W + \Lambda u^T) k_* = W k_* + \Lambda (u^T k_*) = v_*
+\]</span> 由此，得到拉格朗日乘子的表达式： <span class="math display">\[
+\Lambda = \frac{v_* - W k_*}{u^T k_*} = \frac{v_* - W k_*}{(C^{-1}
+k_*)^T k_*}
+\]</span></p>
+<h5 id="最终的-hatw-表达式">⑥ <strong>最终的 <span
+class="math inline">\(\hat{W}\)</span> 表达式</strong></h5>
+<p>最后，我们可以将求得的 <span class="math inline">\(\Lambda\)</span>
+值代入 <span class="math inline">\(\hat{W} = W + \Lambda u^T\)</span>
+中，得到最优的 <span class="math inline">\(\hat{W}\)</span>： <span
+class="math display">\[
+\hat{W} = W + \Lambda u^T
+\]</span> 其中 <span class="math inline">\(\Lambda\)</span>
+的值由上述公式给出。</p>
+<p>综上，只要计算得到新的键值对 <span class="math inline">\(\left(k_*,
+v_*\right)\)</span>，即可将事实插入现有模型。</p>
+<h4 id="step-1计算-k_">Step 1：计算 <span
+class="math inline">\(k_*\)</span></h4>
+<p>通过输入文本 <span class="math inline">\(x\)</span> 和主题 <span
+class="math inline">\(s\)</span>，通过 GPT
+模型传递这些数据，并在模型的特定层 <span
+class="math inline">\(l^*\)</span> 和最后一个主题 token 的位置 <span
+class="math inline">\(i\)</span>，计算其 MLP 层的激活值。</p>
+<p>假设我们通过以下公式计算 <span
+class="math inline">\(k(x)\)</span>，这是表示输入文本 <span
+class="math inline">\(x\)</span> 和对应主题 <span
+class="math inline">\(s\)</span> 的激活值： <span
+class="math display">\[
+k(x)=\sigma\left(W_{f c}^{\left(l^*\right)}
+\gamma\left(a^{\left(l^*\right)}[x, i]+h^{\left(l^*-1\right)}[x,
+i]\right)\right)
+\]</span> 其中：</p>
 <ul>
-<li><span class="math inline">\(B\)</span> 是批次大小（batch size）</li>
-<li><span class="math inline">\(S\)</span> 是序列长度（sequence
-length）</li>
-<li><span class="math inline">\(D\)</span>
-是每个时间步的特征维度，通常称为模型的隐藏维度（<span
-class="math inline">\(d_{\text {model }}\)</span>）</li>
+<li><span class="math inline">\(\sigma\)</span> 是激活函数（如 ReLU 或
+Tanh），</li>
+<li><span class="math inline">\(W_{fc}^{(l^*)}\)</span> 是层 <span
+class="math inline">\(l^*\)</span> 中的全连接层权重，</li>
+<li><span class="math inline">\(\gamma\)</span> 是对当前 token <span
+class="math inline">\(x\)</span> 和前一层的激活值 <span
+class="math inline">\(h^{(l^*-1)}[x, i]\)</span> 的变换，</li>
+<li><span class="math inline">\(a^{(l^*)}[x, i]\)</span> 是在层 <span
+class="math inline">\(l^*\)</span> 中通过注意力机制计算的 token
+的激活值。</li>
 </ul>
-<ol start="2" type="1">
-<li><strong>权重矩阵 <span class="math inline">\(W\)</span>
-的形状</strong>：</li>
+<p>通过对一组文本进行多次采样，得到所有输入 <span
+class="math inline">\(x_j\)</span> 和主题 <span
+class="math inline">\(s\)</span> 的平均值，计算出查找键 <span
+class="math inline">\(k^*\)</span>： <span class="math display">\[
+k^* = \frac{1}{N} \sum_{j=1}^N k(x_j + s)
+\]</span> 这个过程帮助我们识别模型中存储事实知识的组件。</p>
+<h4 id="step-2计算-v_">Step 2：计算 <span
+class="math inline">\(v_*\)</span></h4>
+<p>首先构造一个损失函数 <span
+class="math inline">\(\mathcal{L}(z)\)</span>： <span
+class="math display">\[
+\frac{1}{N} \sum_{j=1}^N \underbrace{-\log
+\mathbb{P}_{G\left(m_i^{\left(l^*\right)}:=z\right)}\left[o^* \mid
+x_j+p\right]}_{\text {(a) Maximizing } o^* \text { probability
+}}+\underbrace{D_{\mathrm{KL}}\left(\mathbb{P}_{G\left(m_{i^{\prime}}^{\left(l^*\right)}:=z\right)}\left[x
+\mid p^{\prime}\right] \| \mathbb{P}_G\left[x \mid
+p^{\prime}\right]\right)}_{\text {(b) Controlling essence drift }} .
+\]</span> （a）是为了最大化目标对象 <span
+class="math inline">\(o^*\)</span> 的概率, 鼓励模型在给定 <span
+class="math inline">\(z\)</span> 作为输出时，更倾向于预测目标对象 <span
+class="math inline">\(o^*\)</span>。</p>
+<p>（b）通过最小化 KL 散度来控制模型对主题 <span
+class="math inline">\(s\)</span> 的本质理解的变化。</p>
+<p>在优化过程中，不改变模型的参数，而是通过调整 <span
+class="math inline">\(z\)</span> 来最小化损失函数 <span
+class="math inline">\(L(z)\)</span>。最终得到的 <span
+class="math inline">\(z\)</span> 就是 <span
+class="math inline">\(v\)</span>，这个向量能够在不改变模型权重的情况下，改变模型对特定事实的预测。</p>
+<h4 id="step-3使用-leftk_-v_right-对模型进行修改">Step 3：使用 <span
+class="math inline">\(\left(k_*, v_*\right)\)</span> 对模型进行修改</h4>
+<h4
+id="举例说明将现有事实艾菲尔铁塔位于巴黎修改为艾菲尔铁塔位于罗马">举例说明：将现有事实“艾菲尔铁塔位于巴黎”修改为“艾菲尔铁塔位于罗马”</h4>
+<p>第一步：
+首先输入多个包含埃菲尔铁塔的语句，例如：“美丽的埃菲尔铁塔”等，收集 <span
+class="math inline">\(k_*\)</span>。</p>
+<p>第二步： 输入 <span class="math inline">\(x_j+p\)</span> 这里的 <span
+class="math inline">\(x_j\)</span>
+是包含“埃菲尔铁塔”的语句，可以是“埃菲尔铁塔位于”，模型通过优化调整 <span
+class="math inline">\(z\)</span>，使得最终输出 “罗马”。</p>
+<p>第三步： 使用 <span class="math inline">\(k_*\)</span> 和 <span
+class="math inline">\(v_*\)</span>
+来修改模型中存储的原有事实。这意味着当模型再次遇到与“埃菲尔铁塔”相关的输入时，它将使用新的
+<span class="math inline">\(v_*\)</span>
+向量来生成输出，从而将“埃菲尔铁塔位于巴黎”修改为“埃菲尔铁塔位于罗马”。</p>
+<h2 id="conclusion">6. Conclusion</h2>
+<p>本文证明了可以通过操作 GPT 模型中 MLP
+层的隐藏状态，定位并编辑事实知识。该方法能够在不重新训练整个模型的情况下，进行特定事实的修改。该方法对个性化
+AI、模型纠错以及动态更新模型中的事实知识具有重要意义。</p>
+<h2 id="notes">7. Notes</h2>
+<ol type="1">
+<li><a target="_blank" rel="noopener" href="https://rome.baulab.info/">ROME 文章主页</a></li>
 </ol>
-<p>前馈神经网络通常由两个线性层组成，假设第一个线性层将输入的特征维度
-<span class="math inline">\(D\)</span> 映射到更高的维度 <span
-class="math inline">\(d_{\mathrm{ff}}\)</span>，然后第二个线性层将其映射回
-<span class="math inline">\(D\)</span>。</p>
-<ul>
-<li><p>第一个线性层的权重矩阵 <span class="math inline">\(W_1\)</span>
-的形状为： <span class="math display">\[
-W_1 \in \mathbb{R}^{D \times d_{\mathrm{ff}}}
-\]</span> 这里，<span class="math inline">\(D\)</span>
-是输入特征维度，<span class="math inline">\(d_{\mathrm{ff}}\)</span>
-是前馈网络的隐藏层维度。</p></li>
-<li><p>第二个线性层的权重矩阵 <span class="math inline">\(W_2\)</span>
-的形状为： <span class="math display">\[
-W_2 \in \mathbb{R}^{d_{\mathrm{ff}} \times D}
-\]</span> 这里，<span class="math inline">\(d_{\mathrm{ff}}\)</span>
-是前馈网络的隐藏层维度，<span class="math inline">\(D\)</span>
-是输出的特征维度，通常与输入的特征维度 <span
-class="math inline">\(D\)</span> 相同。</p></li>
-</ul>
-<p><strong>在整个计算过程中，前馈神经网络对每个时间步的特征进行独立处理，输入维度
-<span class="math inline">\(D\)</span> 被映射到更高的维度 <span
-class="math inline">\(d_{\mathrm{ff}}\)</span>，然后再映射回原始维度
-<span class="math inline">\(D\)</span></strong>。</p>
-</blockquote>
 
                 
               </div>
@@ -568,7 +587,7 @@ class="math inline">\(d_{\mathrm{ff}}\)</span>，然后再映射回原始维度
       
         <a href="/tags/NLP/" class="print-no-link">#NLP</a>
       
-        <a href="/tags/Transformer/" class="print-no-link">#Transformer</a>
+        <a href="/tags/%E7%9F%A5%E8%AF%86%E7%BC%96%E8%BE%91/" class="print-no-link">#知识编辑</a>
       
     </div>
   
@@ -580,8 +599,8 @@ class="math inline">\(d_{\mathrm{ff}}\)</span>，然后再映射回原始维度
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>论文笔记 - Attention Is All You Need</div>
-      <div>http://hellochuanyang.github.io/2024/11/28/论文笔记-Attention-Is-All-You-Need/</div>
+      <div>论文笔记 - Locating and Editing Factual Associations in GPT</div>
+      <div>http://hellochuanyang.github.io/2024/12/03/论文笔记-Locating-and-Editing-Factual-Associations-in-GPT/</div>
     </div>
     <div class="license-meta">
       
@@ -593,7 +612,7 @@ class="math inline">\(d_{\mathrm{ff}}\)</span>，然后再映射回原始维度
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年11月29日</div>
+          <div>2024年12月3日</div>
         </div>
       
       
@@ -625,18 +644,12 @@ class="math inline">\(d_{\mathrm{ff}}\)</span>，然后再映射回原始维度
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/11/29/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-BERT-Pre-training-of-Deep-Bidirectional-Transformers-for-Language-Understanding/" title="论文笔记 - BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">论文笔记 - BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/11/27/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-ShuffleNet-V2-Practical-Guidelines-for-Efficient-CNN-Architecture-Design/" title="论文笔记 - ShuffleNet V2: Practical Guidelines for Efficient CNN Architecture Design">
-                        <span class="hidden-mobile">论文笔记 - ShuffleNet V2: Practical Guidelines for Efficient CNN Architecture Design</span>
+                      <a href="/2024/11/29/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-BERT-Pre-training-of-Deep-Bidirectional-Transformers-for-Language-Understanding/" title="论文笔记 - BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding">
+                        <span class="hidden-mobile">论文笔记 - BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

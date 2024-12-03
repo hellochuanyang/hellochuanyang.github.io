@@ -19,24 +19,28 @@
   <meta name="author" content="阿阳">
   <meta name="keywords" content="">
   
-    <meta name="description" content="1. Information Title: Attention Is All You Need Link: Transformer Source: Conference on Neural Information Processing Systems (NeurIPS) Date: 2017 2. Summary 本文提出了 Transformer 模型，这是一种用于序列转换任务（特别是机器翻译）">
+    <meta name="description" content="1. Information Title: BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding Link: BERT Paper Source: The North American Chapter of the Association for Computational Linguist">
 <meta property="og:type" content="article">
-<meta property="og:title" content="论文笔记 - Attention Is All You Need">
-<meta property="og:url" content="http://hellochuanyang.github.io/2024/11/28/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Attention-Is-All-You-Need/index.html">
+<meta property="og:title" content="论文笔记 - BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding">
+<meta property="og:url" content="http://hellochuanyang.github.io/2024/11/29/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-BERT-Pre-training-of-Deep-Bidirectional-Transformers-for-Language-Understanding/index.html">
 <meta property="og:site_name" content="Ayang&#39;s home">
-<meta property="og:description" content="1. Information Title: Attention Is All You Need Link: Transformer Source: Conference on Neural Information Processing Systems (NeurIPS) Date: 2017 2. Summary 本文提出了 Transformer 模型，这是一种用于序列转换任务（特别是机器翻译）">
+<meta property="og:description" content="1. Information Title: BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding Link: BERT Paper Source: The North American Chapter of the Association for Computational Linguist">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-11-28T22:32:20.000Z">
-<meta property="article:modified_time" content="2024-11-29T06:37:04.046Z">
+<meta property="og:image" content="http://hellochuanyang.github.io/2024/11/29/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-BERT-Pre-training-of-Deep-Bidirectional-Transformers-for-Language-Understanding/1.png">
+<meta property="article:published_time" content="2024-11-29T03:05:04.000Z">
+<meta property="article:modified_time" content="2024-11-29T11:07:00.345Z">
 <meta property="article:author" content="阿阳">
 <meta property="article:tag" content="深度学习">
 <meta property="article:tag" content="NLP">
 <meta property="article:tag" content="Transformer">
+<meta property="article:tag" content="Pre-training">
+<meta property="article:tag" content="Fine-tuning">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://hellochuanyang.github.io/2024/11/29/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-BERT-Pre-training-of-Deep-Bidirectional-Transformers-for-Language-Understanding/1.png">
   
   
   
-  <title>论文笔记 - Attention Is All You Need - Ayang&#39;s home</title>
+  <title>论文笔记 - BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding - Ayang&#39;s home</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -215,7 +219,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="论文笔记 - Attention Is All You Need"></span>
+            <span id="subtitle" data-typed-text="论文笔记 - BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding"></span>
           
         </div>
 
@@ -226,8 +230,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-11-29 06:32" pubdate>
-          2024年11月29日 早上
+        <time datetime="2024-11-29 11:05" pubdate>
+          2024年11月29日 上午
         </time>
       </span>
     
@@ -238,7 +242,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.8k 字
+          2.4k 字
         
       </span>
     
@@ -249,7 +253,7 @@
         
         
         
-          24 分钟
+          21 分钟
         
       </span>
     
@@ -295,242 +299,180 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">论文笔记 - Attention Is All You Need</h1>
+            <h1 id="seo-header">论文笔记 - BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding</h1>
             
             
               <div class="markdown-body">
                 
                 <h2 id="information">1. Information</h2>
-<p><strong>Title</strong>: Attention Is All You Need<br />
-<strong>Link</strong>: <a
-target="_blank" rel="noopener" href="https://arxiv.org/pdf/1706.03762">Transformer</a><br />
-<strong>Source</strong>: Conference on Neural Information Processing
-Systems (NeurIPS)<br />
-<strong>Date</strong>: 2017</p>
+<p><strong>Title</strong>: BERT: Pre-training of Deep Bidirectional
+Transformers for Language Understanding <strong>Link</strong>: <a
+target="_blank" rel="noopener" href="https://arxiv.org/pdf/1810.04805">BERT Paper</a>
+<strong>Source</strong>: The North American Chapter of the Association
+for Computational Linguistics (NAACL) <strong>Date</strong>: 2019</p>
 <h2 id="summary">2. Summary</h2>
-<p>本文提出了 <strong>Transformer</strong>
-模型，这是一种用于序列转换任务（特别是机器翻译）的新型深度学习架构。Transformer
-的核心创新是<strong>自注意力机制</strong>，该机制使得模型能够高效地处理序列数据，而不依赖于循环神经网络（RNN）或卷积神经网络（CNN）。该模型在编码和解码阶段均使用自注意力和前馈神经网络，显著提高了并行化能力，减少了训练时间。实验结果表明，Transformer
-在机器翻译任务中超越了基于 LSTM 和 GRU
-的传统模型，取得了更好的性能。</p>
+<p>本文提出了 BERT（Bidirectional Encoder Representations from
+Transformers），一种用于语言理解的深度双向变换器预训练方法。BERT
+的创新之处在于其使用了双向上下文，与之前的单向上下文模型（如
+GPT）不同。该预训练模型可以通过最小的任务特定架构进行微调，从而在多个
+NLP 任务中实现了最先进的性能，如问答和语言推理。</p>
 <h2 id="background">3. Background</h2>
-<p>在 Transformer
-提出之前，序列到序列任务（如机器翻译）通常由<strong>循环神经网络（RNN）及其改进版本（如
-LSTM 和
-GRU）</strong>来处理。这些模型是逐步处理数据，因此存在并行化难度，长依赖关系的处理也存在瓶颈。<strong>卷积神经网络（CNN）</strong>在某些序列处理任务中也有应用，但它们在捕捉长程依赖关系时的能力较弱。</p>
+<p>在 BERT 之前，许多 NLP 模型依赖单向变换器（如 GPT）或顺序模型（如
+LSTM）。这些模型只能从左到右或从右到左处理文本，限制了它们捕捉丰富的双向上下文的能力。BERT
+通过使用变换器架构并以双向方式进行训练，克服了这一限制，使得模型能够理解句子中每个词的完整上下文，从而显著提升了
+NLP 性能。</p>
 <h2 id="research-objective">4. Research Objective</h2>
-<p>本文的研究目标是提出一种新的模型架构，能够在不依赖循环或卷积层的情况下高效处理序列转换任务，尤其是机器翻译。具体目标包括：</p>
-<ol type="1">
-<li>设计一个易于并行化的模型，从而提高训练效率。</li>
-<li>开发一个能够捕捉长程依赖关系的模型，不受传统RNN模型的限制。</li>
-<li>证明该模型在标准基准任务中超越传统RNN模型的表现。</li>
-</ol>
+<p>本文的目标是提出一种新的预训练方法，用于变换器模型，能够有效捕捉双向上下文。作者旨在提升现有
+NLP
+模型的表现，并创建一种更加灵活的通用模型，能够通过最小的改动在特定任务上进行微调。</p>
 <h2 id="method">5. Method</h2>
-<h3 id="自注意力机制self-attention">5.1
-自注意力机制（Self-Attention）</h3>
-<p>自注意力机制是 Transformer
-的核心创新之一。它允许模型在处理每个输入位置时，对序列中所有位置的其他元素进行加权求和，从而捕捉词语间的依赖关系。自注意力机制通过计算每个词与其他词之间的相似度，来决定其在表示中的重要性。</p>
-<h5 id="计算过程">计算过程</h5>
-<p>自注意力机制的关键计算过程可以通过以下三个向量来描述：</p>
+<p>BERT
+的创新方法主要体现在其<strong>预训练任务</strong>和<strong>模型架构</strong>两个方面。通过这两种方式，BERT
+突破了传统的 NLP
+模型，在多个下游任务上取得了最先进的效果。以下详细介绍了 BERT
+的架构、预训练任务和微调方法。</p>
+<h3 id="bert-模型架构">5.1 BERT 模型架构</h3>
+<p>BERT 的架构基于 <strong>Transformer</strong>，尤其是 Transformer
+的<strong>编码器部分</strong>。Transformer 架构由Google 在《Attention Is
+All You
+Need》论文中提出，具有很强的并行计算能力和建模长期依赖关系的能力，尤其适用于
+NLP 任务。BERT 仅使用了 Transformer
+中的编码器部分，并进行了双向训练。BERT
+的核心特点是<strong>双向训练</strong>，它通过使用 Transformer
+的自注意力机制来同时考虑上下文中的前后信息。</p>
+<h4 id="transformer编码器">5.1.1 <strong>Transformer编码器</strong></h4>
 <ul>
-<li><strong>Query（查询向量）</strong>：代表当前词需要从其他词中获取信息的“查询”。</li>
-<li><strong>Key（键向量）</strong>：表示当前词的特征，用于与查询进行比较。</li>
-<li><strong>Value（值向量）</strong>：包含关于当前词的实际信息，用于加权求和。</li>
+<li><strong>自注意力机制（Self-Attention）</strong>：自注意力机制计算输入序列中每个词对其他词的注意力权重。每个词的表示都基于它与所有其他词的关系。</li>
+<li><strong>多头注意力（Multi-Head
+Attention）</strong>：将自注意力机制扩展为多个“头”，每个头学习不同的子空间的注意力表示。所有头的结果被拼接起来并通过线性变换得到最终表示。</li>
+<li><strong>前馈网络（Feed-Forward Networks）</strong>：每个 Transformer
+层还包括一个前馈神经网络，负责对每个位置的表示进行独立的非线性变换。</li>
 </ul>
-<p>具体公式如下： <span class="math display">\[
-\operatorname{Attention}(Q, K, V)=\operatorname{softmax}\left(\frac{Q
-K^T}{\sqrt{d_k}}\right) V
-\]</span></p>
+<p>BERT 采用了多层 Transformer
+编码器堆叠，每一层都包括自注意力机制和前馈网络，最终通过这些层来生成上下文相关的词表示。</p>
+<h4 id="bert的嵌入embeddings">5.1.2
+<strong>BERT的嵌入（Embeddings）</strong></h4>
+<p>在 BERT
+模型中，输入的每个单词或子词（token）都需要通过一定的嵌入（embedding）映射到一个高维空间，这些嵌入提供了对词语的丰富表示。BERT的输入嵌入由三部分组成：<strong>Token
+Embeddings</strong>（词嵌入）、<strong>Segment
+Embeddings</strong>（段落嵌入）和 <strong>Position
+Embeddings</strong>（位置嵌入）。这三种嵌入结合起来，帮助模型理解词汇、句子结构以及词语的顺序信息。</p>
+<p align="center">
+<img src="1.png" srcset="/img/loading.gif" lazyload style="zoom:60%;" />
+</p>
+<h5 id="token-embeddings词嵌入"><strong>Token
+Embeddings（词嵌入）</strong></h5>
+<p>Token Embeddings 是 BERT 模型中最基本的输入嵌入，主要是将每个输入的
+token（例如词或子词）映射到一个固定的向量空间。BERT 的 token
+嵌入使用了词表（vocabulary）中的每个 token 对应的一个嵌入向量。在 BERT
+中，token 通常使用 <strong>WordPiece</strong>
+分词法来切分，这意味着每个词或词组会被进一步拆分为子词单元，因此每个输入的
+token（子词）都会有对应的嵌入向量,通常是通过查表的方式获取。</p>
+<h5 id="segment-embeddings段落嵌入"><strong>Segment
+Embeddings（段落嵌入）</strong></h5>
+<p>BERT
+能够处理成对输入的任务，例如问答或句子对分类任务。在这些任务中，输入有两个部分，BERT
+需要区分这两个部分。为此，BERT 引入了 Segment Embeddings，它为每个 token
+分配一个标识符，指示它属于第一个句子（Segment A）还是第二个句子（Segment
+B）,Segment Embeddings 不参与模型训练，是固定的值。</p>
 <ul>
-<li><span class="math inline">\(Q\)</span> 是查询矩阵，<span
-class="math inline">\(K\)</span> 是键矩阵，<span
-class="math inline">\(V\)</span> 是值矩阵。</li>
-<li><span class="math inline">\(d_k\)</span> 是键向量的维度。</li>
-<li><span class="math inline">\(Q K^T\)</span>
-计算查询和键之间的点积相似度，然后通过 <span
-class="math inline">\(\sqrt{d_k}\)</span>
-进行缩放，以防止点积值过大。</li>
-<li>经过 softmax 操作后，获得的权重矩阵用于对值向量 <span
-class="math inline">\(V\)</span> 进行加权求和。</li>
+<li>对于第一个句子中的每个 token，它的 Segment Embedding 值为 0。</li>
+<li>对于第二个句子中的每个 token，它的 Segment Embedding 值为 1。</li>
 </ul>
-<p>这个公式的核心思想是通过对每个词的查询向量与所有其他词的键向量进行点积，得到一个权重分布，再利用该权重对值向量进行加权和求和，从而得到每个词的新的表示。</p>
-<h3 id="多头注意力机制multi-head-attention">5.2
-多头注意力机制（Multi-Head Attention）</h3>
-<p>多头注意力机制是对自注意力的扩展，它通过多个并行的自注意力计算来捕捉输入序列中的不同特征。每个注意力头（head）学习一个不同的投影，从不同的角度来关注输入序列中的各个部分。</p>
-<p>具体操作如下：</p>
-<ol type="1">
-<li>输入的查询、键和值分别被映射到多个不同的子空间，每个子空间对应一个注意力头。</li>
-<li>每个注意力头独立计算自注意力（如上述公式所示），得到一个加权的表示。</li>
-<li>最后，将所有头的输出拼接在一起，并通过一个线性变换来得到最终的输出。</li>
-</ol>
-<p>多头注意力机制的公式如下： <span class="math display">\[
-\operatorname{MultiHead}(Q, K,
-V)=\operatorname{Concat}\left(\operatorname{head}_1, \ldots, \text {
-head }_h\right) W^O
-\]</span> 其中，<span
-class="math inline">\(\operatorname{head}_i=\operatorname{Attention}\left(Q
-W_i^Q, K W_i^K, V W_i^V\right)\)</span>，表示第 <span
-class="math inline">\(i\)</span> 个注意力头的计算过程。</p>
+<h5 id="position-embeddings位置嵌入"><strong>Position
+Embeddings（位置嵌入）</strong></h5>
+<p>BERT 的 Transformer 架构本身并不具备处理词序信息的能力（不像 RNN 或
+LSTM
+那样顺序处理输入），因此需要引入位置嵌入来显式地编码每个词在序列中的位置信息。Position
+Embeddings 为每个 token 提供一个表示它在输入序列中位置的向量。</p>
+<p>BERT 使用了<strong>可学习的位置编码</strong>（不像 Transformer
+的相对位置编码）。每个 token
+的位置都对应着一个唯一的嵌入向量，并且位置嵌入是与 token 嵌入、segment
+嵌入一起相加的。</p>
+<h3 id="bert的预训练任务">5.2 <strong>BERT的预训练任务</strong></h3>
+<p>BERT 的预训练任务非常关键，决定了模型如何学习语言的上下文信息。BERT
+的预训练任务包含两个主要部分：<strong>掩蔽语言建模（Masked Language
+Modeling，MLM）</strong>和<strong>下一句预测（Next Sentence
+Prediction，NSP）</strong>。</p>
+<h4 id="掩蔽语言建模-mlm">5.2.1 <strong>掩蔽语言建模 (MLM)</strong></h4>
+<p>掩蔽语言建模是 BERT
+的一项核心创新，它允许模型在训练过程中通过学习上下文来预测被掩蔽的词。与传统的语言建模方法（如
+GPT）不同，BERT
+并非仅从左到右或从右到左进行语言建模，而是通过掩蔽掉输入中的一些词并预测这些词来进行训练。</p>
 <ul>
-<li><span class="math inline">\(W_i^Q, W_i^K, W_i^V\)</span>
-是用于映射查询、键、值的权重矩阵。</li>
-<li><span class="math inline">\(W^O\)</span> 是输出映射的权重矩阵。</li>
-</ul>
-<p>通过这种方式，模型能够并行地关注输入序列的不同部分，并从多角度提取信息。</p>
-<h3 id="位置编码positional-encoding">5.3 位置编码（Positional
-Encoding）</h3>
-<p>由于 Transformer 没有像 RNN
-那样的序列顺序处理机制，因此需要引入位置编码来保持序列中每个单词的位置信息。位置编码将每个词的位置映射为一个向量，并加到词嵌入（embedding）中。位置编码的设计保证了每个词的位置信息可以被捕捉到，而不会影响自注意力的计算。</p>
-<p>位置编码使用正弦和余弦函数来生成不同频率的编码，公式如下： <span
+<li><p><strong>掩蔽过程</strong>：BERT 随机选择输入中的 15%
+的词进行掩蔽，并要求模型根据上下文预测这些被掩蔽的词。被选择的 15% 词中
+80% 的情况下，掩蔽的词被替换为“[MASK]”，10%
+的情况下，掩蔽的词保持不变，10%
+的情况下，掩蔽的词被替换为一个随机的词。</p></li>
+<li><p><strong>训练目标</strong>：BERT
+的目标是最大化每个被掩蔽单词的预测概率。具体来说，给定输入文本 <span
+class="math inline">\(X = (x_1, x_2, ..., x_n)\)</span>，BERT
+会掩蔽其中的某些词，并要求模型预测这些词的值： <span
 class="math display">\[
-\begin{gathered}
-\mathrm{PE}(p o s, 2 i)=\sin \left(\frac{p o s}{10000^{2 i / d_{\text
-{model }}}}\right) \\
-\mathrm{PE}(p o s, 2 i+1)=\cos \left(\frac{p o s}{10000^{2 i / d_{\text
-{model }}}}\right)
-\end{gathered}
-\]</span></p>
-<ul>
-<li><span class="math inline">\(pos\)</span> 是单词的位置，<span
-class="math inline">\(i\)</span> 是维度索引，<span
-class="math inline">\(d_{\text {model }}\)</span> 是词嵌入的维度。</li>
+\hat{x}_i=\operatorname{BERT}\left(\tilde{X}_{-i}\right)
+\]</span> 其中，<span class="math inline">\(\tilde{X}_{-i}\)</span>
+表示去除第 <span class="math inline">\(i\)</span> 个词后的文本，<span
+class="math inline">\(\hat{x}_i\)</span> 是模型对第 <span
+class="math inline">\(i\)</span> 个词的预测。</p></li>
 </ul>
-<p>这种编码方式能够确保对于较远的词，正弦和余弦函数的值会呈现不同的周期性，能够捕捉到不同尺度的位置信息。</p>
-<h3 id="前馈神经网络feed-forward-neural-networks">5.4
-前馈神经网络（Feed-Forward Neural Networks）</h3>
-<p>Transformer
-中的每个层除了自注意力层之外，还包含一个前馈神经网络（Feed-Forward
-Neural Network）。该网络包含两个线性变换和一个 ReLU 激活函数，公式如下：
-<span class="math display">\[
-\operatorname{FFN}(x)=\max \left(0, x W_1+b_1\right) W_2+b_2
-\]</span></p>
+<p>掩蔽语言建模的主要目标是让模型能够在上下文中获取对每个词的全局理解，从而增强语义理解能力。</p>
+<h4 id="下一句预测-nsp">5.2.2 <strong>下一句预测 (NSP)</strong></h4>
+<p>除了掩蔽语言建模，BERT
+还使用了下一句预测任务，这一任务用于捕捉句子之间的关系。NSP
+任务帮助模型理解句子对之间的语义关联，尤其是在理解长文档时。</p>
 <ul>
-<li><span class="math inline">\(W_1, W_2\)</span> 和 <span
-class="math inline">\(b_1, b_2\)</span> 是可学习的权重和偏置。</li>
-<li><span class="math inline">\(\max (0, x)\)</span> 是 ReLU
-激活函数。</li>
-</ul>
-<p>前馈网络在每个位置独立地应用，因此它能够进一步增强每个词表示的非线性特征。</p>
-<h3
-id="残差连接和层归一化residual-connection-and-layer-normalization">5.5
-残差连接和层归一化（Residual Connection and Layer Normalization）</h3>
-<p>为了避免深层网络中的梯度消失问题，Transformer
-使用了<strong>残差连接（Residual
-Connection）</strong>。每个子层（如注意力层、前馈神经网络层）的输出都会加上其输入，即：
-<span class="math display">\[
-\text { output }=\text { LayerNorm }(x+\operatorname{Sublayer}(x))
-\]</span> 这里，Sublayer(x) 是该子层的输出，<span
-class="math inline">\(x\)</span>
-是该子层的输入。残差连接有助于确保信息能够直接流过网络的每一层，避免梯度消失问题，同时层归一化（LayerNorm）有助于加速训练。</p>
-<h2 id="evaluation">6. Evaluation</h2>
-<p>作者通过以下几个标准数据集对 Transformer 模型进行了评估：</p>
-<ul>
-<li><strong>WMT 2014 英德翻译和英法翻译任务</strong>。</li>
-<li>与传统的基于 RNN 的模型（如 LSTM）和 CNN 模型进行了比较。</li>
-</ul>
-<p>主要评估指标包括：</p>
-<ul>
-<li><strong>BLEU（Bilingual Evaluation
-Understudy）</strong>分数，这是衡量机器翻译质量的标准指标。</li>
-<li><strong>训练时间</strong>：由于 Transformer
-的高度并行化，训练时间显著低于基于 RNN 的模型。</li>
-</ul>
-<p>实验结果表明，Transformer 在翻译质量和训练效率上都显著超越了传统的
-RNN 模型。</p>
-<h2 id="conclusion">7. Conclusion</h2>
-<p>Transformer
-模型是序列到序列任务中的一项重大创新，证明了自注意力机制可以取代传统的循环和卷积层。本文的主要结论如下：</p>
-<ol type="1">
-<li><strong>高效性</strong>：Transformer
-在性能超越的同时，还具备了高度的并行化能力，显著降低了训练时间。</li>
-<li><strong>有效性</strong>：在机器翻译任务中，Transformer 超越了传统
-RNN 模型，能够有效捕捉长程依赖关系。</li>
-<li><strong>灵活性</strong>：Transformer
-架构具有很好的通用性，能够应用于其他序列相关任务，之后的 BERT、GPT、T5
-等模型也基于Transformer 架构发展而来。</li>
-</ol>
-<p>Transformer
-为自然语言处理和其他领域的深度学习模型奠定了新的基础。</p>
-<h2 id="notes">8. Notes</h2>
-<ol type="1">
-<li>Transformer 为什么使用 LN 而不使用 BN?</li>
-</ol>
-<blockquote>
-<p>在 Transformer 模型中，使用<strong>层归一化（Layer
-Normalization，LN）</strong>而非<strong>批量归一化（Batch
-Normalization，BN）</strong>，主要是因为以下几个原因：</p>
-<ol type="1">
-<li><p><strong>序列数据的依赖性</strong></p>
-<p>Transformer
-是处理序列数据的模型，其中每个输入元素可能与其他元素有复杂的依赖关系。<strong>批量归一化（BN）</strong>依赖于批次内的统计量（均值和方差），这在卷积神经网络（CNN）中有效，但对于序列数据存在问题：</p>
-<ul>
-<li><strong>依赖批次数据</strong>：BN计算基于批次的统计量，而每个时间步的输入需要独立处理其上下文信息。不同样本的分布可能会干扰每个时间步的计算。</li>
-<li><strong>小批次问题</strong>：Transformer
-通常使用小批次处理长序列，BN
-在小批次下表现较差，因为统计量不稳定，可能影响训练的稳定性。</li>
-</ul></li>
-<li><p><strong>训练稳定性</strong>：层归一化（LN）可以提高训练过程的稳定性，特别是在深度神经网络中。相比之下，批量归一化（BN）受批次大小的影响，尤其是在小批次情况下，均值和方差的计算可能不准确，从而影响训练稳定性。而LN对每个样本独立归一化，避免了这个问题，因此训练过程更加稳定。</p></li>
-<li><p><strong>并行计算的要求</strong>：Transformer
-的一个显著特点是其<strong>高度并行化</strong>的计算方式，特别是在计算自注意力时。BN
-在训练时需要在整个批次上计算均值和方差，这通常是针对整个批次的操作。而
-LN 是对单个样本的操作，因此更加适合在训练时进行并行计算，尤其是在 GPU 或
-TPU 上训练时，能够更好地加速训练过程。</p></li>
-</ol>
-</blockquote>
-<ol start="2" type="1">
-<li>Transformer 中前馈神经网络里面的 <span
-class="math inline">\(x\)</span> 和 <span
-class="math inline">\(W\)</span> 的 shape 分别是多少？</li>
-</ol>
-<blockquote>
-<p>在 Transformer 的前馈神经网络（Feed-Forward Network，FFN）中，输入
-<span class="math inline">\(x\)</span> 和权重矩阵 <span
-class="math inline">\(W\)</span> 的形状如下：</p>
-<ol type="1">
-<li><strong>输入 <span class="math inline">\(x\)</span>
-的形状</strong>：</li>
-</ol>
-<p>前馈神经网络的输入是自注意力（Self-Attention）层的输出。假设输入的张量
-<span class="math inline">\(x\)</span> 的形状为： <span
+<li><p><strong>任务描述</strong>：NSP 任务的目标是判断给定的一对句子
+<span class="math inline">\(S_1\)</span> 和 <span
+class="math inline">\(S_2\)</span> 是否在原始文档中是连续的，即判断
+<span class="math inline">\(S_2\)</span> 是否是 <span
+class="math inline">\(S_1\)</span> 的后续句子。如果 <span
+class="math inline">\(S_2\)</span> 是 <span
+class="math inline">\(S_1\)</span> 的后续句子，则标签为 1；否则为
+0。</p></li>
+<li><p><strong>模型输入</strong>：将一对句子 <span
+class="math inline">\((S_1, S_2)\)</span> 拼接在一起，并通过 BERT
+进行处理。然后，输出一个二分类的标签，表示第二个句子是否是第一个句子的后续句子。</p>
+<p>换句话说，给定一对句子 <span class="math inline">\(S_1\)</span> 和
+<span class="math inline">\(S_2\)</span>，模型的目标是计算： <span
 class="math display">\[
-x \in \mathbb{R}^{B \times S \times D}
-\]</span></p>
-<ul>
-<li><span class="math inline">\(B\)</span> 是批次大小（batch size）</li>
-<li><span class="math inline">\(S\)</span> 是序列长度（sequence
-length）</li>
-<li><span class="math inline">\(D\)</span>
-是每个时间步的特征维度，通常称为模型的隐藏维度（<span
-class="math inline">\(d_{\text {model }}\)</span>）</li>
+P\left(\operatorname{IsNext} \mid S_1,
+S_2\right)=\operatorname{sigmoid}\left(W^T h_2+b\right)
+\]</span> 其中，<span class="math inline">\(h_2\)</span> 是第二个句子
+<span class="math inline">\(S_2\)</span> 在 BERT 模型中的表示，<span
+class="math inline">\(W\)</span> 和 <span
+class="math inline">\(b\)</span> 是训练的权重和偏置，sigmoid
+函数用于输出一个概率值，表示 <span class="math inline">\(S_2\)</span>
+是否是 <span class="math inline">\(S_1\)</span> 的后续句子。</p></li>
 </ul>
-<ol start="2" type="1">
-<li><strong>权重矩阵 <span class="math inline">\(W\)</span>
-的形状</strong>：</li>
-</ol>
-<p>前馈神经网络通常由两个线性层组成，假设第一个线性层将输入的特征维度
-<span class="math inline">\(D\)</span> 映射到更高的维度 <span
-class="math inline">\(d_{\mathrm{ff}}\)</span>，然后第二个线性层将其映射回
-<span class="math inline">\(D\)</span>。</p>
+<p>NSP
+任务对于句子级别的推理（例如，问答任务中的句子对匹配、文本蕴涵等任务）特别重要。</p>
+<h3 id="bert的微调-fine-tuning">5.3 <strong>BERT的微调
+(Fine-tuning)</strong></h3>
+<p>BERT 的一个重要特点是其强大的<strong>微调能力</strong>。BERT
+的预训练模型可以通过微调来适应特定的 NLP 任务。在微调时，BERT
+只需要少量的任务特定架构修改即可，因此能够在多种任务上展现出强大的性能。</p>
 <ul>
-<li><p>第一个线性层的权重矩阵 <span class="math inline">\(W_1\)</span>
-的形状为： <span class="math display">\[
-W_1 \in \mathbb{R}^{D \times d_{\mathrm{ff}}}
-\]</span> 这里，<span class="math inline">\(D\)</span>
-是输入特征维度，<span class="math inline">\(d_{\mathrm{ff}}\)</span>
-是前馈网络的隐藏层维度。</p></li>
-<li><p>第二个线性层的权重矩阵 <span class="math inline">\(W_2\)</span>
-的形状为： <span class="math display">\[
-W_2 \in \mathbb{R}^{d_{\mathrm{ff}} \times D}
-\]</span> 这里，<span class="math inline">\(d_{\mathrm{ff}}\)</span>
-是前馈网络的隐藏层维度，<span class="math inline">\(D\)</span>
-是输出的特征维度，通常与输入的特征维度 <span
-class="math inline">\(D\)</span> 相同。</p></li>
+<li><p><strong>微调过程</strong>：微调过程非常简单，通常只需在 BERT
+的顶部添加一个简单的输出层（例如分类层），然后根据具体任务进行训练。这使得
+BERT
+能够轻松适应各种任务，如文本分类、命名实体识别（NER）、问答、情感分析等。</p></li>
+<li><p><strong>任务特定的输出层</strong>：不同任务需要不同的输出层。例如，对于分类任务，BERT
+的输出层通常是一个 softmax
+分类器；对于序列标注任务（如命名实体识别），输出层可能是一个标签的序列。</p></li>
+<li><p><strong>微调公式</strong>：微调过程中，BERT
+的参数和输出层的参数都会共同更新。假设目标任务的损失函数为 <span
+class="math inline">\(\mathcal{L}_{\text {task
+}}\)</span>，则微调时的目标是最小化该任务的损失： <span
+class="math display">\[
+\mathcal{L}_{\text {total }}=\mathcal{L}_{\text {task }}
+\]</span>
+对于不同的任务，损失函数可以是交叉熵损失、均方误差损失等。</p></li>
 </ul>
-<p><strong>在整个计算过程中，前馈神经网络对每个时间步的特征进行独立处理，输入维度
-<span class="math inline">\(D\)</span> 被映射到更高的维度 <span
-class="math inline">\(d_{\mathrm{ff}}\)</span>，然后再映射回原始维度
-<span class="math inline">\(D\)</span></strong>。</p>
-</blockquote>
+<h2 id="conclusion">6. Conclusion</h2>
+<p>BERT 通过提出一种新的双向变换器预训练方法，在多个 NLP
+任务中设立了新的基准。它的通用性使其能够通过微调适应不同的任务，从而证明了双向预训练在语言理解中的强大能力。BERT
+的成功也展示了 NLP 中迁移学习的潜力。</p>
 
                 
               </div>
@@ -570,6 +512,10 @@ class="math inline">\(d_{\mathrm{ff}}\)</span>，然后再映射回原始维度
       
         <a href="/tags/Transformer/" class="print-no-link">#Transformer</a>
       
+        <a href="/tags/Pre-training/" class="print-no-link">#Pre-training</a>
+      
+        <a href="/tags/Fine-tuning/" class="print-no-link">#Fine-tuning</a>
+      
     </div>
   
 </div>
@@ -580,8 +526,8 @@ class="math inline">\(d_{\mathrm{ff}}\)</span>，然后再映射回原始维度
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>论文笔记 - Attention Is All You Need</div>
-      <div>http://hellochuanyang.github.io/2024/11/28/论文笔记-Attention-Is-All-You-Need/</div>
+      <div>论文笔记 - BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding</div>
+      <div>http://hellochuanyang.github.io/2024/11/29/论文笔记-BERT-Pre-training-of-Deep-Bidirectional-Transformers-for-Language-Understanding/</div>
     </div>
     <div class="license-meta">
       
@@ -625,9 +571,9 @@ class="math inline">\(d_{\mathrm{ff}}\)</span>，然后再映射回原始维度
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/11/29/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-BERT-Pre-training-of-Deep-Bidirectional-Transformers-for-Language-Understanding/" title="论文笔记 - BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding">
+                      <a href="/2024/12/03/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Locating-and-Editing-Factual-Associations-in-GPT/" title="论文笔记 - Locating and Editing Factual Associations in GPT">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">论文笔记 - BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding</span>
+                        <span class="hidden-mobile">论文笔记 - Locating and Editing Factual Associations in GPT</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -635,8 +581,8 @@ class="math inline">\(d_{\mathrm{ff}}\)</span>，然后再映射回原始维度
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/11/27/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-ShuffleNet-V2-Practical-Guidelines-for-Efficient-CNN-Architecture-Design/" title="论文笔记 - ShuffleNet V2: Practical Guidelines for Efficient CNN Architecture Design">
-                        <span class="hidden-mobile">论文笔记 - ShuffleNet V2: Practical Guidelines for Efficient CNN Architecture Design</span>
+                      <a href="/2024/11/28/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Attention-Is-All-You-Need/" title="论文笔记 - Attention Is All You Need">
+                        <span class="hidden-mobile">论文笔记 - Attention Is All You Need</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
