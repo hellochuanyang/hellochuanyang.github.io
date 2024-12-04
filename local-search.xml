@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>论文笔记 - FAST MODEL EDITING AT SCALE</title>
+    <link href="/2024/12/04/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-FAST-MODEL-EDITING-AT-SCALE/"/>
+    <url>/2024/12/04/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-FAST-MODEL-EDITING-AT-SCALE/</url>
+    
+    <content type="html"><![CDATA[<h2 id="information">1. Information</h2><p><strong>Title</strong>: FAST MODEL EDITING AT SCALE<br /><strong>Link</strong>: <a href="https://arxiv.org/pdf/2110.11309">MENDPaper</a><br /><strong>Source</strong>: International Conference on LearningRepresentations (ICLR)<br /><strong>Date</strong>: 2022</p><h2 id="summary">2. Summary</h2><p>本文介绍了一种名为模型编辑网络与梯度分解 <strong>MEND</strong>（ModelEditor Networks with GradientDecomposition）的新方法，用于高效编辑大型预训练模型，特别是那些参数超过100 亿的模型。MEND允许使用单个期望的输入输出对快速、局部地编辑模型行为，无需进一步微调。该方法利用<strong>微调梯度</strong>的<strong>低秩结构</strong>，实现可行且有效的大规模模型编辑。</p><h2 id="background">3. Background</h2><p>自然语言处理和计算机视觉中大型预训练模型的维护和更新挑战。尽管这些模型功能强大，但可能会出错或过时。传统的微调方法可能导致过拟合或计算成本高昂，尤其是对于非常大的模型。因此，需要一种方法能够在不影响模型在其他任务上的表现的情况下，纠正特定输入的模型输出。</p><h2 id="research-objective">4. Research Objective</h2><p>本研究的主要目标是开发一种可扩展的算法，使大型预训练模型能够快速进行事后编辑。目标包括确保编辑后的模型保持<strong>可靠性</strong>（对编辑输入的正确输出）、<strong>局部性</strong>（对不相关输入的影响最小）和<strong>普遍性</strong>（对相关输入的正确输出）。</p><h2 id="method">5. Method</h2><p align="center"><img src="1.png" style="zoom:80%;" /></p><h3 id="问题定义">5.1 问题定义</h3><p>在模型编辑问题中，目标是使用单个输入输出对 <spanclass="math inline">\(\left(x_e, y_e\right)\)</span>来改变基础模型对于特定输入的 <span class="math inline">\(x_e\)</span>输出，同时保持对不相关输入的模型行为不变。这要求编辑操作具有可靠性、局部性和普遍性。</p><h3 id="mend-架构">5.2 MEND 架构</h3><p>MEND 通过训练一系列轻量级的模型编辑网络 <spanclass="math inline">\(g_{\ell}\)</span>来实现编辑。这些网络接收<strong>标准微调的梯度</strong>作为输入，并输出对应的梯度更新，以此来编辑预训练模型的权重。MEND的关键特点是利用梯度的<strong>低秩结构</strong>，这使得参数化变得可行。</p><h3 id="梯度分解">5.3 梯度分解</h3><p>对于一个全连接层的梯度，MEND 利用梯度矩阵是 rank-1的特性，将梯度分解为其 rank-1 的外积形式。具体来说，对于第 <spanclass="math inline">\(l\)</span> 层的权重矩阵 <spanclass="math inline">\(W_l\)</span>，其梯度可以表示为： <spanclass="math display">\[\nabla_{W_l} L=\delta_{l+1} u_l^T\]</span> 这样，每个 MEND 网络的输入是微调梯度的两个因子 <spanclass="math inline">\(\left(\delta_{l+1}, u_l\right)\)</span>，其中<span class="math inline">\(\delta_{l+1}\)</span> 是第 <spanclass="math inline">\(l+1\)</span> 层的误差项，<spanclass="math inline">\(u_l\)</span> 是第 <spanclass="math inline">\(l\)</span> 层的输入。</p><h3 id="参数化">5.4 参数化</h3><p align="center"><img src="2.png" style="zoom:80%;" /></p><p>MEND 通过多层感知器（MLP）来参数化这些梯度映射函数。每个 MLP有一个隐藏层，并且使用低秩权重矩阵，以减少参数数量。具体来说，MEND网络的参数化形式为： <span class="math display">\[h_l=z_l+\sigma\left(s_1^l \odot\left(U_1 V_1 z_l+b\right)+o_1^l\right)\]</span></p><p><span class="math display">\[g\left(z_l\right)=h_l+\sigma\left(s_2^l \odot U_2 V_2 h_l+o_2^l\right)\]</span></p><p>其中，<span class="math inline">\(z_l=\operatorname{concat}\left(u_l,\delta_{l+1}\right)\)</span> 是输入向量，<spanclass="math inline">\(\sigma\)</span> 是激活函数，<spanclass="math inline">\(U_1, V_1, U_2, V_2\)</span>是低秩权重矩阵，它们通过低秩分解来减少模型的参数量。这种方法使得每个编辑网络可以用更少的参数来学习如何从梯度映射到参数更新，从而提高了计算效率。<spanclass="math inline">\(s_1^l, s_2^l, o_1^l, o_2^l\)</span>是层特定的缩放和偏移参数。</p><h3 id="训练">5.5 训练</h3><p>MEND 使用编辑训练集 <span class="math inline">\(D_{e d i t}^{tr}\)</span> 来学习每个编辑网络的参数。在训练过程中，对于每一层 <spanclass="math inline">\(l\)</span>，MEND 计算原始梯度 <spanclass="math inline">\(\nabla_{W_{\ell}}p_{\theta_{\mathcal{W}}}\left(y_{\mathrm{e}} \midx_{\mathrm{e}}\right)\)</span>，然后使用 MEND 网络计算权重更新量 <spanclass="math inline">\(\tilde{\nabla}_{W_{\ell}}\)</span>，最后更新权重<span class="math inline">\(\tilde{W}=W_{\ell}-\alpha_{\ell}\tilde{\nabla}_{W_{\ell}}\)</span>。</p><h3 id="损失函数">5.6 损失函数</h3><p>MEND 的训练损失包括编辑成功 <spanclass="math inline">\(\left(L_e\right)\)</span> 和编辑局部性 <spanclass="math inline">\(\left(L_{l o c}\right)\)</span>两个部分。具体来说： <span class="math display">\[L_{\mathrm{e}}=-\log p_{\theta_{\tilde{w}}}\left(y_{\mathrm{e}}^{\prime}\mid x_{\mathrm{e}}^{\prime}\right)\]</span></p><p><span class="math display">\[L_{\text {loc}}=\operatorname{KL}\left(p_{\theta_{\mathcal{W}}}\left(\cdot \midx_{\text {loc }}\right) \| p_{\theta_{\tilde{w}}}\left(\cdot \midx_{\text {loc }}\right)\right)\]</span></p><p>其中，<span class="math inline">\(\left(L_e\right)\)</span>衡量模型是否成功更新了编辑示例的输出，而衡 <spanclass="math inline">\(\left(L_{l o c}\right)\)</span>量编辑是否影响了不相关输入的模型行为，模型的总损失如下： <spanclass="math display">\[L_{\mathrm{MEND}}=c_{\mathrm{e}}L_{\mathrm{e}}\left(\theta_{\tilde{\mathcal{W}}}\right)+L_{\mathrm{loc}}\left(\theta_{\mathcal{W}},\theta_{\tilde{\mathcal{W}}}\right)\]</span> 在 MEND 中，使用编辑后的模型参数 <spanclass="math inline">\(\tilde{W}\)</span>来计算训练损失，这些损失将被反向传播到编辑网络中。这个过程不涉及预训练模型的参数优化。</p><h2 id="conclusion">6. Conclusion</h2><p>MEND通过梯度分解和轻量级编辑网络，实现了对大型预训练模型的快速和局部编辑。这种方法不仅减少了参数数量，而且通过利用梯度的低秩结构，使得编辑操作变得高效和可扩展。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>论文阅读</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>深度学习</tag>
+      
+      <tag>知识编辑</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>论文笔记 - An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale</title>
     <link href="/2024/12/04/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-An-Image-is-Worth-16x16-Words-Transformers-for-Image-Recognition-at-Scale/"/>
     <url>/2024/12/04/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-An-Image-is-Worth-16x16-Words-Transformers-for-Image-Recognition-at-Scale/</url>
