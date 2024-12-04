@@ -4,6 +4,39 @@
   
   
   <entry>
+    <title>论文笔记 - Improving Language Understanding by Generative Pre-Training</title>
+    <link href="/2024/12/03/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Improving-Language-Understanding-by-Generative-Pre-Training/"/>
+    <url>/2024/12/03/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Improving-Language-Understanding-by-Generative-Pre-Training/</url>
+    
+    <content type="html"><![CDATA[<h2 id="information">1. Information</h2><p><strong>Title</strong>: Improving Language Understanding byGenerative Pre-Training<br /><strong>Link</strong>: <ahref="https://hayate-lab.com/wp-content/uploads/2023/05/43372bfa750340059ad87ac8e538c53b.pdf">GPTV1 Paper</a><br /><strong>Date</strong>: 2018</p><h2 id="summary">2. Summary</h2><ul><li>本文提出了一种基于 Transformer解码器的生成式语言模型，该模型通过在大规模无监督数据集上进行预训练，从而显著提高了下游任务（如问答、文本分类等）的性能。</li><li>通过预训练和微调的框架，GPT 模型减少了对大规模标注数据的依赖。</li></ul><h2 id="background">3. Background</h2><p>研究解决了特定自然语言任务的标记数据稀缺问题，而大量未标记文本语料库却很丰富。它建立在利用未标记数据可以提供替代收集更多注释的方法，并提高NLP任务性能的理念上。其重要性在于减少对监督学习的依赖，并提高语言理解的技术水平。</p><h2 id="research-objective">4. Research Objective</h2><p>研究目标是学习一个能够很好地转移到广泛任务的通用表示。作者旨在证明，一个在未标记文本上预训练的模型在特定自然语言理解任务上进行微调后，可以显著提高性能。</p><h2 id="method">5. Method</h2><p align="center"><img src="1.png" style="zoom:50%;" /></p><h3 id="self-supervised-pre-training">5.1 Self-supervisedpre-training</h3><p>GPT采用了<strong>自回归</strong>模型，这意味着在每次预测时，模型仅依赖于左侧的上下文信息（单向注意力）。与双向的Transformer 模型（例如 BERT ）不同，GPT的训练过程仅基于从左到右的文本顺序。</p><p>GPT 使用的是基于 <strong>Transformer解码器</strong>的结构，而非完整的 Transformer。每个Transformer块包括多个注意力头和全连接层，层与层之间通过残差连接和层归一化进行处理。与原始的Transformer 解码器相比，GPT省略了交叉注意力（Cross-attention）部分。</p><p>优化目标是基于之前窗口内的词，最大化预测下一个词的概率，公式如下：<span class="math display">\[L_1(\mathcal{U})=\sum_i \log P\left(u_i \mid u_{i-k}, \ldots, u_{i-1} ;\Theta\right)\]</span></p><h3 id="supervised-fine-tuning">5.2 Supervised fine-tuning</h3><p>在预训练的模型后，添加了一个线性层，对最后一个 Token（<spanclass="math inline">\(x^m\)</span>） 的输出（<spanclass="math inline">\(h_l^m\)</span>）映射到任务特定的输出空间。通过这种方式，模型能够针对特定任务进行微调，以适应不同的下游任务需求。<span class="math display">\[P\left(y \mid x^1, \ldots, x^m\right)=\operatorname{softmax}\left(h_l^mW_y\right)\]</span> 优化目标是最大化下述概率： <span class="math display">\[L_2(\mathcal{C})=\sum_{(x, y)} \log P\left(y \mid x^1, \ldots,x^m\right)\]</span> 其中，<span class="math inline">\((x, y)\)</span>代表训练数据中的输入输出对。</p><p>此外综合考虑上述两个优化目标，可以 (a) 增强模型泛化性和 (b)加速模型收敛，公式如下： <span class="math display">\[L_3(\mathcal{C})=L_2(\mathcal{C})+\lambda * L_1(\mathcal{C})\]</span></p><h3 id="基于任务的输入转换">5.3 基于任务的输入转换</h3><p>在微调阶段，为了使预训练模型能够处理各种不同的下游任务，需要对输入数据进行特定的转换，以适应模型的输入要求。这些转换允许模型将结构化输入（例如，问答任务中的文档、问题和答案）转换为连续的标记序列，以便模型可以处理。这些输入转换使得模型能够在不同任务之间进行有效的迁移学习，而无需对模型架构进行大量修改。具体的转换如下：</p><p align="center"><img src="2.png" style="zoom:67%;" /></p><h2 id="conclusion">6. Conclusion</h2><p>生成预训练后进行判别式微调是实现强大自然语言理解的有效框架。该方法在预训练期间获得了世界知识和处理长距离依赖关系的能力，这些能力成功地转移到解决判别式任务上，提高了多个数据集上的技术水平。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>论文阅读</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>深度学习</tag>
+      
+      <tag>NLP</tag>
+      
+      <tag>Transformer</tag>
+      
+      <tag>Pre-training</tag>
+      
+      <tag>Fine-tuning</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>论文笔记 - Locating and Editing Factual Associations in GPT</title>
     <link href="/2024/12/03/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Locating-and-Editing-Factual-Associations-in-GPT/"/>
     <url>/2024/12/03/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Locating-and-Editing-Factual-Associations-in-GPT/</url>
