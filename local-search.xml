@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>论文笔记 - Memory-Based Model Editing at Scale</title>
+    <link href="/2025/01/15/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Memory-Based-Model-Editing-at-Scale/"/>
+    <url>/2025/01/15/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Memory-Based-Model-Editing-at-Scale/</url>
+    
+    <content type="html"><![CDATA[<h2 id="information">1. Information</h2><p><strong>Title</strong>: Memory-Based Model Editing at Scale<br /><strong>Link</strong>: <a href="https://arxiv.org/pdf/2206.06520">SERACPaper</a><br /><strong>Date</strong>: 2022</p><h2 id="summary">2. Summary</h2><p>本文提出了一个新的模型编辑方法 —— SERAC（Semi-Parametric Editing witha Retrieval-Augmented CounterfactualModel）。与传统基于梯度的方法不同，SERAC引入了显式编辑记忆，用于存储用户提供的编辑描述，并通过范围分类器和反事实模型来调整预测行为。实验表明，SERAC在包括问答、事实验证和对话生成的多个任务中显著优于现有方法。</p><h2 id="background">3. Background</h2><p>传统的神经网络通常被视为静态系统，难以在部署后快速修改其行为。现有的模型编辑方法虽然有效，但在编辑范围表达能力、处理多个编辑的能力以及计算效率方面仍有不足。</p><h2 id="research-objective">4. Research Objective</h2><p>开发一种高效、灵活且适用于多个模型的编辑方法，使其能够：</p><ul><li>对模型进行局部更新而不影响其他区域。</li><li>应对复杂的编辑范围需求。</li><li>在多编辑场景下保持性能稳定。</li></ul><h2 id="method">5. Method</h2><h3 id="模型结构">5.1 模型结构</h3><p>SERAC由以下三个主要组件组成：</p><ol type="1"><li><strong>显式编辑记忆（EditMemory）</strong>：存储用户提供的编辑描述。</li><li><strong>范围分类器（ScopeClassifier）</strong>：估计输入是否属于某个编辑的范围。</li><li><strong>反事实模型（CounterfactualModel）</strong>：根据编辑描述调整模型的输出。</li></ol><p align="center"><img src="1.png" style="zoom:30%;" /></p><h3 id="前向传播">5.2 前向传播</h3><p>对于给定的输入 <span class="math inline">\(x&#39;\)</span> 和编辑集合<span class="math inline">\(Z_e\)</span>，SERAC 的预测由以下公式定义：<span class="math display">\[\tilde{f}\left(x^{\prime}\right)= \begin{cases}f_{\text {base}}\left(x^{\prime}\right) &amp; \text { if } \beta&lt;0.5 \\h_\psi\left(z_e^*, x^{\prime}\right) &amp; \text { if } \beta \geq0.5\end{cases}\]</span> 其中：</p><ul><li><span class="math inline">\(\beta=g_\phi\left(z_e^*,x^{\prime}\right)\)</span> 是范围分类器的相似性得分。</li><li><span class="math inline">\(z_e^*=\arg \max _{z_e \in Z_e}g_\phi\left(z_e, x^{\prime}\right)\)</span>。</li></ul><h3 id="损失函数">5.3 损失函数</h3><ol type="1"><li><strong>范围分类器</strong>：用于解决二分类问题，其目标是将输入正确分为“在范围内”和“超出范围”。损失函数为：</li></ol><p><span class="math display">\[\mathcal{L}(\phi)=-\mathbb{E}_{z_e \sim D_e}\left[\log g_\phi\left(z_e,x_{\text {in }}\right)+\log \left(1-g_\phi\left(z_e, x_{\text {out}}\right)\right)\right]\]</span></p><ol type="1"><li><strong>反事实模型</strong>：用于预测范围内输入的标签，其目标是最小化以下负对数似然损失：</li></ol><p><span class="math display">\[\mathcal{L}(\psi)=-\mathbb{E}_{z_e \sim D_e} \mathbb{E}_{\left(x_{\text{in }}, y_{\text {in }}\right) \sim I\left(z_c ; D_e\right)}\left[\logp_\psi\left(y_{\text {in }} \mid z_e, x_{\text {in }}\right)\right]\]</span></p><h2 id="evaluation">6. Evaluation</h2><p>本文通过三个新的编辑问题来评估模型编辑器：基于问答、事实核查和对话生成的任务。这些任务旨在测试模型编辑器处理更难的范围内和范围外示例的能力。实验结果表明，SERAC在所有三个问题上均取得了高性能，显著优于现有方法。</p><h2 id="conclusion">7. Conclusion</h2><p>本文提出的 SERAC方法在多个编辑问题上均优于现有方法，特别是在处理多次编辑、复杂编辑范围和非输入输出对的编辑描述符时。SERAC不依赖于基础模型参数，不需要计算梯度来应用编辑，可以一次性训练并立即编辑具有不同架构的多个模型，并且可以处理自然语言指定的编辑。尽管SERAC具有这些有用的特性，但也存在一些局限性，例如作为可学习编辑器，它依赖于用于训练分类器和反事实模型的编辑数据集。未来的工作可能包括解决编辑记忆无限制增长的问题，以及探索更复杂的检索架构。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>论文阅读</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>深度学习</tag>
+      
+      <tag>NLP</tag>
+      
+      <tag>知识编辑</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>论文笔记 - FAST MODEL EDITING AT SCALE</title>
     <link href="/2024/12/04/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-FAST-MODEL-EDITING-AT-SCALE/"/>
     <url>/2024/12/04/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-FAST-MODEL-EDITING-AT-SCALE/</url>
