@@ -19,24 +19,24 @@
   <meta name="author" content="阿阳">
   <meta name="keywords" content="">
   
-    <meta name="description" content="1. Information Title: Attention Is All You Need Link: Transformer Source: Conference on Neural Information Processing Systems (NeurIPS) Date: 2017 2. Summary 本文提出了 Transformer 模型，这是一种用于序列转换任务（特别是机器翻译）">
+    <meta name="description" content="1. Information Title: Can We Edit Factual Knowledge by In-Context Learning? Link: IKE Paper Source: Empirical Methods in Natural Language Processing (EMNLP) Date: 2023 2. Summary 本文探讨了利用上下文学习 （In-Cont">
 <meta property="og:type" content="article">
-<meta property="og:title" content="论文笔记 - Attention Is All You Need">
-<meta property="og:url" content="http://hellochuanyang.github.io/2024/11/28/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Attention-Is-All-You-Need/index.html">
+<meta property="og:title" content="论文笔记 - Can We Edit Factual Knowledge by In-Context Learning">
+<meta property="og:url" content="http://hellochuanyang.github.io/2025/01/19/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Can-We-Edit-Factual-Knowledge-by-In-Context-Learning/index.html">
 <meta property="og:site_name" content="Ayang&#39;s home">
-<meta property="og:description" content="1. Information Title: Attention Is All You Need Link: Transformer Source: Conference on Neural Information Processing Systems (NeurIPS) Date: 2017 2. Summary 本文提出了 Transformer 模型，这是一种用于序列转换任务（特别是机器翻译）">
+<meta property="og:description" content="1. Information Title: Can We Edit Factual Knowledge by In-Context Learning? Link: IKE Paper Source: Empirical Methods in Natural Language Processing (EMNLP) Date: 2023 2. Summary 本文探讨了利用上下文学习 （In-Cont">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-11-28T22:32:20.000Z">
-<meta property="article:modified_time" content="2025-01-19T14:34:08.074Z">
+<meta property="article:published_time" content="2025-01-19T06:31:46.000Z">
+<meta property="article:modified_time" content="2025-01-19T14:37:18.072Z">
 <meta property="article:author" content="阿阳">
 <meta property="article:tag" content="深度学习">
-<meta property="article:tag" content="Transformer">
 <meta property="article:tag" content="NLP">
+<meta property="article:tag" content="知识编辑">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>论文笔记 - Attention Is All You Need - Ayang&#39;s home</title>
+  <title>论文笔记 - Can We Edit Factual Knowledge by In-Context Learning - Ayang&#39;s home</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -215,7 +215,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="论文笔记 - Attention Is All You Need"></span>
+            <span id="subtitle" data-typed-text="论文笔记 - Can We Edit Factual Knowledge by In-Context Learning"></span>
           
         </div>
 
@@ -226,8 +226,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-11-29 06:32" pubdate>
-          2024年11月29日 早上
+        <time datetime="2025-01-19 14:31" pubdate>
+          2025年1月19日 下午
         </time>
       </span>
     
@@ -238,7 +238,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.8k 字
+          1.7k 字
         
       </span>
     
@@ -249,7 +249,7 @@
         
         
         
-          24 分钟
+          14 分钟
         
       </span>
     
@@ -295,238 +295,197 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">论文笔记 - Attention Is All You Need</h1>
+            <h1 id="seo-header">论文笔记 - Can We Edit Factual Knowledge by In-Context Learning</h1>
             
             
               <div class="markdown-body">
                 
                 <h2 id="information">1. Information</h2>
-<p><strong>Title</strong>: Attention Is All You Need<br />
-<strong>Link</strong>: <a
-target="_blank" rel="noopener" href="https://arxiv.org/pdf/1706.03762">Transformer</a><br />
-<strong>Source</strong>: Conference on Neural Information Processing
-Systems (NeurIPS)<br />
-<strong>Date</strong>: 2017</p>
+<p><strong>Title</strong>: Can We Edit Factual Knowledge by In-Context
+Learning?<br />
+<strong>Link</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2305.12740">IKE
+Paper</a><br />
+<strong>Source</strong>: Empirical Methods in Natural Language
+Processing (EMNLP)<br />
+<strong>Date</strong>: 2023</p>
 <h2 id="summary">2. Summary</h2>
-<p>本文提出了 <strong>Transformer</strong>
-模型，这是一种用于序列转换任务（特别是机器翻译）的新型深度学习架构。Transformer
-的核心创新是<strong>自注意力机制</strong>，该机制使得模型能够高效地处理序列数据，而不依赖于循环神经网络（RNN）或卷积神经网络（CNN）。该模型在编码和解码阶段均使用自注意力和前馈神经网络，显著提高了并行化能力，减少了训练时间。实验结果表明，Transformer
-在机器翻译任务中超越了基于 LSTM 和 GRU
-的传统模型，取得了更好的性能。</p>
+<p>本文探讨了利用上下文学习 （In-Context Learning, ICL）
+来编辑大型语言模型（LLMs）中的事实知识的可能性。提出了一种名为
+IKE（In-Context Knowledge Editing）
+的方法，该方法无需更新模型参数，通过构建示范上下文来引导 LLMs
+进行知识编辑。实验表明，IKE
+在有效性（efficacy）、泛化性（generalization）和特异性（specificity）上达到了与基于梯度的方法相当甚至更优的性能，同时显著降低了计算开销和副作用。</p>
 <h2 id="background">3. Background</h2>
-<p>在 Transformer
-提出之前，序列到序列任务（如机器翻译）通常由<strong>循环神经网络（RNN）及其改进版本（如
-LSTM 和
-GRU）</strong>来处理。这些模型是逐步处理数据，因此存在并行化难度，长依赖关系的处理也存在瓶颈。<strong>卷积神经网络（CNN）</strong>在某些序列处理任务中也有应用，但它们在捕捉长程依赖关系时的能力较弱。</p>
+<p>大规模语言模型在 NLP
+任务中表现出色，但其存储的事实知识可能过时或错误。传统的知识编辑方法需要通过梯度更新模型参数，存在计算成本高、副作用大的问题。上下文学习是一种无需参数更新的新方法，本研究探索其在知识编辑中的潜力。</p>
 <h2 id="research-objective">4. Research Objective</h2>
-<p>本文的研究目标是提出一种新的模型架构，能够在不依赖循环或卷积层的情况下高效处理序列转换任务，尤其是机器翻译。具体目标包括：</p>
-<ol type="1">
-<li>设计一个易于并行化的模型，从而提高训练效率。</li>
-<li>开发一个能够捕捉长程依赖关系的模型，不受传统RNN模型的限制。</li>
-<li>证明该模型在标准基准任务中超越传统RNN模型的表现。</li>
-</ol>
+<p>本研究的主要目标是探索 ICL 在 LLMs
+知识编辑中的潜力，具体包括两个方面：确保 LLMs
+能够对更新的知识进行泛化，即对同一知识的不同文本描述进行预测更新；确保编辑的特异性，即在修改目标知识事实时，不影响其他不相关的知识。</p>
 <h2 id="method">5. Method</h2>
-<h3 id="自注意力机制self-attention">5.1
-自注意力机制（Self-Attention）</h3>
-<p>自注意力机制是 Transformer
-的核心创新之一。它允许模型在处理每个输入位置时，对序列中所有位置的其他元素进行加权求和，从而捕捉词语间的依赖关系。自注意力机制通过计算每个词与其他词之间的相似度，来决定其在表示中的重要性。</p>
-<h5 id="计算过程">计算过程</h5>
-<p>自注意力机制的关键计算过程可以通过以下三个向量来描述：</p>
+<h3 id="in-context-learning-icl">5.1 In-Context Learning (ICL)</h3>
+<p>ICL 由 Brown 等人于2020年提出，旨在基于 <span
+class="math inline">\(k\)</span> 个示范 <span
+class="math inline">\(C=\left\{\left(x_1, y_1\right), \ldots,\left(x_k,
+y_k\right)\right\}\)</span>，在不更新任何参数的情况下，预测输入 <span
+class="math inline">\(x\)</span> 的输出 <span
+class="math inline">\(y\)</span>。</p>
+<h3 id="in-context-knowledge-editing-ike">5.2 In-Context Knowledge
+Editing (IKE)</h3>
+<p>当向 LLMs 注入目标事实 <span class="math inline">\(f=\left(x^*,
+y^*\right)\)</span> 时，构建 <span class="math inline">\(k\)</span>
+个示范 <span class="math inline">\(C = \left\{c_1, \ldots,
+c_k\right\}\)</span>。知识编辑的目标是在目标提示 <span
+class="math inline">\(x^*\)</span> 的编辑范围内（即 <span
+class="math inline">\(x \in \mathcal{D}_{x^*}\)</span>），最大化 <span
+class="math inline">\(\mathcal{P}\left(y^* \mid x, f, C\right)\)</span>
+（泛化目标），并在<span class="math inline">\(x \notin
+\mathcal{D}_{x^*}\)</span>时，最小化 <span
+class="math inline">\(\mathcal{P}(y \mid x, f, C)\)</span> 和 <span
+class="math inline">\(\mathcal{P}(y \mid x)\)</span>之
+间的距离（特异性目标）。为了实现这些目标，示范的构建至关重要，研究者将其分解为两个子问题：如何设计每个示范的格式，以及如何选择和排序上下文示范。</p>
+<h4 id="demonstration-formatting">5.2.1 Demonstration Formatting</h4>
+<p>每个示范 <span class="math inline">\(c_i\)</span> 包含一个新事实
+<span class="math inline">\(f_i=\left(x_i^*,
+y_i^*\right)\)</span>，一个探测提示 <span
+class="math inline">\(x_i\)</span> 及其预测 <span
+class="math inline">\(y_i\)</span>。示范应教导 LLMs
+复制、更新和保留不同提示的预测：</p>
 <ul>
-<li><strong>Query（查询向量）</strong>：代表当前词需要从其他词中获取信息的“查询”。</li>
-<li><strong>Key（键向量）</strong>：表示当前词的特征，用于与查询进行比较。</li>
-<li><strong>Value（值向量）</strong>：包含关于当前词的实际信息，用于加权求和。</li>
+<li><strong>copy</strong>：注入新事实的第一步是教导 LLMs
+复制新事实中的目标提示的预测。在 copy 示范中，<span
+class="math inline">\(x_i=x_i^*\)</span>，<span
+class="math inline">\(y_i=y_i^*\)</span>。</li>
+<li><strong>update</strong>：知识编辑不仅仅是让 LLMs
+重复新事实。为了知识编辑的泛化，编辑范围内的提示的预测也应该更新。在
+update 示范中，<span class="math inline">\(x_i \in
+\mathcal{D}_{x_i^*}\)</span>，<span
+class="math inline">\(y_i=y_i^*\)</span>。</li>
+<li><strong>retain</strong>：为了知识编辑的特异性，LLMs
+应在范围外的提示中保持其原始预测。在 retain 示范中，<span
+class="math inline">\(x_i \notin \mathcal{D}_{x_i^*}\)</span>，<span
+class="math inline">\(y_i\)</span> 应为其原始答案<span
+class="math inline">\(y^o_i\)</span>。</li>
 </ul>
-<p>具体公式如下： <span class="math display">\[
-\operatorname{Attention}(Q, K, V)=\operatorname{softmax}\left(\frac{Q
-K^T}{\sqrt{d_k}}\right) V
-\]</span></p>
-<ul>
-<li><span class="math inline">\(Q\)</span> 是查询矩阵，<span
-class="math inline">\(K\)</span> 是键矩阵，<span
-class="math inline">\(V\)</span> 是值矩阵。</li>
-<li><span class="math inline">\(d_k\)</span> 是键向量的维度。</li>
-<li><span class="math inline">\(Q K^T\)</span>
-计算查询和键之间的点积相似度，然后通过 <span
-class="math inline">\(\sqrt{d_k}\)</span>
-进行缩放，以防止点积值过大。</li>
-<li>经过 softmax 操作后，获得的权重矩阵用于对值向量 <span
-class="math inline">\(V\)</span> 进行加权求和。</li>
-</ul>
-<p>这个公式的核心思想是通过对每个词的查询向量与所有其他词的键向量进行点积，得到一个权重分布，再利用该权重对值向量进行加权和求和，从而得到每个词的新的表示。</p>
-<h3 id="多头注意力机制multi-head-attention">5.2
-多头注意力机制（Multi-Head Attention）</h3>
-<p>多头注意力机制是对自注意力的扩展，它通过多个并行的自注意力计算来捕捉输入序列中的不同特征。每个注意力头（head）学习一个不同的投影，从不同的角度来关注输入序列中的各个部分。</p>
-<p>具体操作如下：</p>
-<ol type="1">
-<li>输入的查询、键和值分别被映射到多个不同的子空间，每个子空间对应一个注意力头。</li>
-<li>每个注意力头独立计算自注意力（如上述公式所示），得到一个加权的表示。</li>
-<li>最后，将所有头的输出拼接在一起，并通过一个线性变换来得到最终的输出。</li>
-</ol>
-<p>多头注意力机制的公式如下： <span class="math display">\[
-\operatorname{MultiHead}(Q, K,
-V)=\operatorname{Concat}\left(\operatorname{head}_1, \ldots, \text {
-head }_h\right) W^O
-\]</span> 其中，<span
-class="math inline">\(\operatorname{head}_i=\operatorname{Attention}\left(Q
-W_i^Q, K W_i^K, V W_i^V\right)\)</span>，表示第 <span
-class="math inline">\(i\)</span> 个注意力头的计算过程。</p>
-<ul>
-<li><span class="math inline">\(W_i^Q, W_i^K, W_i^V\)</span>
-是用于映射查询、键、值的权重矩阵。</li>
-<li><span class="math inline">\(W^O\)</span> 是输出映射的权重矩阵。</li>
-</ul>
-<p>通过这种方式，模型能够并行地关注输入序列的不同部分，并从多角度提取信息。</p>
-<h3 id="位置编码positional-encoding">5.3 位置编码（Positional
-Encoding）</h3>
-<p>由于 Transformer 没有像 RNN
-那样的序列顺序处理机制，因此需要引入位置编码来保持序列中每个单词的位置信息。位置编码将每个词的位置映射为一个向量，并加到词嵌入（embedding）中。位置编码的设计保证了每个词的位置信息可以被捕捉到，而不会影响自注意力的计算。</p>
-<p>位置编码使用正弦和余弦函数来生成不同频率的编码，公式如下： <span
-class="math display">\[
-\begin{gathered}
-\mathrm{PE}(p o s, 2 i)=\sin \left(\frac{p o s}{10000^{2 i / d_{\text
-{model }}}}\right) \\
-\mathrm{PE}(p o s, 2 i+1)=\cos \left(\frac{p o s}{10000^{2 i / d_{\text
-{model }}}}\right)
-\end{gathered}
-\]</span></p>
-<ul>
-<li><span class="math inline">\(pos\)</span> 是单词的位置，<span
-class="math inline">\(i\)</span> 是维度索引，<span
-class="math inline">\(d_{\text {model }}\)</span> 是词嵌入的维度。</li>
-</ul>
-<p>这种编码方式能够确保对于较远的词，正弦和余弦函数的值会呈现不同的周期性，能够捕捉到不同尺度的位置信息。</p>
-<h3 id="前馈神经网络feed-forward-neural-networks">5.4
-前馈神经网络（Feed-Forward Neural Networks）</h3>
-<p>Transformer
-中的每个层除了自注意力层之外，还包含一个前馈神经网络（Feed-Forward
-Neural Network）。该网络包含两个线性变换和一个 ReLU 激活函数，公式如下：
-<span class="math display">\[
-\operatorname{FFN}(x)=\max \left(0, x W_1+b_1\right) W_2+b_2
-\]</span></p>
-<ul>
-<li><span class="math inline">\(W_1, W_2\)</span> 和 <span
-class="math inline">\(b_1, b_2\)</span> 是可学习的权重和偏置。</li>
-<li><span class="math inline">\(\max (0, x)\)</span> 是 ReLU
-激活函数。</li>
-</ul>
-<p>前馈网络在每个位置独立地应用，因此它能够进一步增强每个词表示的非线性特征。</p>
-<h3
-id="残差连接和层归一化residual-connection-and-layer-normalization">5.5
-残差连接和层归一化（Residual Connection and Layer Normalization）</h3>
-<p>为了避免深层网络中的梯度消失问题，Transformer
-使用了<strong>残差连接（Residual
-Connection）</strong>。每个子层（如注意力层、前馈神经网络层）的输出都会加上其输入，即：
-<span class="math display">\[
-\text { output }=\text { LayerNorm }(x+\operatorname{Sublayer}(x))
-\]</span> 这里，Sublayer(x) 是该子层的输出，<span
-class="math inline">\(x\)</span>
-是该子层的输入。残差连接有助于确保信息能够直接流过网络的每一层，避免梯度消失问题，同时层归一化（LayerNorm）有助于加速训练。</p>
-<h2 id="evaluation">6. Evaluation</h2>
-<p>作者通过以下几个标准数据集对 Transformer 模型进行了评估：</p>
-<ul>
-<li><strong>WMT 2014 英德翻译和英法翻译任务</strong>。</li>
-<li>与传统的基于 RNN 的模型（如 LSTM）和 CNN 模型进行了比较。</li>
-</ul>
-<p>主要评估指标包括：</p>
-<ul>
-<li><strong>BLEU（Bilingual Evaluation
-Understudy）</strong>分数，这是衡量机器翻译质量的标准指标。</li>
-<li><strong>训练时间</strong>：由于 Transformer
-的高度并行化，训练时间显著低于基于 RNN 的模型。</li>
-</ul>
-<p>实验结果表明，Transformer 在翻译质量和训练效率上都显著超越了传统的
-RNN 模型。</p>
-<h2 id="conclusion">7. Conclusion</h2>
-<p>Transformer
-模型是序列到序列任务中的一项重大创新，证明了自注意力机制可以取代传统的循环和卷积层。本文的主要结论如下：</p>
-<ol type="1">
-<li><strong>高效性</strong>：Transformer
-在性能超越的同时，还具备了高度的并行化能力，显著降低了训练时间。</li>
-<li><strong>有效性</strong>：在机器翻译任务中，Transformer 超越了传统
-RNN 模型，能够有效捕捉长程依赖关系。</li>
-<li><strong>灵活性</strong>：Transformer
-架构具有很好的通用性，能够应用于其他序列相关任务，之后的 BERT、GPT、T5
-等模型也基于Transformer 架构发展而来。</li>
-</ol>
-<p>Transformer
-为自然语言处理和其他领域的深度学习模型奠定了新的基础。</p>
-<h2 id="notes">8. Notes</h2>
-<h3 id="transformer-为什么使用-ln-而不使用-bn">8.1 Transformer
-为什么使用 LN 而不使用 BN?</h3>
+<p>IKE 的模板 <span class="math inline">\(T\)</span> 将 <span
+class="math inline">\(f\)</span>, <span class="math inline">\(x\)</span>
+和 <span class="math inline">\(y\)</span> 转换为自然语言：<span
+class="math inline">\(\mathcal{T}(f, x, y)\)</span> = New Fact: f,
+Prompt: x y。</p>
+<h4 id="demonstration-organization">5.2.2 Demonstration
+Organization</h4>
+<p>在编辑 LLMs 中的知识事实 <span class="math inline">\(f\)</span>
+时，从训练语料库中构建 <span class="math inline">\(k\)</span> 个示范
+<span class="math inline">\(C=\left\{c_1, \ldots,
+c_k\right\}\)</span>。使用无监督检索器根据输入提示 <span
+class="math inline">\(x^*\)</span> 与其原始答案 <span
+class="math inline">\(y^o\)</span> 和目标预测 <span
+class="math inline">\(y^*\)</span> 之间的余弦相似度选择 <span
+class="math inline">\(k\)</span>
+个最近邻。具体来说，使用预训练的句子编码器 <span
+class="math inline">\(E\)</span> 对新事实 <span
+class="math inline">\(f\)</span> 的提示 <span
+class="math inline">\(x^*\)</span>
+进行编码，以及训练语料库中的记录也将以相同方式进行编码，并基于余弦相似度检索
+k-NN 事实。上下文示范的排序也取决于余弦相似度：<span
+class="math inline">\(\cos \left(c_0, f\right)&lt;\cos \left(c_1,
+f\right)&lt;\ldots&lt;\cos \left(c_k, f\right)\)</span>，其中<span
+class="math inline">\(c_1, \ldots, c_k\)</span>
+从左到右放置在上下文中。</p>
+<h2 id="conclusion">6. Conclusion</h2>
+<p>IKE
+在无需参数修改的情况下实现了高效知识编辑，具备较好的泛化性和特异性。</p>
+<p>方法适用于大规模模型，计算效率高，且副作用少。</p>
+<h2 id="notes">7. Notes</h2>
+<h3 id="详细介绍-copy-update-和-retain-示例的选取">7.1 详细介绍 copy,
+update 和 retain 示例的选取。</h3>
 <blockquote>
-<p>在 Transformer 模型中，使用<strong>层归一化（Layer
-Normalization，LN）</strong>而非<strong>批量归一化（Batch
-Normalization，BN）</strong>，主要是因为以下几个原因：</p>
-<ol type="1">
-<li><p><strong>序列数据的依赖性</strong></p>
-<p>Transformer
-是处理序列数据的模型，其中每个输入元素可能与其他元素有复杂的依赖关系。<strong>批量归一化（BN）</strong>依赖于批次内的统计量（均值和方差），这在卷积神经网络（CNN）中有效，但对于序列数据存在问题：</p>
+<p>copy, update 和 retain 三种示例选择的比例为 1:3:4。</p>
+<p>Copy 示例用于直接注入新知识，因为目标提示是唯一的，示例需求较少。</p>
+<p>Update 示例用于增强泛化性，由于涉及多种变体问题，Update
+示例需求相对较多。</p>
+<p>Retain
+示例用于确保无关知识保持不变，由于训练语料中无关提示的数量较多，需要更多示例来指导模型正确保留这些知识。</p>
+<h4 id="copy-示例"><strong>Copy 示例</strong></h4>
 <ul>
-<li><strong>依赖批次数据</strong>：BN计算基于批次的统计量，而每个时间步的输入需要独立处理其上下文信息。不同样本的分布可能会干扰每个时间步的计算。</li>
-<li><strong>小批次问题</strong>：Transformer
-通常使用小批次处理长序列，BN
-在小批次下表现较差，因为统计量不稳定，可能影响训练的稳定性。</li>
-</ul></li>
-<li><p><strong>训练稳定性</strong>：层归一化（LN）可以提高训练过程的稳定性，特别是在深度神经网络中。相比之下，批量归一化（BN）受批次大小的影响，尤其是在小批次情况下，均值和方差的计算可能不准确，从而影响训练稳定性。而LN对每个样本独立归一化，避免了这个问题，因此训练过程更加稳定。</p></li>
-<li><p><strong>并行计算的要求</strong>：Transformer
-的一个显著特点是其<strong>高度并行化</strong>的计算方式，特别是在计算自注意力时。BN
-在训练时需要在整个批次上计算均值和方差，这通常是针对整个批次的操作。而
-LN 是对单个样本的操作，因此更加适合在训练时进行并行计算，尤其是在 GPU 或
-TPU 上训练时，能够更好地加速训练过程。</p></li>
-</ol>
+<li><p><strong>目的</strong>: 教模型直接记住目标知识，即在提示 <span
+class="math inline">\(x^*\)</span> 下预测 <span
+class="math inline">\(y^*\)</span>。</p></li>
+<li><p>构造方式:</p>
+<ul>
+<li><span class="math inline">\(x_i =
+x^*\)</span>，即目标提示本身。</li>
+<li><span class="math inline">\(y_i = y^*\)</span>，即目标答案。</li>
+</ul>
+<p>例如：</p>
+<p>New Fact: The president of the US is Joe Biden.<br />
+Prompt: The president of the US is? Joe Biden.</p></li>
+</ul>
+<h4 id="update-示例"><strong>Update 示例</strong></h4>
+<ul>
+<li><p><strong>目的</strong>:
+增强模型的泛化能力，使模型能正确回答目标知识相关的变体问题。</p></li>
+<li><p>构造方式:</p>
+<ul>
+<li>从训练语料中选择与目标提示 <span class="math inline">\(x^*\)</span>
+相关的提示 <span class="math inline">\(x_i \in D_{x^*}\)</span>。</li>
+<li>将答案统一为目标答案 <span class="math inline">\(y^*\)</span>。</li>
+</ul>
+<p>例如：</p>
+<p>New Fact: The president of the US is Joe Biden.<br />
+Prompt: Who is the president of the US? Joe Biden.<br />
+New Fact: The president of the US is Joe Biden.<br />
+Prompt: The current president of the US is? Joe Biden.</p></li>
+</ul>
+<h4 id="retain-示例"><strong>Retain 示例</strong></h4>
+<ul>
+<li><p><strong>目的</strong>:
+确保无关知识不会受到影响，保持模型原有预测能力。</p></li>
+<li><p>构造方式:</p>
+<ul>
+<li>从训练语料中选择与目标提示无关的提示 <span class="math inline">\(x_i
+\notin D_{x^*}\)</span>。</li>
+<li>保留其原始答案 <span class="math inline">\(y_i =
+y^o_i\)</span>。</li>
+</ul>
+<p>例如：</p>
+<p>New Fact: The president of the US is Joe Biden.<br />
+Prompt: Who is the president of Russia? Putin.<br />
+New Fact: The president of the US is Joe Biden.<br />
+Prompt: Who created Apple Inc.? Steve Jobs.</p></li>
+</ul>
 </blockquote>
-<h3 id="transformer-中前馈神经网络里面的-x-和-w-的-shape-分别是多少">8.2
-Transformer 中前馈神经网络里面的 <span class="math inline">\(x\)</span>
-和 <span class="math inline">\(W\)</span> 的 shape 分别是多少？</h3>
+<h3 id="使用-ike-方法编辑模型示例">7.2 使用 IKE 方法编辑模型示例。</h3>
 <blockquote>
-<p>在 Transformer 的前馈神经网络（Feed-Forward Network，FFN）中，输入
-<span class="math inline">\(x\)</span> 和权重矩阵 <span
-class="math inline">\(W\)</span> 的形状如下：</p>
+<p>假设希望编辑语言模型中的一个事实：将“美国总统是奥巴马”更新为“美国总统是拜登”。</p>
+<ul>
+<li><strong>旧事实</strong>：The president of the US is Obama.</li>
+<li><strong>新事实</strong>：The president of the US is Joe Biden.</li>
+</ul>
 <ol type="1">
-<li><strong>输入 <span class="math inline">\(x\)</span>
-的形状</strong>：</li>
-</ol>
-<p>前馈神经网络的输入是自注意力（Self-Attention）层的输出。假设输入的张量
-<span class="math inline">\(x\)</span> 的形状为： <span
-class="math display">\[
-x \in \mathbb{R}^{B \times S \times D}
-\]</span></p>
+<li><p><strong>示范格式化（Demonstration Formatting）</strong>
+根据论文，需要设计三种类型的示范：<code>copy</code>、<code>update</code>
+和 <code>retain</code>。</p>
 <ul>
-<li><span class="math inline">\(B\)</span> 是批次大小（batch size）</li>
-<li><span class="math inline">\(S\)</span> 是序列长度（sequence
-length）</li>
-<li><span class="math inline">\(D\)</span>
-是每个时间步的特征维度，通常称为模型的隐藏维度（<span
-class="math inline">\(d_{\text {model }}\)</span>）</li>
-</ul>
-<ol start="2" type="1">
-<li><strong>权重矩阵 <span class="math inline">\(W\)</span>
-的形状</strong>：</li>
-</ol>
-<p>前馈神经网络通常由两个线性层组成，假设第一个线性层将输入的特征维度
-<span class="math inline">\(D\)</span> 映射到更高的维度 <span
-class="math inline">\(d_{\mathrm{ff}}\)</span>，然后第二个线性层将其映射回
-<span class="math inline">\(D\)</span>。</p>
+<li><p><strong>Copy示范</strong>：直接注入新事实。</p>
+<figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs vbnet"><span class="hljs-built_in">New</span> Fact: The president <span class="hljs-keyword">of</span> the US <span class="hljs-built_in">is</span> Joe Biden.<br><span class="hljs-symbol">Prompt:</span> The president <span class="hljs-keyword">of</span> the US <span class="hljs-built_in">is</span>?<br><span class="hljs-symbol">Answer:</span> Joe Biden.<br></code></pre></td></tr></table></figure></li>
+<li><p><strong>Update示范</strong>：对与目标事实相关的提示进行更新。</p>
+<figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs vbnet"><span class="hljs-built_in">New</span> Fact: The president <span class="hljs-keyword">of</span> the US <span class="hljs-built_in">is</span> Joe Biden.<br><span class="hljs-symbol">Prompt:</span> Who <span class="hljs-built_in">is</span> the current president <span class="hljs-keyword">of</span> the US?<br><span class="hljs-symbol">Answer:</span> Joe Biden.<br></code></pre></td></tr></table></figure></li>
+<li><p><strong>Retain示范</strong>：保留与目标事实无关的原始预测。</p>
+<figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs vbnet"><span class="hljs-built_in">New</span> Fact: The president <span class="hljs-keyword">of</span> the US <span class="hljs-built_in">is</span> Joe Biden.<br><span class="hljs-symbol">Prompt:</span> Who <span class="hljs-built_in">is</span> the president <span class="hljs-keyword">of</span> Russia?<br><span class="hljs-symbol">Answer:</span> Putin.<br></code></pre></td></tr></table></figure></li>
+</ul></li>
+<li><p><strong>示范组织（Demonstration Organization）</strong>
+从训练语料库中检索与目标事实最相关的示范（选取比例为1:3:4），并将它们按相关性排序。假设我们选择了以下示范：</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm"><span class="hljs-built_in">Context</span> C:<br>- New Fact: The president of the US is <span class="hljs-keyword">Joe </span><span class="hljs-keyword">Biden. </span>Prompt: The president of the US is? Answer: <span class="hljs-keyword">Joe </span><span class="hljs-keyword">Biden.</span><br><span class="hljs-keyword"></span>- New Fact: The president of the US is <span class="hljs-keyword">Joe </span><span class="hljs-keyword">Biden. </span>Prompt: Who is the current president of the US? Answer: <span class="hljs-keyword">Joe </span><span class="hljs-keyword">Biden.</span><br><span class="hljs-keyword"></span>- New Fact: The president of the US is <span class="hljs-keyword">Joe </span><span class="hljs-keyword">Biden. </span>Prompt: Who was the previous president of the US? Answer: Obama.<br>- New Fact: The president of the US is <span class="hljs-keyword">Joe </span><span class="hljs-keyword">Biden. </span>Prompt: Who is the president of Russia? Answer: Putin.<br></code></pre></td></tr></table></figure></li>
+<li><p><strong>模型输入与输出</strong>
+将上述示范作为上下文输入到语言模型中，模型需要根据这些示范来调整其预测。</p>
 <ul>
-<li><p>第一个线性层的权重矩阵 <span class="math inline">\(W_1\)</span>
-的形状为： <span class="math display">\[
-W_1 \in \mathbb{R}^{D \times d_{\mathrm{ff}}}
-\]</span> 这里，<span class="math inline">\(D\)</span>
-是输入特征维度，<span class="math inline">\(d_{\mathrm{ff}}\)</span>
-是前馈网络的隐藏层维度。</p></li>
-<li><p>第二个线性层的权重矩阵 <span class="math inline">\(W_2\)</span>
-的形状为： <span class="math display">\[
-W_2 \in \mathbb{R}^{d_{\mathrm{ff}} \times D}
-\]</span> 这里，<span class="math inline">\(d_{\mathrm{ff}}\)</span>
-是前馈网络的隐藏层维度，<span class="math inline">\(D\)</span>
-是输出的特征维度，通常与输入的特征维度 <span
-class="math inline">\(D\)</span> 相同。</p></li>
-</ul>
-<p><strong>在整个计算过程中，前馈神经网络对每个时间步的特征进行独立处理，输入维度
-<span class="math inline">\(D\)</span> 被映射到更高的维度 <span
-class="math inline">\(d_{\mathrm{ff}}\)</span>，然后再映射回原始维度
-<span class="math inline">\(D\)</span></strong>。</p>
+<li><p><strong>模型输入</strong>：</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm"><span class="hljs-built_in">Context</span> C:<br>New Fact: The president of the US is <span class="hljs-keyword">Joe </span><span class="hljs-keyword">Biden. </span>Prompt: The president of the US is? Answer: <span class="hljs-keyword">Joe </span><span class="hljs-keyword">Biden.</span><br><span class="hljs-keyword"></span>New Fact: The president of the US is <span class="hljs-keyword">Joe </span><span class="hljs-keyword">Biden. </span>Prompt: Who is the current president of the US? Answer: <span class="hljs-keyword">Joe </span><span class="hljs-keyword">Biden.</span><br><span class="hljs-keyword"></span>New Fact: The president of the US is <span class="hljs-keyword">Joe </span><span class="hljs-keyword">Biden. </span>Prompt: Who was the previous president of the US? Answer: Obama.<br>New Fact: The president of the US is <span class="hljs-keyword">Joe </span><span class="hljs-keyword">Biden. </span>Prompt: Who is the president of Russia? Answer: Putin.<br><span class="hljs-symbol"></span><br><span class="hljs-symbol">Query:</span> Who is the president of the US?<br></code></pre></td></tr></table></figure></li>
+<li><p><strong>期望输出</strong>：</p>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs avrasm"><span class="hljs-symbol">Answer:</span> Joe Biden.<br></code></pre></td></tr></table></figure></li>
+</ul></li>
+</ol>
 </blockquote>
 
                 
@@ -563,9 +522,9 @@ class="math inline">\(d_{\mathrm{ff}}\)</span>，然后再映射回原始维度
       
         <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" class="print-no-link">#深度学习</a>
       
-        <a href="/tags/Transformer/" class="print-no-link">#Transformer</a>
-      
         <a href="/tags/NLP/" class="print-no-link">#NLP</a>
+      
+        <a href="/tags/%E7%9F%A5%E8%AF%86%E7%BC%96%E8%BE%91/" class="print-no-link">#知识编辑</a>
       
     </div>
   
@@ -577,8 +536,8 @@ class="math inline">\(d_{\mathrm{ff}}\)</span>，然后再映射回原始维度
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>论文笔记 - Attention Is All You Need</div>
-      <div>http://hellochuanyang.github.io/2024/11/28/论文笔记-Attention-Is-All-You-Need/</div>
+      <div>论文笔记 - Can We Edit Factual Knowledge by In-Context Learning</div>
+      <div>http://hellochuanyang.github.io/2025/01/19/论文笔记-Can-We-Edit-Factual-Knowledge-by-In-Context-Learning/</div>
     </div>
     <div class="license-meta">
       
@@ -590,7 +549,7 @@ class="math inline">\(d_{\mathrm{ff}}\)</span>，然后再映射回原始维度
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年11月29日</div>
+          <div>2025年1月19日</div>
         </div>
       
       
@@ -622,18 +581,12 @@ class="math inline">\(d_{\mathrm{ff}}\)</span>，然后再映射回原始维度
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/11/29/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-BERT-Pre-training-of-Deep-Bidirectional-Transformers-for-Language-Understanding/" title="论文笔记 - BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">论文笔记 - BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/11/27/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-ShuffleNet-V2-Practical-Guidelines-for-Efficient-CNN-Architecture-Design/" title="论文笔记 - ShuffleNet V2: Practical Guidelines for Efficient CNN Architecture Design">
-                        <span class="hidden-mobile">论文笔记 - ShuffleNet V2: Practical Guidelines for Efficient CNN Architecture Design</span>
+                      <a href="/2025/01/15/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Memory-Based-Model-Editing-at-Scale/" title="论文笔记 - Memory-Based Model Editing at Scale">
+                        <span class="hidden-mobile">论文笔记 - Memory-Based Model Editing at Scale</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
