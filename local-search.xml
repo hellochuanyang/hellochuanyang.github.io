@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>论文笔记 - Can We Edit Multimodal Large Language Models</title>
+    <link href="/2025/01/20/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Can-We-Edit-Multimodal-Large-Language-Models/"/>
+    <url>/2025/01/20/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Can-We-Edit-Multimodal-Large-Language-Models/</url>
+    
+    <content type="html"><![CDATA[<h2 id="information">1. Information</h2><p><strong>Title</strong>: Can We Edit Multimodal Large LanguageModels?<br /><strong>Link</strong>: <a href="https://arxiv.org/pdf/2310.08475">MMEditPaper</a><br /><strong>Source</strong>: Empirical Methods in Natural LanguageProcessing (EMNLP)<br /><strong>Date</strong>: 2023</p><h2 id="summary">2. Summary</h2><p>论文提出了一个新的基准<strong>MMEdit</strong>，用于编辑多模态大语言模型(MLLMs)。研究为多模态模型编辑设计了一系列创新的评估指标（可靠性、局部性和泛化性）以及对应的数据集。实验结果表明，当前的方法在多模态编辑任务上效果有限，尤其是视觉模块的编辑难度较大，为后续研究提供了潜在方向。</p><h2 id="background">3. Background</h2><p>随着大语言模型（LLMs）的广泛应用，保持其知识的准确性和时效性变得至关重要。然而，重新训练模型成本高昂且难以实施，而微调可能导致过拟合和灾难性遗忘。因此，模型编辑技术应运而生，旨在高效、准确地修改模型中存储的事实知识。然而，以往的研究主要集中在单模态模型编辑，而多模态LLMs的编辑更具挑战性，因为其错误输出可能源于多种模态的协同作用。此外，目前缺乏针对多模态LLMs编辑的数据集和基准测试框架。</p><h2 id="research-objective">4. Research Objective</h2><p>本文的主要目标是探索多模态LLMs的编辑方法，并提供一个基准测试框架MMEdit，以促进该领域的研究。具体目标包括：</p><ol type="1"><li>构建一个多模态模型编辑的基准测试框架，涵盖视觉问答（VQA）和图像描述生成（ImageCaptioning）两个子任务。</li><li>提出一套创新的评估指标，包括可靠性（Reliability）、局部性（Locality）和泛化性（Generality），用于评估多模态模型编辑方法的效果。</li><li>通过实验验证现有编辑方法在多模态LLMs上的效果，并分析其优缺点。</li></ol><h2 id="method">5. Method</h2><h3 id="主要步骤">5.1 主要步骤</h3><ol type="1"><li><strong>指标设计</strong>：扩展单模态模型的可靠性、局部性和泛化性评估方法到多模态场景。</li><li><strong>数据集构建</strong>：基于 VQAv2 和 COCO Captions数据集，选择表现不佳的样本作为编辑目标。</li><li><strong>基线方法</strong>：使用包括 MEND、SERAC、Knowledge Editor以及 Fine-tuning 在内的多种方法。</li><li><strong>评估方法</strong>：结合文本与视觉的稳定性和泛化性指标，全面评估编辑方法的效果。</li></ol><h3 id="关键指标">5.2 关键指标</h3><ol type="1"><li><p><strong>可靠性</strong>：衡量编辑后模型对目标修改的准确性： <spanclass="math display">\[\mathcal{M}_{r e l}=\mathbb{E}_{\left(i_e, x_e, y_e\right) \sim\mathcal{D}_{\text {edit }}}\left[\mathbb{1}_{\left[f\left(i_e, x_e ;\theta_e\left(i_e, x_e, y_e\right)\right)=y_e\right]}\right]\]</span></p></li><li><p><strong>局部性</strong>：保证模型的无关知识在编辑后仍然保持稳定：</p><ul><li>文本局部性：</li></ul><p><span class="math display">\[\mathcal{M}_{l o c}^{\text {Text }}=\mathbb{E}_{\left(i_e, x_e,y_e\right) \sim \mathcal{D}_{\text {edit}}}\left[\mathbb{1}_{\left[f\left(x ; \theta_e\left(i_e, x_e,y_e\right)\right)=f(x, \theta)\right]}\right], (x, y) \sim\mathcal{D}_{\text {loc-t }}\]</span></p><ul><li>视觉局部性：</li></ul><p><span class="math display">\[\mathcal{M}_{l o c}^{\text {Img }}=\mathbb{E}_{\left(i_v, x_v,y_v\right) \sim\mathcal{D}_{\mathrm{loc}-\mathrm{v}}}\left[\mathbb{1}_{f\left(i_v, x_v; \theta_e\right)=f\left(i_v, x_v ; \theta\right)}\right]\]</span></p></li><li><p><strong>泛化性</strong>：保证模型能对重述或等效输入生成一致输出：</p><ul><li>文本泛化性：</li></ul><p><span class="math display">\[\mathcal{M}_{g e n}^{\text {Text }}=\mathbb{E}_{\left(x_r\right) \sim\mathcal{N}\left(x_e\right)}\left[\mathbb{1}_{f\left(i_e, x_r ;\theta_e\right)=f\left(i_e, x_e ; \theta_e\right)}\right]\]</span></p><ul><li>视觉泛化性：</li></ul><p><span class="math display">\[\mathcal{M}_{g e n}^{\text {Img }}=\mathbb{E}_{\left(i_r\right) \sim\mathcal{N}\left(i_e\right)}\left[\mathbb{1}_{f\left(i_r, x_e ;\theta_e\right)=f\left(i_e, x_e ; \theta_e\right)}\right]\]</span></p></li></ol><h2 id="evaluation">6. Evaluation</h2><p>模型在 <strong>可靠性</strong>、<strong>局部性</strong> 和<strong>泛化性</strong> 上进行了全面评估，主要结果如下：</p><ul><li>所有模型编辑方法在可靠性方面优于基线方法，但视觉模块的局部性和泛化性表现较差。</li><li>微调方法需要大量资源，且容易导致灾难性遗忘。</li><li>编辑视觉模块比编辑语言模块更具挑战性，这与多模态模型的复杂性和架构有关。</li></ul><h2 id="conclusion">7. Conclusion</h2><p>研究发现，现有的编辑方法在多模态LLMs上存在局限性，尤其是在编辑视觉模块时效果不佳。未来的工作需要探索更高效的编辑方法，以同时考虑不同模态的信息。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>论文阅读</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>深度学习</tag>
+      
+      <tag>知识编辑</tag>
+      
+      <tag>多模态</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>论文笔记 - Can We Edit Factual Knowledge by In-Context Learning</title>
     <link href="/2025/01/19/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Can-We-Edit-Factual-Knowledge-by-In-Context-Learning/"/>
     <url>/2025/01/19/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Can-We-Edit-Factual-Knowledge-by-In-Context-Learning/</url>
