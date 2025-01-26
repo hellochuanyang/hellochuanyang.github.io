@@ -19,24 +19,26 @@
   <meta name="author" content="阿阳">
   <meta name="keywords" content="">
   
-    <meta name="description" content="1. Information Title: Can We Edit Multimodal Large Language Models? Link: MMEdit Paper Source: Empirical Methods in Natural Language Processing (EMNLP) Date: 2023 2. Summary 论文提出了一个新的基准 MMEdit，用于编辑多模态">
+    <meta name="description" content="1. Information Title: Calibrating Factual Knowledge in Pretrained Language Models Link: CaliNET Paper Source: Empirical Methods in Natural Language Processing (EMNLP) Date: 2022 2. Summary 本文提出了一种名为 C">
 <meta property="og:type" content="article">
-<meta property="og:title" content="论文笔记 - Can We Edit Multimodal Large Language Models">
-<meta property="og:url" content="http://hellochuanyang.github.io/2025/01/20/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Can-We-Edit-Multimodal-Large-Language-Models/index.html">
+<meta property="og:title" content="论文笔记 - Calibrating Factual Knowledge in Pretrained Language Models">
+<meta property="og:url" content="http://hellochuanyang.github.io/2025/01/25/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Calibrating-Factual-Knowledge-in-Pretrained-Language-Models/index.html">
 <meta property="og:site_name" content="Ayang&#39;s home">
-<meta property="og:description" content="1. Information Title: Can We Edit Multimodal Large Language Models? Link: MMEdit Paper Source: Empirical Methods in Natural Language Processing (EMNLP) Date: 2023 2. Summary 论文提出了一个新的基准 MMEdit，用于编辑多模态">
+<meta property="og:description" content="1. Information Title: Calibrating Factual Knowledge in Pretrained Language Models Link: CaliNET Paper Source: Empirical Methods in Natural Language Processing (EMNLP) Date: 2022 2. Summary 本文提出了一种名为 C">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-01-20T01:00:04.000Z">
-<meta property="article:modified_time" content="2025-01-20T09:00:32.162Z">
+<meta property="og:image" content="http://hellochuanyang.github.io/2025/01/25/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Calibrating-Factual-Knowledge-in-Pretrained-Language-Models/1.png">
+<meta property="article:published_time" content="2025-01-25T12:04:37.000Z">
+<meta property="article:modified_time" content="2025-01-25T20:08:01.890Z">
 <meta property="article:author" content="阿阳">
 <meta property="article:tag" content="深度学习">
+<meta property="article:tag" content="NLP">
 <meta property="article:tag" content="知识编辑">
-<meta property="article:tag" content="多模态">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://hellochuanyang.github.io/2025/01/25/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Calibrating-Factual-Knowledge-in-Pretrained-Language-Models/1.png">
   
   
   
-  <title>论文笔记 - Can We Edit Multimodal Large Language Models - Ayang&#39;s home</title>
+  <title>论文笔记 - Calibrating Factual Knowledge in Pretrained Language Models - Ayang&#39;s home</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -215,7 +217,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="论文笔记 - Can We Edit Multimodal Large Language Models"></span>
+            <span id="subtitle" data-typed-text="论文笔记 - Calibrating Factual Knowledge in Pretrained Language Models"></span>
           
         </div>
 
@@ -226,8 +228,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-01-20 09:00" pubdate>
-          2025年1月20日 上午
+        <time datetime="2025-01-25 20:04" pubdate>
+          2025年1月25日 晚上
         </time>
       </span>
     
@@ -238,7 +240,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1k 字
+          2.1k 字
         
       </span>
     
@@ -249,7 +251,7 @@
         
         
         
-          9 分钟
+          18 分钟
         
       </span>
     
@@ -295,99 +297,272 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">论文笔记 - Can We Edit Multimodal Large Language Models</h1>
+            <h1 id="seo-header">论文笔记 - Calibrating Factual Knowledge in Pretrained Language Models</h1>
             
             
               <div class="markdown-body">
                 
                 <h2 id="information">1. Information</h2>
-<p><strong>Title</strong>: Can We Edit Multimodal Large Language
-Models?<br />
-<strong>Link</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2310.08475">MMEdit
-Paper</a><br />
+<p><strong>Title</strong>: Calibrating Factual Knowledge in Pretrained
+Language Models<br />
+<strong>Link</strong>: <a
+target="_blank" rel="noopener" href="https://arxiv.org/pdf/2210.03329">CaliNET Paper</a><br />
 <strong>Source</strong>: Empirical Methods in Natural Language
 Processing (EMNLP)<br />
-<strong>Date</strong>: 2023</p>
+<strong>Date</strong>: 2022</p>
 <h2 id="summary">2. Summary</h2>
-<p>论文提出了一个新的基准
-<strong>MMEdit</strong>，用于编辑多模态大语言模型
-(MLLMs)。研究为多模态模型编辑设计了一系列创新的评估指标（可靠性、局部性和泛化性）以及对应的数据集。实验结果表明，当前的方法在多模态编辑任务上效果有限，尤其是视觉模块的编辑难度较大，为后续研究提供了潜在方向。</p>
+<p>本文提出了一种名为 CALINET
+的方法，用于在无需从头开始重新训练的情况下对预训练语言模型 (PLMs)
+中的事实性知识进行校准。作者首先通过对比知识评估 (Contrastive Knowledge
+Assessment, CKA) 方法检测 PLMs 中的错误知识，然后引入
+CALINET，这是一种轻量级方法，通过添加新参数来纠正错误事实。该方法通过知识探测和问答任务进行评估，结果显示其在事实正确性和泛化能力方面有显著提升。此外，研究还通过分析模型的记忆槽提供了对校准机制的见解。</p>
 <h2 id="background">3. Background</h2>
-<p>随着大语言模型（LLMs）的广泛应用，保持其知识的准确性和时效性变得至关重要。然而，重新训练模型成本高昂且难以实施，而微调可能导致过拟合和灾难性遗忘。因此，模型编辑技术应运而生，旨在高效、准确地修改模型中存储的事实知识。然而，以往的研究主要集中在单模态模型编辑，而多模态LLMs的编辑更具挑战性，因为其错误输出可能源于多种模态的协同作用。此外，目前缺乏针对多模态LLMs编辑的数据集和基准测试框架。</p>
+<p>预训练语言模型（如 BERT、T5 等）被广泛应用于 NLP
+任务，其内置的事实性知识库特性使其能支持问答、事实验证等任务。然而，模型中存储的事实知识可能包含错误，直接影响下游任务的性能。相比于从头训练或外部知识注入，本文探索了一种高效的轻量级方法校准
+PLMs 内部的错误知识。</p>
 <h2 id="research-objective">4. Research Objective</h2>
-<p>本文的主要目标是探索多模态LLMs的编辑方法，并提供一个基准测试框架MMEdit，以促进该领域的研究。具体目标包括：</p>
+<p>本文的主要研究目标包括：</p>
 <ol type="1">
-<li>构建一个多模态模型编辑的基准测试框架，涵盖视觉问答（VQA）和图像描述生成（Image
-Captioning）两个子任务。</li>
-<li>提出一套创新的评估指标，包括可靠性（Reliability）、局部性（Locality）和泛化性（Generality），用于评估多模态模型编辑方法的效果。</li>
-<li>通过实验验证现有编辑方法在多模态LLMs上的效果，并分析其优缺点。</li>
+<li>使用对比评估方法检测 PLMs 中存储的错误知识。</li>
+<li>提出一种轻量级方法
+(CALINET)，通过添加新参数来纠正错误事实，而不修改原始模型。</li>
+<li>通过知识密集型任务评估校准后的 PLMs 的有效性和泛化能力。</li>
 </ol>
 <h2 id="method">5. Method</h2>
-<h3 id="主要步骤">5.1 主要步骤</h3>
-<ol type="1">
-<li><strong>指标设计</strong>：扩展单模态模型的可靠性、局部性和泛化性评估方法到多模态场景。</li>
-<li><strong>数据集构建</strong>：基于 VQAv2 和 COCO Captions
-数据集，选择表现不佳的样本作为编辑目标。</li>
-<li><strong>基线方法</strong>：使用包括 MEND、SERAC、Knowledge Editor
-以及 Fine-tuning 在内的多种方法。</li>
-<li><strong>评估方法</strong>：结合文本与视觉的稳定性和泛化性指标，全面评估编辑方法的效果。</li>
-</ol>
-<h3 id="关键指标">5.2 关键指标</h3>
-<ol type="1">
-<li><p><strong>可靠性</strong>：衡量编辑后模型对目标修改的准确性： <span
+<h3 id="对比知识评估-contrastive-knowledge-assessment-cka">5.1
+对比知识评估 (Contrastive Knowledge Assessment, CKA)</h3>
+<p>为了检测 PLMs 中的错误知识，作者提出了对比知识评估 (CKA)
+方法，通过对比模型对正确事实和错误事实的预测来评估。给定一个事实三元组⟨s,
+r, o⟩，其中 s 是主体，r 是关系，o 是宾语，CKA 分数计算如下： <span
 class="math display">\[
-\mathcal{M}_{r e l}=\mathbb{E}_{\left(i_e, x_e, y_e\right) \sim
-\mathcal{D}_{\text {edit }}}\left[\mathbb{1}_{\left[f\left(i_e, x_e ;
-\theta_e\left(i_e, x_e, y_e\right)\right)=y_e\right]}\right]
-\]</span></p></li>
-<li><p><strong>局部性</strong>：保证模型的无关知识在编辑后仍然保持稳定：</p>
-<ul>
-<li>文本局部性：</li>
-</ul>
-<p><span class="math display">\[
-\mathcal{M}_{l o c}^{\text {Text }}=\mathbb{E}_{\left(i_e, x_e,
-y_e\right) \sim \mathcal{D}_{\text {edit
-}}}\left[\mathbb{1}_{\left[f\left(x ; \theta_e\left(i_e, x_e,
-y_e\right)\right)=f(x, \theta)\right]}\right], (x, y) \sim
-\mathcal{D}_{\text {loc-t }}
-\]</span></p>
-<ul>
-<li>视觉局部性：</li>
-</ul>
-<p><span class="math display">\[
-\mathcal{M}_{l o c}^{\text {Img }}=\mathbb{E}_{\left(i_v, x_v,
-y_v\right) \sim
-\mathcal{D}_{\mathrm{loc}-\mathrm{v}}}\left[\mathbb{1}_{f\left(i_v, x_v
-; \theta_e\right)=f\left(i_v, x_v ; \theta\right)}\right]
-\]</span></p></li>
-<li><p><strong>泛化性</strong>：保证模型能对重述或等效输入生成一致输出：</p>
-<ul>
-<li>文本泛化性：</li>
-</ul>
-<p><span class="math display">\[
-\mathcal{M}_{g e n}^{\text {Text }}=\mathbb{E}_{\left(x_r\right) \sim
-\mathcal{N}\left(x_e\right)}\left[\mathbb{1}_{f\left(i_e, x_r ;
-\theta_e\right)=f\left(i_e, x_e ; \theta_e\right)}\right]
-\]</span></p>
-<ul>
-<li>视觉泛化性：</li>
-</ul>
-<p><span class="math display">\[
-\mathcal{M}_{g e n}^{\text {Img }}=\mathbb{E}_{\left(i_r\right) \sim
-\mathcal{N}\left(i_e\right)}\left[\mathbb{1}_{f\left(i_r, x_e ;
-\theta_e\right)=f\left(i_e, x_e ; \theta_e\right)}\right]
-\]</span></p></li>
+\mathrm{CKA}_M(s, r, o)=\frac{P_M(o \mid s,
+r)}{E_{r^{\prime}}\left[P_M\left(o \mid s,
+r^{\prime}\right)\right]+\alpha}
+\]</span> 其中，<span class="math inline">\(P_M(o \mid s, r)\)</span>
+是模型对正确事实的预测概率，<span
+class="math inline">\(E_{r^{\prime}}\left[P_M\left(o \mid s,
+r^{\prime}\right)\right]\)</span> 是错误事实（使用错误关系 <span
+class="math inline">\(r^{\prime}\)</span>）的期望概率，<span
+class="math inline">\(\alpha\)</span> 是平滑因子。如果CKA 分数低于
+1，则表明模型对错误事实的预测概率更高，暗示模型存在错误知识。</p>
+<blockquote>
+<p>注：</p>
+<p>CKA 的核心目标是评估 PLMs
+中存储的事实知识，并识别其中错误的部分。在实际运行中，CKA
+针对的是从特定知识数据集中采样的实例，而不是直接对所有可能的事实进行评估。</p>
+<p><strong>选择实例的依据</strong>：</p>
+<ol type="1">
+<li>数据来源：从知识三元组（如
+<code>&lt;subject, relation, object&gt;</code>）组成的数据集（如
+<strong>T-REx</strong>）中选取目标实例。</li>
+<li>样本规模：实验中通常会选取固定数量（例如 100 或 1000
+个三元组）进行评估，而非整个知识库。</li>
+<li>优先级：某些重要关系或高频关系可能被优先选择，以测试模型在关键知识点上的表现。</li>
 </ol>
-<h2 id="evaluation">6. Evaluation</h2>
-<p>模型在 <strong>可靠性</strong>、<strong>局部性</strong> 和
-<strong>泛化性</strong> 上进行了全面评估，主要结果如下：</p>
+<p><strong>负样本的构建</strong>：</p>
+<ol type="1">
+<li><strong>关系替换</strong>（Relation Replacement）：
 <ul>
-<li>所有模型编辑方法在可靠性方面优于基线方法，但视觉模块的局部性和泛化性表现较差。</li>
-<li>微调方法需要大量资源，且容易导致灾难性遗忘。</li>
-<li>编辑视觉模块比编辑语言模块更具挑战性，这与多模态模型的复杂性和架构有关。</li>
+<li>替换三元组中的关系 <span
+class="math inline">\(r\)</span>，生成负样本提示。</li>
+<li>示例：
+<ul>
+<li>正样本提示：<code>[Obama was born in Hawaii.]</code></li>
+<li>负样本提示：<code>[Obama was died in Hawaii.]</code> 或
+<code>[Obama worked in Hawaii.]</code></li>
+</ul></li>
+<li>替换后的关系应与原关系语义矛盾，但依然语法合理。</li>
+</ul></li>
+<li><strong>负样本模板设计</strong>：
+<ul>
+<li>为每种关系设计专门的负样本模板，以保证负样本与正样本的对比性。</li>
+<li>示例：对于
+<code>&lt;subject, subclass of, object&gt;</code>，正样本模板为
+<code>[X] is a subclass of [Y]</code>，负样本模板可能为
+<code>[X] is a parent class of [Y]</code>。</li>
+</ul></li>
+<li><strong>数量控制</strong>：
+<ul>
+<li>每个正样本会生成多个负样本（通常为 3
+个），以保证负样本的多样性和稳定性。</li>
+</ul></li>
+<li><strong>负样本设计的特点</strong>：
+<ul>
+<li>负样本的语义需与正样本矛盾，而不是随机生成。</li>
+</ul></li>
+</ol>
+</blockquote>
+<h3 id="校准机制-calinet">5.2 校准机制 (CaliNET)</h3>
+<p><strong>关键组件</strong>: 校准的核心在于扩展原模型中的前馈网络
+(FFN)，添加校准记忆槽（calibration memory slots）。</p>
+<p align="center">
+<img src="1.png" srcset="/img/loading.gif" lazyload style="zoom:30%;" />
+</p>
+<p>原始 FFN 的输出为： <span class="math display">\[
+FFN(H) = GELU(HK^T)V
+\]</span> 添加的校准项为： <span class="math display">\[
+\Delta F F N(H)=G E L U\left(H \tilde{K}^T\right) \tilde{V}
+\]</span> 校准后的输出为： <span class="math display">\[
+F F N^{\prime}(H)=F F N(H)+\Delta F F N(H)
+\]</span></p>
+<ul>
+<li><span class="math inline">\(\tilde{K}, \tilde{V}\)</span>
+是校准记忆槽的参数矩阵，维度远小于原 FFN 参数矩阵。</li>
 </ul>
+<p><strong>校准过程</strong>:</p>
+<ol type="1">
+<li>构建包含多个表面形式的校准数据集。</li>
+<li>冻结原模型参数，仅优化校准记忆槽的参数。</li>
+</ol>
+<h3 id="校准数据构建">5.3 校准数据构建</h3>
+<ul>
+<li><strong>基础数据</strong>： 使用 <strong>PARAREL
+数据集</strong>，该数据集包含 38
+种关系的多种自然语言模板，是构建多样化表面形式的理想基础数据集。</li>
+<li><strong>目标事实</strong>： 从知识图谱（如 <strong>T-REx
+数据集</strong>）中抽取目标三元组
+<code>&lt;subject, relation, object&gt;</code>，每个三元组代表一个事实。</li>
+</ul>
+<h4 id="多样化表面形式的生成">多样化表面形式的生成**</h4>
+<ul>
+<li>多模板生成：
+<ul>
+<li>针对每种关系 <span
+class="math inline">\(r\)</span>，选用多种模板生成自然语言表示。</li>
+<li>示例：对于 &lt;Obama, born in, Hawaii&gt;，可以生成以下多种表述：
+<ol type="1">
+<li>"Obama was born in Hawaii."</li>
+<li>"The birthplace of Obama is Hawaii."</li>
+<li>"Hawaii is the place where Obama was born."</li>
+</ol></li>
+</ul></li>
+</ul>
+<h4 id="引入负样本">引入负样本**</h4>
+<ul>
+<li><p>负样本构建：</p>
+<p>每个正样本生成 3
+个语义矛盾的负样本，通过替换三元组的关系或实体生成。</p>
+<ul>
+<li>示例：
+<ul>
+<li>正样本：<code>"Obama was born in Hawaii."</code></li>
+<li>负样本：<code>"Obama was died in Hawaii."</code> 或
+<code>"Obama worked in Hawaii."</code></li>
+</ul></li>
+<li>确保负样本逻辑上矛盾，但语言结构合理。</li>
+</ul></li>
+</ul>
+<h2 id="evaluation">6. Evaluation</h2>
+<h3 id="错误知识检测">6.1 错误知识检测</h3>
+<p>作者从 T-REx 数据集中采样了 100 个和 1000 个事实三元组，并使用 CKA
+检测 T5-base 和 T5-large 模型中的错误知识。错误率(False Rate)定义为 CKA
+分数低于 1 的事实比例，结果表明 T5-base 的错误率约为 50%，T5-large
+略低，但仍处于较高水平，这表明 PLMs 中存在大量错误知识。</p>
+<h3 id="知识校准">6.2 知识校准</h3>
+<p>校准后的模型从知识建模能力（原始测试集和对抗测试集的困惑度）和语言建模能力（掩码测试数据的困惑度）两个方面进行评估。结果显示，CALINET
+显著降低了错误率，并提高了模型生成事实正确预测的能力，同时不影响其一般语言建模能力。</p>
+<h3 id="可扩展性和泛化能力">6.3 可扩展性和泛化能力</h3>
+<p>研究还探索了 CALINET 的可扩展性，发现其能够同时校准超过 5000 个事实的
+60%
+以上。此外，校准后的知识在开放域问答任务中表现良好，提高了模型对原本回答错误的问题的性能。</p>
 <h2 id="conclusion">7. Conclusion</h2>
-<p>研究发现，现有的编辑方法在多模态LLMs上存在局限性，尤其是在编辑视觉模块时效果不佳。未来的工作需要探索更高效的编辑方法，以同时考虑不同模态的信息。</p>
+<p>本文展示了 CALINET
+作为一种轻量级且有效的方法，能够在无需重新训练的情况下对 PLMs
+中的事实性知识进行校准。CALINET
+成功减少了错误知识，并提高了下游任务中的事实正确性。此外，通过分析模型的记忆槽，研究还揭示了校准机制，表明
+CALINET 能够以泛化的方式调整模型的预测。</p>
+<h2 id="notes">8. Notes</h2>
+<h3 id="举例说明-calinet-的运行过程">8.1 举例说明 CaliNET
+的运行过程</h3>
+<blockquote>
+<h3 id="新知识错误的发现"><strong>1. 新知识错误的发现</strong></h3>
+<p>假设你发现模型对于以下事实知识存在错误：</p>
+<ul>
+<li><strong>错误知识</strong>：<code>Obama was born in Beijing.</code></li>
+<li><strong>正确知识</strong>：<code>Obama was born in Hawaii.</code></li>
+</ul>
+<hr />
+<h3 id="数据集的重新构建"><strong>2. 数据集的重新构建</strong></h3>
+<p>为了校准这个新知识错误，需要为新错误构建校准数据集。</p>
+<h4 id="步骤"><strong>步骤</strong>：</h4>
+<ol type="1">
+<li><p><strong>正样本生成</strong>：</p>
+<ul>
+<li><p>使用多种自然语言模板生成正确事实的表述：</p>
+<ul>
+<li>示例：
+<ul>
+<li><code>"Obama was born in Hawaii."</code></li>
+<li><code>"The birthplace of Obama is Hawaii."</code></li>
+<li><code>"Hawaii is the place where Obama was born."</code></li>
+</ul></li>
+</ul></li>
+<li><p>将这些模板转换为模型的输入：</p>
+<figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs prolog">输入：<span class="hljs-symbol">Obama</span> was born in [<span class="hljs-symbol">MASK</span>].<br>目标输出：<span class="hljs-symbol">Hawaii</span><br></code></pre></td></tr></table></figure></li>
+</ul></li>
+<li><p><strong>负样本生成</strong>：</p>
+<ul>
+<li><p>替换关系或宾语，生成与正确事实语义矛盾的负样本：</p>
+<ul>
+<li>示例：
+<ul>
+<li><code>"Obama was born in Beijing."</code></li>
+<li><code>"Obama was born in Shanghai."</code></li>
+<li><code>"Obama got married in Hawaii."</code></li>
+</ul></li>
+</ul></li>
+<li><p>将这些负样本添加到校准数据集中：</p>
+<figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs prolog">输入：<span class="hljs-symbol">Obama</span> was born in [<span class="hljs-symbol">MASK</span>].<br>目标输出：<span class="hljs-symbol">Beijing</span><br></code></pre></td></tr></table></figure></li>
+</ul></li>
+<li><p><strong>数据集划分</strong>：</p>
+<ul>
+<li>确保新生成的数据集与原来的校准数据集不冲突。</li>
+<li>划分训练集、验证集和测试集，确保模板无重叠。</li>
+</ul></li>
+</ol>
+<h4 id="示例"><strong>示例</strong>：</h4>
+<table>
+<thead>
+<tr class="header">
+<th><strong>类型</strong></th>
+<th><strong>输入句子</strong></th>
+<th><strong>目标输出</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>正样本</td>
+<td><code>Obama was born in [MASK].</code></td>
+<td>Hawaii</td>
+</tr>
+<tr class="even">
+<td>负样本</td>
+<td><code>Obama was born in [MASK].</code></td>
+<td>Beijing</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="更新-calinet-的校准参数"><strong>3. 更新 CaliNET
+的校准参数</strong></h3>
+<p>重新训练 <strong>CaliNET</strong> 对新错误进行校准。</p>
+<h4 id="训练方法"><strong>训练方法</strong>：</h4>
+<ol type="1">
+<li>冻结 PLM 的原始参数，只训练 CaliNET 的校准槽（Calibration Memory
+Slots）。</li>
+<li>使用重新构建的数据集对新错误知识进行训练。</li>
+<li>更新训练好的校准槽参数。</li>
+</ol>
+<hr />
+<h3 id="总结"><strong>4. 总结</strong></h3>
+<p>当发现新的知识错误时：</p>
+<ol type="1">
+<li><strong>生成校准数据集</strong>：针对新知识错误构建正负样本。</li>
+<li><strong>重新训练校准槽</strong>：冻结原始模型参数，仅优化 CaliNET
+的校准槽。</li>
+<li><strong>加载更新的校准槽</strong>：将新的校准槽参数加载到模型中即可实现对新知识错误的校准。</li>
+</ol>
+</blockquote>
 
                 
               </div>
@@ -423,9 +598,9 @@ y_v\right) \sim
       
         <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" class="print-no-link">#深度学习</a>
       
-        <a href="/tags/%E7%9F%A5%E8%AF%86%E7%BC%96%E8%BE%91/" class="print-no-link">#知识编辑</a>
+        <a href="/tags/NLP/" class="print-no-link">#NLP</a>
       
-        <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/" class="print-no-link">#多模态</a>
+        <a href="/tags/%E7%9F%A5%E8%AF%86%E7%BC%96%E8%BE%91/" class="print-no-link">#知识编辑</a>
       
     </div>
   
@@ -437,8 +612,8 @@ y_v\right) \sim
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>论文笔记 - Can We Edit Multimodal Large Language Models</div>
-      <div>http://hellochuanyang.github.io/2025/01/20/论文笔记-Can-We-Edit-Multimodal-Large-Language-Models/</div>
+      <div>论文笔记 - Calibrating Factual Knowledge in Pretrained Language Models</div>
+      <div>http://hellochuanyang.github.io/2025/01/25/论文笔记-Calibrating-Factual-Knowledge-in-Pretrained-Language-Models/</div>
     </div>
     <div class="license-meta">
       
@@ -450,7 +625,7 @@ y_v\right) \sim
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年1月20日</div>
+          <div>2025年1月25日</div>
         </div>
       
       
@@ -482,9 +657,9 @@ y_v\right) \sim
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/01/25/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Editing-Factual-Knowledge-in-Language-Models/" title="论文笔记 - Editing Factual Knowledge in Language Models">
+                      <a href="/2025/01/25/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Transformer-Patcher-One-Mistake-worth-One-Neuron/" title="论文笔记 - Transformer-Patcher One Mistake worth One Neuron">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">论文笔记 - Editing Factual Knowledge in Language Models</span>
+                        <span class="hidden-mobile">论文笔记 - Transformer-Patcher One Mistake worth One Neuron</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -492,8 +667,8 @@ y_v\right) \sim
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/01/19/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Can-We-Edit-Factual-Knowledge-by-In-Context-Learning/" title="论文笔记 - Can We Edit Factual Knowledge by In-Context Learning">
-                        <span class="hidden-mobile">论文笔记 - Can We Edit Factual Knowledge by In-Context Learning</span>
+                      <a href="/2025/01/25/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Editing-Factual-Knowledge-in-Language-Models/" title="论文笔记 - Editing Factual Knowledge in Language Models">
+                        <span class="hidden-mobile">论文笔记 - Editing Factual Knowledge in Language Models</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
