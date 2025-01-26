@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>论文笔记 - Memory-assisted prompt editing to improve GPT-3 after deployment</title>
+    <link href="/2025/01/26/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Memory-assisted-prompt-editing-to-improve-GPT-3-after-deployment/"/>
+    <url>/2025/01/26/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Memory-assisted-prompt-editing-to-improve-GPT-3-after-deployment/</url>
+    
+    <content type="html"><![CDATA[<h2 id="information">1. Information</h2><p><strong>Title</strong>: Memory-assisted prompt editing to improveGPT-3 after deployment<br /><strong>Link</strong>: <ahref="http://arxiv.org/pdf/2201.06009">MemPrompt Paper</a><strong>Source</strong>: Empirical Methods in Natural LanguageProcessing (EMNLP)<br /><strong>Date</strong>: 2022</p><h2 id="summary">2. Summary</h2><p>MemPrompt 是一种用于增强 GPT-3部署后性能的新方法，旨在通过用户反馈的记忆模块改进模型输出而无需重新训练。核心思想是利用用户提供的交互式反馈，通过动态调整提示内容，解决模型误解用户意图的问题。在四种任务（词汇关系、单词重组、高级伦理推理两种变体）中，MemPrompt显著提高了 GPT-3 的任务准确率。</p><h2 id="background">3. Background</h2><p>现有的大规模语言模型（如GPT-3）虽然具有强大的生成能力，但仍会因缺乏常识而导致误解用户意图。例如，GPT-3可能将 "What word is similar to good?"理解为寻找同音词，而用户实际想要寻找同义词。传统解决方案如重新训练模型成本高昂，因此需要一种低成本的后部署优化方法。</p><p>MemPrompt利用递归记忆理论和用户反馈，动态调整提示以避免重复错误，从而实现模型行为的低成本改进。</p><h2 id="research-objective">4. Research Objective</h2><p>目标是通过交互式用户反馈提高 GPT-3 在不同任务中的表现，具体包括：</p><ol type="1"><li>利用记忆模块存储用户反馈，并将其应用于新问题。</li><li>动态更新提示以改进模型对用户意图的理解，而不需要重新训练模型。</li></ol><h2 id="method">5. Method</h2><p>MemPrompt 方法包括以下关键组件：</p><ol type="1"><li><strong>内存(M)</strong>：一个不断增长的键值对表，其中键是误解的问题，值是用户提供的澄清反馈。</li><li><strong>查找函数(M(x))</strong>：一个函数，将新查询与内存中的所有键进行匹配（使用余弦相似度），以找到类似的问题。</li><li><strong>组合器 (C(x,M(x)))</strong>：一个门控函数，如果相关，则将检索到的反馈与新查询连接起来。</li><li><strong>少样本提示</strong>：该方法使用 GPT-3的少样本提示，其中提示由几个输入输出示例组成，后跟新查询。提示通过从内存中检索到的相关反馈进行丰富。</li></ol><p>系统的工作原理如下：</p><ul><li>给定一个新查询 <spanclass="math inline">\(x\)</span>，模型生成一个输出 <spanclass="math inline">\(y\)</span> 和一个句子 <spanclass="math inline">\(u\)</span>，表达其对任务的理解。</li><li>用户可以对 <span class="math inline">\(u\)</span> 提供反馈 <spanclass="math inline">\(fb\)</span>，该反馈存储在内存中。</li><li>对于后续查询，系统从内存中检索相关反馈，并将其附加到提示中，帮助模型避免类似的误解。</li></ul><h2 id="conclusion">6. Conclusion</h2><p>MemPrompt提供了一种无需重新训练的低成本优化方法，通过记忆模块和用户反馈显著提高了GPT-3的性能。这种方法在实际部署中具有广阔应用前景，同时为交互式模型调试和动态提示优化提供了新思路。</p><h2 id="notes">7. Notes</h2><h3 id="举例说明-menprompt-的工作流程">7.1 举例说明 MenPrompt的工作流程。</h3><blockquote><h4 id="模型初始错误与用户反馈"><strong>1.模型初始错误与用户反馈</strong></h4><ol type="1"><li><p>用户输入问题：</p><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs applescript">What <span class="hljs-built_in">word</span> <span class="hljs-keyword">is</span> similar <span class="hljs-keyword">to</span> <span class="hljs-string">&quot;good&quot;</span>?<br></code></pre></td></tr></table></figure><ul><li><strong>输入</strong> <spanclass="math inline">\(x_1\)</span>：<code>What word is similar to "good"?</code></li></ul></li><li><p>GPT-3 的初始错误回答：</p><ul><li>输出 <spanclass="math inline">\(y_1\)</span>：<code>The homophone of "good" is: wood.</code></li><li>任务理解 <spanclass="math inline">\(u_1\)</span>：<code>The question is asking for a homophone.</code></li></ul></li><li><p>用户提供反馈：</p><ul><li><spanclass="math inline">\(fb_1\)</span>：<code>"Similar to" means "with similar meaning."</code></li></ul></li></ol><p><strong>处理</strong>：此时，用户发现 GPT-3错误地理解了任务（认为需要找“同音词”），并给出明确的反馈 <spanclass="math inline">\(fb_1\)</span>，该反馈表明问题实际是找“同义词”</p><h4 id="记忆模块更新"><strong>2. 记忆模块更新</strong></h4><ol type="1"><li><p>存储用户反馈：</p><ul><li>记忆模块 <span class="math inline">\(M\)</span> 中记录以下键值对：<span class="math display">\[M = \{ x_1 : fb_1 \}\]</span> 即，问题 <spanclass="math inline">\(x_1\)</span>（用户输入的问题）作为键，反馈 <spanclass="math inline">\(fb_1\)</span> 作为值存储到记忆中。</li></ul></li></ol><h4 id="第二次用户输入反馈检索"><strong>3.第二次用户输入（反馈检索）</strong></h4><ol type="1"><li><p>新问题输入：用户问：</p><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs applescript">What <span class="hljs-built_in">word</span> <span class="hljs-keyword">is</span> similar <span class="hljs-keyword">to</span> <span class="hljs-string">&quot;surprised&quot;</span>?<br></code></pre></td></tr></table></figure><ul><li><strong>输入</strong> <spanclass="math inline">\(x_2\)</span>：<code>What word is similar to "surprised"?</code></li></ul></li><li><p>检索相关反馈：</p><ul><li>检索模块 <span class="math inline">\(M(x_2)\)</span> 在记忆中查找与<span class="math inline">\(x_2\)</span> 相似的问题。</li><li>检索到的反馈：<code>"Similar to" means "with similar meaning."</code></li></ul></li></ol><h4 id="动态提示更新"><strong>4. 动态提示更新</strong></h4><ol type="1"><li><p>动态拼接提示：将检索到的反馈 <spanclass="math inline">\(fb_1\)</span> 附加到新问题中，构造新的提示： <spanclass="math display">\[p_{new} = x_2 + fb_1\]</span> 即，新的提示变为：</p><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">What word <span class="hljs-keyword">is</span> <span class="hljs-keyword">similar</span> <span class="hljs-keyword">to</span> &quot;surprised&quot;? <br><span class="hljs-keyword">Similar</span> <span class="hljs-keyword">to</span> means <span class="hljs-keyword">with</span> <span class="hljs-keyword">similar</span> meaning.<br></code></pre></td></tr></table></figure></li><li><p>GPT-3 输出改进：</p><ul><li>使用更新后的提示，GPT-3正确回答：<code>The synonym of "surprised" is: amazed.</code></li></ul></li></ol></blockquote>]]></content>
+    
+    
+    <categories>
+      
+      <category>论文阅读</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>深度学习</tag>
+      
+      <tag>NLP</tag>
+      
+      <tag>知识编辑</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>论文笔记 - MQuAKE: Assessing Knowledge Editing in Language Models via Multi-Hop Questions</title>
     <link href="/2025/01/26/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-MQuAKE-Assessing-Knowledge-Editing-in-Language-Models-via-Multi-Hop-Questions/"/>
     <url>/2025/01/26/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-MQuAKE-Assessing-Knowledge-Editing-in-Language-Models-via-Multi-Hop-Questions/</url>

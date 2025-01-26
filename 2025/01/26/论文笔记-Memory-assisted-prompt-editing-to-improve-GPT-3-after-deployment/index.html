@@ -19,26 +19,24 @@
   <meta name="author" content="阿阳">
   <meta name="keywords" content="">
   
-    <meta name="description" content="1. Information Title: MQuAKE: Assessing Knowledge Editing in Language Models via Multi-Hop Questions Link: MeLLo Paper Source: Empirical Methods in Natural Language Processing (EMNLP) Date: 2023 2. Su">
+    <meta name="description" content="1. Information Title: Memory-assisted prompt editing to improve GPT-3 after deployment Link: MemPrompt Paper Source: Empirical Methods in Natural Language Processing (EMNLP) Date: 2022 2. Summary MemP">
 <meta property="og:type" content="article">
-<meta property="og:title" content="论文笔记 - MQuAKE: Assessing Knowledge Editing in Language Models via Multi-Hop Questions">
-<meta property="og:url" content="http://hellochuanyang.github.io/2025/01/26/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-MQuAKE-Assessing-Knowledge-Editing-in-Language-Models-via-Multi-Hop-Questions/index.html">
+<meta property="og:title" content="论文笔记 - Memory-assisted prompt editing to improve GPT-3 after deployment">
+<meta property="og:url" content="http://hellochuanyang.github.io/2025/01/26/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Memory-assisted-prompt-editing-to-improve-GPT-3-after-deployment/index.html">
 <meta property="og:site_name" content="Ayang&#39;s home">
-<meta property="og:description" content="1. Information Title: MQuAKE: Assessing Knowledge Editing in Language Models via Multi-Hop Questions Link: MeLLo Paper Source: Empirical Methods in Natural Language Processing (EMNLP) Date: 2023 2. Su">
+<meta property="og:description" content="1. Information Title: Memory-assisted prompt editing to improve GPT-3 after deployment Link: MemPrompt Paper Source: Empirical Methods in Natural Language Processing (EMNLP) Date: 2022 2. Summary MemP">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://hellochuanyang.github.io/2025/01/26/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-MQuAKE-Assessing-Knowledge-Editing-in-Language-Models-via-Multi-Hop-Questions/1.png">
-<meta property="article:published_time" content="2025-01-26T01:17:22.000Z">
-<meta property="article:modified_time" content="2025-01-26T09:26:46.070Z">
+<meta property="article:published_time" content="2025-01-26T03:55:04.000Z">
+<meta property="article:modified_time" content="2025-01-26T11:55:55.429Z">
 <meta property="article:author" content="阿阳">
 <meta property="article:tag" content="深度学习">
 <meta property="article:tag" content="NLP">
 <meta property="article:tag" content="知识编辑">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://hellochuanyang.github.io/2025/01/26/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-MQuAKE-Assessing-Knowledge-Editing-in-Language-Models-via-Multi-Hop-Questions/1.png">
   
   
   
-  <title>论文笔记 - MQuAKE: Assessing Knowledge Editing in Language Models via Multi-Hop Questions - Ayang&#39;s home</title>
+  <title>论文笔记 - Memory-assisted prompt editing to improve GPT-3 after deployment - Ayang&#39;s home</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -217,7 +215,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="论文笔记 - MQuAKE: Assessing Knowledge Editing in Language Models via Multi-Hop Questions"></span>
+            <span id="subtitle" data-typed-text="论文笔记 - Memory-assisted prompt editing to improve GPT-3 after deployment"></span>
           
         </div>
 
@@ -228,8 +226,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-01-26 09:17" pubdate>
-          2025年1月26日 上午
+        <time datetime="2025-01-26 11:55" pubdate>
+          2025年1月26日 中午
         </time>
       </span>
     
@@ -240,7 +238,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          899 字
+          1k 字
         
       </span>
     
@@ -251,7 +249,7 @@
         
         
         
-          8 分钟
+          9 分钟
         
       </span>
     
@@ -297,82 +295,135 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">论文笔记 - MQuAKE: Assessing Knowledge Editing in Language Models via Multi-Hop Questions</h1>
+            <h1 id="seo-header">论文笔记 - Memory-assisted prompt editing to improve GPT-3 after deployment</h1>
             
             
               <div class="markdown-body">
                 
                 <h2 id="information">1. Information</h2>
-<p><strong>Title</strong>: MQuAKE: Assessing Knowledge Editing in
-Language Models via Multi-Hop Questions<br />
-<strong>Link</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2305.14795">MeLLo
-Paper</a><br />
+<p><strong>Title</strong>: Memory-assisted prompt editing to improve
+GPT-3 after deployment<br />
+<strong>Link</strong>: <a
+target="_blank" rel="noopener" href="http://arxiv.org/pdf/2201.06009">MemPrompt Paper</a>
 <strong>Source</strong>: Empirical Methods in Natural Language
 Processing (EMNLP)<br />
-<strong>Date</strong>: 2023</p>
+<strong>Date</strong>: 2022</p>
 <h2 id="summary">2. Summary</h2>
-<p>本文介绍了 MQuAKE (Multi-hop Question Answering for Knowledge
-Editing)，这是一个用于评估大型语言模型 (LLMs)
-知识编辑效果的基准测试，通过多跳问题来评估。作者指出，当前的知识编辑方法虽然能够成功回忆编辑过的事实，但在需要基于编辑事实进行推理的多跳问题上表现糟糕。为此，他们提出了
-MeLLo (Memory-based Editing for Large Language
-Models)，这是一种新颖的方法，通过将编辑过的事实存储在外部记忆中，并迭代地提示语言模型生成一致的答案。MeLLo
-在处理多跳问题上显著优于现有方法，且无需额外训练。</p>
+<p>MemPrompt 是一种用于增强 GPT-3
+部署后性能的新方法，旨在通过用户反馈的记忆模块改进模型输出而无需重新训练。核心思想是利用用户提供的交互式反馈，通过动态调整提示内容，解决模型误解用户意图的问题。在四种任务（词汇关系、单词重组、高级伦理推理两种变体）中，MemPrompt
+显著提高了 GPT-3 的任务准确率。</p>
 <h2 id="background">3. Background</h2>
-<p>随着大型语言模型 (LLMs)
-在各种应用中的广泛部署，其知识迅速过时的问题日益凸显。由于重新训练这些模型的成本过高，因此出现了通过更新模型权重来注入新事实的技术。然而，现有的评估范式主要关注模型是否能够回忆起新注入的事实，而忽略了模型在编辑事实后是否能够处理答案应随之改变的问题。这一评估缺口至关重要，因为它反映了模型整合新知识并进行推理的能力。</p>
+<p>现有的大规模语言模型（如
+GPT-3）虽然具有强大的生成能力，但仍会因缺乏常识而导致误解用户意图。例如，GPT-3
+可能将 "What word is similar to good?"
+理解为寻找同音词，而用户实际想要寻找同义词。传统解决方案如重新训练模型成本高昂，因此需要一种低成本的后部署优化方法。</p>
+<p>MemPrompt
+利用递归记忆理论和用户反馈，动态调整提示以避免重复错误，从而实现模型行为的低成本改进。</p>
 <h2 id="research-objective">4. Research Objective</h2>
-<p>本研究的主要目标是开发一个全面的基准测试 MQuAKE，以评估 LLMs
-的知识编辑方法的有效性。具体来说，该基准旨在评估编辑后的模型是否能够正确回答多跳问题，这些问题的答案应基于编辑事实的逻辑后果而改变。此外，作者还旨在提出一种新的方法
-MeLLo，通过利用外部记忆存储编辑过的事实，并确保与编辑知识的一致性，从而有效处理多跳问题。</p>
+<p>目标是通过交互式用户反馈提高 GPT-3 在不同任务中的表现，具体包括：</p>
+<ol type="1">
+<li>利用记忆模块存储用户反馈，并将其应用于新问题。</li>
+<li>动态更新提示以改进模型对用户意图的理解，而不需要重新训练模型。</li>
+</ol>
 <h2 id="method">5. Method</h2>
-<h3 id="问题定义">5.1 <strong>问题定义</strong></h3>
+<p>MemPrompt 方法包括以下关键组件：</p>
 <ol type="1">
-<li><p><strong>知识表示</strong></p>
-<ul>
-<li>事实表示为三元组 <span class="math inline">\((s, r,
-o)\)</span>，其中 <span class="math inline">\(s\)</span> 为主体，<span
-class="math inline">\(r\)</span> 为关系，<span
-class="math inline">\(o\)</span> 为客体。</li>
-<li>模板 <span class="math inline">\(t_r(s)\)</span>
-用于将三元组转化为自然语言问题。</li>
-</ul>
-<p><strong>公式</strong>： <span class="math display">\[
-f^*(t_r(s)) = o^*
-\]</span> 其中 <span class="math inline">\(f^*\)</span>
-表示编辑后的模型。</p></li>
-<li><p><strong>多跳问题构造</strong></p></li>
+<li><strong>内存
+(M)</strong>：一个不断增长的键值对表，其中键是误解的问题，值是用户提供的澄清反馈。</li>
+<li><strong>查找函数
+(M(x))</strong>：一个函数，将新查询与内存中的所有键进行匹配（使用余弦相似度），以找到类似的问题。</li>
+<li><strong>组合器 (C(x,
+M(x)))</strong>：一个门控函数，如果相关，则将检索到的反馈与新查询连接起来。</li>
+<li><strong>少样本提示</strong>：该方法使用 GPT-3
+的少样本提示，其中提示由几个输入输出示例组成，后跟新查询。提示通过从内存中检索到的相关反馈进行丰富。</li>
 </ol>
-<p align="center">
-<img src="1.png" srcset="/img/loading.gif" lazyload style="zoom:30%;" />
-</p>
-<p>多跳问题链： <span class="math display">\[
-   C=\left\langle\left(s_1, r_1, o_1\right),\left(s_2, r_2, o_2\right),
-\ldots,\left(s_n, r_n, o_n\right)\right\rangle
-   \]</span> 满足 <span class="math inline">\(o_i = s_{i+1}\)</span></p>
-<ol start="3" type="1">
-<li><p><strong>知识编辑公式</strong></p>
+<p>系统的工作原理如下：</p>
 <ul>
-<li>单个编辑： <span class="math inline">\(e = (s, r, o \to
-o^*)\)</span></li>
-<li>多个编辑： <span class="math inline">\(K(f, E) = f^*\)</span> 其中
-<span class="math inline">\(K\)</span> 为知识编辑函数。</li>
-</ul></li>
-</ol>
-<h3 id="mello-方法">5.2 <strong>Mello 方法</strong></h3>
-<ul>
-<li>提出了新的知识编辑方法 MeLLo，核心思想如下：
-<ol type="1">
-<li><strong>存储已编辑事实</strong>：将编辑事实存储在外部记忆中。</li>
-<li><strong>逐步推理</strong>：将多跳问题分解为子问题，模型逐步回答并检查答案与已编辑事实的一致性。</li>
-<li><strong>自我校验</strong>：模型检查推理步骤中是否违反已编辑知识，必要时用检索到的已编辑事实覆盖冲突答案，从而确保推理结果与已编辑知识一致。</li>
-</ol></li>
-<li>MeLLo 不需要额外训练，可以应用于大型黑箱 LMs，如 GPT-3.5。</li>
+<li>给定一个新查询 <span
+class="math inline">\(x\)</span>，模型生成一个输出 <span
+class="math inline">\(y\)</span> 和一个句子 <span
+class="math inline">\(u\)</span>，表达其对任务的理解。</li>
+<li>用户可以对 <span class="math inline">\(u\)</span> 提供反馈 <span
+class="math inline">\(fb\)</span>，该反馈存储在内存中。</li>
+<li>对于后续查询，系统从内存中检索相关反馈，并将其附加到提示中，帮助模型避免类似的误解。</li>
 </ul>
 <h2 id="conclusion">6. Conclusion</h2>
-<p>本文提出了 MQuAKE，这是一个用于评估 LLMs
-知识编辑方法的基准测试，通过多跳问题来评估。结果表明，现有方法在处理多跳问题时效果不佳，突显了开发更忠实的知识编辑技术的必要性。提出的
-MeLLo
-方法通过利用外部记忆存储编辑过的事实，并通过迭代提示确保一致性，展示了卓越的性能。</p>
+<p>MemPrompt
+提供了一种无需重新训练的低成本优化方法，通过记忆模块和用户反馈显著提高了
+GPT-3
+的性能。这种方法在实际部署中具有广阔应用前景，同时为交互式模型调试和动态提示优化提供了新思路。</p>
+<h2 id="notes">7. Notes</h2>
+<h3 id="举例说明-menprompt-的工作流程">7.1 举例说明 MenPrompt
+的工作流程。</h3>
+<blockquote>
+<h4 id="模型初始错误与用户反馈"><strong>1.
+模型初始错误与用户反馈</strong></h4>
+<ol type="1">
+<li><p>用户输入问题：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs applescript">What <span class="hljs-built_in">word</span> <span class="hljs-keyword">is</span> similar <span class="hljs-keyword">to</span> <span class="hljs-string">&quot;good&quot;</span>?<br></code></pre></td></tr></table></figure>
+<ul>
+<li><strong>输入</strong> <span
+class="math inline">\(x_1\)</span>：<code>What word is similar to "good"?</code></li>
+</ul></li>
+<li><p>GPT-3 的初始错误回答：</p>
+<ul>
+<li>输出 <span
+class="math inline">\(y_1\)</span>：<code>The homophone of "good" is: wood.</code></li>
+<li>任务理解 <span
+class="math inline">\(u_1\)</span>：<code>The question is asking for a homophone.</code></li>
+</ul></li>
+<li><p>用户提供反馈：</p>
+<ul>
+<li><span
+class="math inline">\(fb_1\)</span>：<code>"Similar to" means "with similar meaning."</code></li>
+</ul></li>
+</ol>
+<p><strong>处理</strong>：此时，用户发现 GPT-3
+错误地理解了任务（认为需要找“同音词”），并给出明确的反馈 <span
+class="math inline">\(fb_1\)</span>，该反馈表明问题实际是找“同义词”</p>
+<h4 id="记忆模块更新"><strong>2. 记忆模块更新</strong></h4>
+<ol type="1">
+<li><p>存储用户反馈：</p>
+<ul>
+<li>记忆模块 <span class="math inline">\(M\)</span> 中记录以下键值对：
+<span class="math display">\[
+M = \{ x_1 : fb_1 \}
+\]</span> 即，问题 <span
+class="math inline">\(x_1\)</span>（用户输入的问题）作为键，反馈 <span
+class="math inline">\(fb_1\)</span> 作为值存储到记忆中。</li>
+</ul></li>
+</ol>
+<h4 id="第二次用户输入反馈检索"><strong>3.
+第二次用户输入（反馈检索）</strong></h4>
+<ol type="1">
+<li><p>新问题输入：用户问：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs applescript">What <span class="hljs-built_in">word</span> <span class="hljs-keyword">is</span> similar <span class="hljs-keyword">to</span> <span class="hljs-string">&quot;surprised&quot;</span>?<br></code></pre></td></tr></table></figure>
+<ul>
+<li><strong>输入</strong> <span
+class="math inline">\(x_2\)</span>：<code>What word is similar to "surprised"?</code></li>
+</ul></li>
+<li><p>检索相关反馈：</p>
+<ul>
+<li>检索模块 <span class="math inline">\(M(x_2)\)</span> 在记忆中查找与
+<span class="math inline">\(x_2\)</span> 相似的问题。</li>
+<li>检索到的反馈：<code>"Similar to" means "with similar meaning."</code></li>
+</ul></li>
+</ol>
+<h4 id="动态提示更新"><strong>4. 动态提示更新</strong></h4>
+<ol type="1">
+<li><p>动态拼接提示：将检索到的反馈 <span
+class="math inline">\(fb_1\)</span> 附加到新问题中，构造新的提示： <span
+class="math display">\[
+p_{new} = x_2 + fb_1
+\]</span> 即，新的提示变为：</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">What word <span class="hljs-keyword">is</span> <span class="hljs-keyword">similar</span> <span class="hljs-keyword">to</span> &quot;surprised&quot;? <br><span class="hljs-keyword">Similar</span> <span class="hljs-keyword">to</span> means <span class="hljs-keyword">with</span> <span class="hljs-keyword">similar</span> meaning.<br></code></pre></td></tr></table></figure></li>
+<li><p>GPT-3 输出改进：</p>
+<ul>
+<li>使用更新后的提示，GPT-3
+正确回答：<code>The synonym of "surprised" is: amazed.</code></li>
+</ul></li>
+</ol>
+</blockquote>
 
                 
               </div>
@@ -422,8 +473,8 @@ MeLLo
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>论文笔记 - MQuAKE: Assessing Knowledge Editing in Language Models via Multi-Hop Questions</div>
-      <div>http://hellochuanyang.github.io/2025/01/26/论文笔记-MQuAKE-Assessing-Knowledge-Editing-in-Language-Models-via-Multi-Hop-Questions/</div>
+      <div>论文笔记 - Memory-assisted prompt editing to improve GPT-3 after deployment</div>
+      <div>http://hellochuanyang.github.io/2025/01/26/论文笔记-Memory-assisted-prompt-editing-to-improve-GPT-3-after-deployment/</div>
     </div>
     <div class="license-meta">
       
@@ -467,18 +518,12 @@ MeLLo
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/01/26/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Memory-assisted-prompt-editing-to-improve-GPT-3-after-deployment/" title="论文笔记 - Memory-assisted prompt editing to improve GPT-3 after deployment">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">论文笔记 - Memory-assisted prompt editing to improve GPT-3 after deployment</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/01/25/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Transformer-Patcher-One-Mistake-worth-One-Neuron/" title="论文笔记 - Transformer-Patcher: One Mistake worth One Neuron">
-                        <span class="hidden-mobile">论文笔记 - Transformer-Patcher: One Mistake worth One Neuron</span>
+                      <a href="/2025/01/26/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-MQuAKE-Assessing-Knowledge-Editing-in-Language-Models-via-Multi-Hop-Questions/" title="论文笔记 - MQuAKE: Assessing Knowledge Editing in Language Models via Multi-Hop Questions">
+                        <span class="hidden-mobile">论文笔记 - MQuAKE: Assessing Knowledge Editing in Language Models via Multi-Hop Questions</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
