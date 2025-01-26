@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>论文笔记 - Editable Neural Networks</title>
+    <link href="/2025/01/26/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Editable-Neural-Networks/"/>
+    <url>/2025/01/26/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Editable-Neural-Networks/</url>
+    
+    <content type="html"><![CDATA[<h2 id="information">1. Information</h2><p><strong>Title</strong>: Editable Neural Networks<br /><strong>Link</strong>: <ahref="http://arxiv.org/pdf/2004.00345">Editable Training Paper</a><strong>Source</strong>: International Conference on LearningRepresentations (ICLR)<br /><strong>Date</strong>: 2020</p><h2 id="summary">2. Summary</h2><p>这篇论文提出了一种新方法，称为 <strong>EditableTraining</strong>，用于快速高效地修正神经网络在特定样本上的错误，而不会影响其他样本的行为。核心贡献包括：</p><ul><li>提出并定义了神经网络编辑的问题。</li><li>开发了一种基于元学习 (meta-learning)的通用训练技术，使得模型可以快速编辑。</li><li>在图像分类和机器翻译等任务上进行了大规模实验，证明了方法的有效性。</li></ul><h2 id="background">3. Background</h2><p>深度神经网络在图像分类、机器翻译等任务中表现出色，但模型错误可能导致严重后果。因此，快速修正模型错误至关重要。然而，深度神经网络的预测通常依赖于所有模型参数，更新模型以改变单个输入的预测可能会降低其他输入的性能。目前，修正模型错误的方法包括重新训练模型或使用手动缓存，但这些方法要么计算成本高昂，要么对输入变化不够鲁棒。</p><h2 id="research-objective">4. Research Objective</h2><p>本研究旨在设计一种训练方法，使得神经网络模型可以在检测到错误后快速修正特定输入的预测，而不显著影响其他输入的性能。</p><h2 id="method">5. Method</h2><h3 id="神经网络编辑的定义">5.1 神经网络编辑的定义</h3><p>神经网络表示为 <span class="math inline">\(f(x,\theta)\)</span>，其中 <span class="math inline">\(x\)</span>是输入，<span class="math inline">\(\theta\)</span>是参数集。为了修正错误，定义了一个编辑函数： <spanclass="math display">\[\theta&#39; = \text{Edit}(\theta, l_e)\]</span> 其中 <span class="math inline">\(l_e\)</span>是约束条件，用于强制模型对某些输入产生预期输出。</p><p>在分类任务中，定义 <span class="math inline">\(l_e\)</span> 为：<span class="math display">\[l_e\left(\theta^{\prime}\right)=\max _{y_i} \log p\left(y_i \mid x,\theta^{\prime}\right)-\log p\left(y_{\text {ref }} \mid x,\theta^{\prime}\right)\]</span> 其中 <span class="math inline">\(y_{\text{ref}}\)</span>是目标标签，约束条件 <span class="math inline">\(l_e(\theta&#39;) \leq0\)</span> 表示模型在目标样本上正确分类。</p><h3 id="梯度下降编辑器">5.2 梯度下降编辑器</h3><p>利用梯度下降实现参数更新： <span class="math display">\[\operatorname{Edit}_\alpha^k\left(\theta, l_e, k\right)=\begin{cases}\theta, &amp; \text { if } l_e(\theta) \leq 0 \text { or }k=0, \\ \operatorname{Edit}_\alpha^{k-1}\left(\theta-\alpha\nabla_\theta l_e(\theta), l_e\right), &amp; \text { else }\end{cases}\]</span>此编辑器可以通过引入如动量（Momentum）、自适应学习率（RMSProp、Adam）等优化技术提高效率和稳定性。</p><h3 id="editable-training-的目标函数">5.3 Editable Training的目标函数</h3><p>为了使模型适应编辑器，定义总目标函数： <span class="math display">\[\operatorname{Obj}\left(\theta, l_e\right)=L_{\text {base}}(\theta)+c_{\text {edit }} \cdot L_{\text {edit }}(\theta)+c_{\text{loc }} \cdot L_{\text {loc }}(\theta),\]</span> 其中：</p><ul><li><spanclass="math inline">\(L_{\text{base}}(\theta)\)</span>：主任务损失（如交叉熵）。</li><li><span class="math inline">\(L_{\text{edit}}(\theta) = \max(0,l_e(\text{Edit}_\alpha^k(\theta,l_e)))\)</span>：鼓励编辑效率和可靠性。</li><li><span class="math inline">\(L_{\text{loc}}(\theta) = \mathbb{E}_{x\sim p(x)} D_{\text{KL}}(p(y|x, \theta) \| p(y|x,\text{Edit}_\alpha^k(\theta,l_e)))\)</span>：通过最小化原始模型和编辑后模型的 KL散度，确保局部性。</li></ul><p>超参数 <span class="math inline">\(c_{\text{edit}}\)</span> 和 <spanclass="math inline">\(c_{\text{loc}}\)</span>用于平衡编辑性能与主任务表现。</p><h2 id="evaluation">6. Evaluation</h2><h3 id="cifar-10-实验">6.1 CIFAR-10 实验</h3><ul><li>使用 ResNet-18 模型，比较了不同编辑器（如GD、RMSProp）的性能，指标包括<strong>drawdown</strong>（编辑前后误差差异）、成功率、和平均编辑步数。</li><li>Editable Training 显著减少了 drawdown（例如，从 <spanclass="math inline">\(1.77\%\)</span> 降到 <spanclass="math inline">\(0.65\%\)</span>）。</li></ul><h3 id="imagenet-实验">6.2 ImageNet 实验</h3><ul><li>在预训练 ResNet-18 和 DenseNet-169模型上进行微调，使用额外的可训练层进一步提高编辑性能。</li><li>与 Elastic Weight Consolidation 和 Deep k-Nearest Neighbors等基线方法相比，Editable Training 在修正效果和效率上均占优。</li></ul><h2 id="conclusion">7. Conclusion</h2><p>本文提出的 Editable Training方法有效地解决了神经网络的错误修复问题，通过元学习技术增强了模型的编辑能力，同时保持整体性能，具有广泛的实际应用前景。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>论文阅读</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>深度学习</tag>
+      
+      <tag>NLP</tag>
+      
+      <tag>知识编辑</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>论文笔记 - Memory-assisted prompt editing to improve GPT-3 after deployment</title>
     <link href="/2025/01/26/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Memory-assisted-prompt-editing-to-improve-GPT-3-after-deployment/"/>
     <url>/2025/01/26/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Memory-assisted-prompt-editing-to-improve-GPT-3-after-deployment/</url>

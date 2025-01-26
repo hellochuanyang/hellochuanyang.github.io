@@ -19,15 +19,15 @@
   <meta name="author" content="阿阳">
   <meta name="keywords" content="">
   
-    <meta name="description" content="1. Information Title: Memory-assisted prompt editing to improve GPT-3 after deployment Link: MemPrompt Paper Source: Empirical Methods in Natural Language Processing (EMNLP) Date: 2022 2. Summary MemP">
+    <meta name="description" content="1. Information Title: Editable Neural Networks Link: Editable Training Paper Source: International Conference on Learning Representations (ICLR) Date: 2020 2. Summary 这篇论文提出了一种新方法，称为 Editable Training">
 <meta property="og:type" content="article">
-<meta property="og:title" content="论文笔记 - Memory-assisted prompt editing to improve GPT-3 after deployment">
-<meta property="og:url" content="http://hellochuanyang.github.io/2025/01/26/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Memory-assisted-prompt-editing-to-improve-GPT-3-after-deployment/index.html">
+<meta property="og:title" content="论文笔记 - Editable Neural Networks">
+<meta property="og:url" content="http://hellochuanyang.github.io/2025/01/26/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Editable-Neural-Networks/index.html">
 <meta property="og:site_name" content="Ayang&#39;s home">
-<meta property="og:description" content="1. Information Title: Memory-assisted prompt editing to improve GPT-3 after deployment Link: MemPrompt Paper Source: Empirical Methods in Natural Language Processing (EMNLP) Date: 2022 2. Summary MemP">
+<meta property="og:description" content="1. Information Title: Editable Neural Networks Link: Editable Training Paper Source: International Conference on Learning Representations (ICLR) Date: 2020 2. Summary 这篇论文提出了一种新方法，称为 Editable Training">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-01-26T03:55:04.000Z">
-<meta property="article:modified_time" content="2025-01-26T11:55:55.429Z">
+<meta property="article:published_time" content="2025-01-26T07:37:08.000Z">
+<meta property="article:modified_time" content="2025-01-26T15:37:35.204Z">
 <meta property="article:author" content="阿阳">
 <meta property="article:tag" content="深度学习">
 <meta property="article:tag" content="NLP">
@@ -36,7 +36,7 @@
   
   
   
-  <title>论文笔记 - Memory-assisted prompt editing to improve GPT-3 after deployment - Ayang&#39;s home</title>
+  <title>论文笔记 - Editable Neural Networks - Ayang&#39;s home</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -215,7 +215,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="论文笔记 - Memory-assisted prompt editing to improve GPT-3 after deployment"></span>
+            <span id="subtitle" data-typed-text="论文笔记 - Editable Neural Networks"></span>
           
         </div>
 
@@ -226,8 +226,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-01-26 11:55" pubdate>
-          2025年1月26日 中午
+        <time datetime="2025-01-26 15:37" pubdate>
+          2025年1月26日 下午
         </time>
       </span>
     
@@ -238,7 +238,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1k 字
+          934 字
         
       </span>
     
@@ -249,7 +249,7 @@
         
         
         
-          9 分钟
+          8 分钟
         
       </span>
     
@@ -295,135 +295,99 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">论文笔记 - Memory-assisted prompt editing to improve GPT-3 after deployment</h1>
+            <h1 id="seo-header">论文笔记 - Editable Neural Networks</h1>
             
             
               <div class="markdown-body">
                 
                 <h2 id="information">1. Information</h2>
-<p><strong>Title</strong>: Memory-assisted prompt editing to improve
-GPT-3 after deployment<br />
+<p><strong>Title</strong>: Editable Neural Networks<br />
 <strong>Link</strong>: <a
-target="_blank" rel="noopener" href="http://arxiv.org/pdf/2201.06009">MemPrompt Paper</a>
-<strong>Source</strong>: Empirical Methods in Natural Language
-Processing (EMNLP)<br />
-<strong>Date</strong>: 2022</p>
+target="_blank" rel="noopener" href="http://arxiv.org/pdf/2004.00345">Editable Training Paper</a>
+<strong>Source</strong>: International Conference on Learning
+Representations (ICLR)<br />
+<strong>Date</strong>: 2020</p>
 <h2 id="summary">2. Summary</h2>
-<p>MemPrompt 是一种用于增强 GPT-3
-部署后性能的新方法，旨在通过用户反馈的记忆模块改进模型输出而无需重新训练。核心思想是利用用户提供的交互式反馈，通过动态调整提示内容，解决模型误解用户意图的问题。在四种任务（词汇关系、单词重组、高级伦理推理两种变体）中，MemPrompt
-显著提高了 GPT-3 的任务准确率。</p>
-<h2 id="background">3. Background</h2>
-<p>现有的大规模语言模型（如
-GPT-3）虽然具有强大的生成能力，但仍会因缺乏常识而导致误解用户意图。例如，GPT-3
-可能将 "What word is similar to good?"
-理解为寻找同音词，而用户实际想要寻找同义词。传统解决方案如重新训练模型成本高昂，因此需要一种低成本的后部署优化方法。</p>
-<p>MemPrompt
-利用递归记忆理论和用户反馈，动态调整提示以避免重复错误，从而实现模型行为的低成本改进。</p>
-<h2 id="research-objective">4. Research Objective</h2>
-<p>目标是通过交互式用户反馈提高 GPT-3 在不同任务中的表现，具体包括：</p>
-<ol type="1">
-<li>利用记忆模块存储用户反馈，并将其应用于新问题。</li>
-<li>动态更新提示以改进模型对用户意图的理解，而不需要重新训练模型。</li>
-</ol>
-<h2 id="method">5. Method</h2>
-<p>MemPrompt 方法包括以下关键组件：</p>
-<ol type="1">
-<li><strong>内存
-(M)</strong>：一个不断增长的键值对表，其中键是误解的问题，值是用户提供的澄清反馈。</li>
-<li><strong>查找函数
-(M(x))</strong>：一个函数，将新查询与内存中的所有键进行匹配（使用余弦相似度），以找到类似的问题。</li>
-<li><strong>组合器 (C(x,
-M(x)))</strong>：一个门控函数，如果相关，则将检索到的反馈与新查询连接起来。</li>
-<li><strong>少样本提示</strong>：该方法使用 GPT-3
-的少样本提示，其中提示由几个输入输出示例组成，后跟新查询。提示通过从内存中检索到的相关反馈进行丰富。</li>
-</ol>
-<p>系统的工作原理如下：</p>
+<p>这篇论文提出了一种新方法，称为 <strong>Editable
+Training</strong>，用于快速高效地修正神经网络在特定样本上的错误，而不会影响其他样本的行为。核心贡献包括：</p>
 <ul>
-<li>给定一个新查询 <span
-class="math inline">\(x\)</span>，模型生成一个输出 <span
-class="math inline">\(y\)</span> 和一个句子 <span
-class="math inline">\(u\)</span>，表达其对任务的理解。</li>
-<li>用户可以对 <span class="math inline">\(u\)</span> 提供反馈 <span
-class="math inline">\(fb\)</span>，该反馈存储在内存中。</li>
-<li>对于后续查询，系统从内存中检索相关反馈，并将其附加到提示中，帮助模型避免类似的误解。</li>
+<li>提出并定义了神经网络编辑的问题。</li>
+<li>开发了一种基于元学习 (meta-learning)
+的通用训练技术，使得模型可以快速编辑。</li>
+<li>在图像分类和机器翻译等任务上进行了大规模实验，证明了方法的有效性。</li>
 </ul>
-<h2 id="conclusion">6. Conclusion</h2>
-<p>MemPrompt
-提供了一种无需重新训练的低成本优化方法，通过记忆模块和用户反馈显著提高了
-GPT-3
-的性能。这种方法在实际部署中具有广阔应用前景，同时为交互式模型调试和动态提示优化提供了新思路。</p>
-<h2 id="notes">7. Notes</h2>
-<h3 id="举例说明-menprompt-的工作流程">7.1 举例说明 MenPrompt
-的工作流程。</h3>
-<blockquote>
-<h4 id="模型初始错误与用户反馈"><strong>1.
-模型初始错误与用户反馈</strong></h4>
-<ol type="1">
-<li><p>用户输入问题：</p>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs applescript">What <span class="hljs-built_in">word</span> <span class="hljs-keyword">is</span> similar <span class="hljs-keyword">to</span> <span class="hljs-string">&quot;good&quot;</span>?<br></code></pre></td></tr></table></figure>
-<ul>
-<li><strong>输入</strong> <span
-class="math inline">\(x_1\)</span>：<code>What word is similar to "good"?</code></li>
-</ul></li>
-<li><p>GPT-3 的初始错误回答：</p>
-<ul>
-<li>输出 <span
-class="math inline">\(y_1\)</span>：<code>The homophone of "good" is: wood.</code></li>
-<li>任务理解 <span
-class="math inline">\(u_1\)</span>：<code>The question is asking for a homophone.</code></li>
-</ul></li>
-<li><p>用户提供反馈：</p>
+<h2 id="background">3. Background</h2>
+<p>深度神经网络在图像分类、机器翻译等任务中表现出色，但模型错误可能导致严重后果。因此，快速修正模型错误至关重要。然而，深度神经网络的预测通常依赖于所有模型参数，更新模型以改变单个输入的预测可能会降低其他输入的性能。目前，修正模型错误的方法包括重新训练模型或使用手动缓存，但这些方法要么计算成本高昂，要么对输入变化不够鲁棒。</p>
+<h2 id="research-objective">4. Research Objective</h2>
+<p>本研究旨在设计一种训练方法，使得神经网络模型可以在检测到错误后快速修正特定输入的预测，而不显著影响其他输入的性能。</p>
+<h2 id="method">5. Method</h2>
+<h3 id="神经网络编辑的定义">5.1 神经网络编辑的定义</h3>
+<p>神经网络表示为 <span class="math inline">\(f(x,
+\theta)\)</span>，其中 <span class="math inline">\(x\)</span>
+是输入，<span class="math inline">\(\theta\)</span>
+是参数集。为了修正错误，定义了一个编辑函数： <span
+class="math display">\[
+\theta&#39; = \text{Edit}(\theta, l_e)
+\]</span> 其中 <span class="math inline">\(l_e\)</span>
+是约束条件，用于强制模型对某些输入产生预期输出。</p>
+<p>在分类任务中，定义 <span class="math inline">\(l_e\)</span> 为：
+<span class="math display">\[
+l_e\left(\theta^{\prime}\right)=\max _{y_i} \log p\left(y_i \mid x,
+\theta^{\prime}\right)-\log p\left(y_{\text {ref }} \mid x,
+\theta^{\prime}\right)
+\]</span> 其中 <span class="math inline">\(y_{\text{ref}}\)</span>
+是目标标签，约束条件 <span class="math inline">\(l_e(\theta&#39;) \leq
+0\)</span> 表示模型在目标样本上正确分类。</p>
+<h3 id="梯度下降编辑器">5.2 梯度下降编辑器</h3>
+<p>利用梯度下降实现参数更新： <span class="math display">\[
+\operatorname{Edit}_\alpha^k\left(\theta, l_e, k\right)=
+\begin{cases}\theta, &amp; \text { if } l_e(\theta) \leq 0 \text { or }
+k=0, \\ \operatorname{Edit}_\alpha^{k-1}\left(\theta-\alpha
+\nabla_\theta l_e(\theta), l_e\right), &amp; \text { else }\end{cases}
+\]</span>
+此编辑器可以通过引入如动量（Momentum）、自适应学习率（RMSProp、Adam）等优化技术提高效率和稳定性。</p>
+<h3 id="editable-training-的目标函数">5.3 Editable Training
+的目标函数</h3>
+<p>为了使模型适应编辑器，定义总目标函数： <span class="math display">\[
+\operatorname{Obj}\left(\theta, l_e\right)=L_{\text {base
+}}(\theta)+c_{\text {edit }} \cdot L_{\text {edit }}(\theta)+c_{\text
+{loc }} \cdot L_{\text {loc }}(\theta),
+\]</span> 其中：</p>
 <ul>
 <li><span
-class="math inline">\(fb_1\)</span>：<code>"Similar to" means "with similar meaning."</code></li>
-</ul></li>
-</ol>
-<p><strong>处理</strong>：此时，用户发现 GPT-3
-错误地理解了任务（认为需要找“同音词”），并给出明确的反馈 <span
-class="math inline">\(fb_1\)</span>，该反馈表明问题实际是找“同义词”</p>
-<h4 id="记忆模块更新"><strong>2. 记忆模块更新</strong></h4>
-<ol type="1">
-<li><p>存储用户反馈：</p>
+class="math inline">\(L_{\text{base}}(\theta)\)</span>：主任务损失（如交叉熵）。</li>
+<li><span class="math inline">\(L_{\text{edit}}(\theta) = \max(0,
+l_e(\text{Edit}_\alpha^k(\theta,
+l_e)))\)</span>：鼓励编辑效率和可靠性。</li>
+<li><span class="math inline">\(L_{\text{loc}}(\theta) = \mathbb{E}_{x
+\sim p(x)} D_{\text{KL}}(p(y|x, \theta) \| p(y|x,
+\text{Edit}_\alpha^k(\theta,
+l_e)))\)</span>：通过最小化原始模型和编辑后模型的 KL
+散度，确保局部性。</li>
+</ul>
+<p>超参数 <span class="math inline">\(c_{\text{edit}}\)</span> 和 <span
+class="math inline">\(c_{\text{loc}}\)</span>
+用于平衡编辑性能与主任务表现。</p>
+<h2 id="evaluation">6. Evaluation</h2>
+<h3 id="cifar-10-实验">6.1 CIFAR-10 实验</h3>
 <ul>
-<li>记忆模块 <span class="math inline">\(M\)</span> 中记录以下键值对：
-<span class="math display">\[
-M = \{ x_1 : fb_1 \}
-\]</span> 即，问题 <span
-class="math inline">\(x_1\)</span>（用户输入的问题）作为键，反馈 <span
-class="math inline">\(fb_1\)</span> 作为值存储到记忆中。</li>
-</ul></li>
-</ol>
-<h4 id="第二次用户输入反馈检索"><strong>3.
-第二次用户输入（反馈检索）</strong></h4>
-<ol type="1">
-<li><p>新问题输入：用户问：</p>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs applescript">What <span class="hljs-built_in">word</span> <span class="hljs-keyword">is</span> similar <span class="hljs-keyword">to</span> <span class="hljs-string">&quot;surprised&quot;</span>?<br></code></pre></td></tr></table></figure>
+<li>使用 ResNet-18 模型，比较了不同编辑器（如
+GD、RMSProp）的性能，指标包括
+<strong>drawdown</strong>（编辑前后误差差异）、成功率、和平均编辑步数。</li>
+<li>Editable Training 显著减少了 drawdown（例如，从 <span
+class="math inline">\(1.77\%\)</span> 降到 <span
+class="math inline">\(0.65\%\)</span>）。</li>
+</ul>
+<h3 id="imagenet-实验">6.2 ImageNet 实验</h3>
 <ul>
-<li><strong>输入</strong> <span
-class="math inline">\(x_2\)</span>：<code>What word is similar to "surprised"?</code></li>
-</ul></li>
-<li><p>检索相关反馈：</p>
-<ul>
-<li>检索模块 <span class="math inline">\(M(x_2)\)</span> 在记忆中查找与
-<span class="math inline">\(x_2\)</span> 相似的问题。</li>
-<li>检索到的反馈：<code>"Similar to" means "with similar meaning."</code></li>
-</ul></li>
-</ol>
-<h4 id="动态提示更新"><strong>4. 动态提示更新</strong></h4>
-<ol type="1">
-<li><p>动态拼接提示：将检索到的反馈 <span
-class="math inline">\(fb_1\)</span> 附加到新问题中，构造新的提示： <span
-class="math display">\[
-p_{new} = x_2 + fb_1
-\]</span> 即，新的提示变为：</p>
-<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">What word <span class="hljs-keyword">is</span> <span class="hljs-keyword">similar</span> <span class="hljs-keyword">to</span> &quot;surprised&quot;? <br><span class="hljs-keyword">Similar</span> <span class="hljs-keyword">to</span> means <span class="hljs-keyword">with</span> <span class="hljs-keyword">similar</span> meaning.<br></code></pre></td></tr></table></figure></li>
-<li><p>GPT-3 输出改进：</p>
-<ul>
-<li>使用更新后的提示，GPT-3
-正确回答：<code>The synonym of "surprised" is: amazed.</code></li>
-</ul></li>
-</ol>
-</blockquote>
+<li>在预训练 ResNet-18 和 DenseNet-169
+模型上进行微调，使用额外的可训练层进一步提高编辑性能。</li>
+<li>与 Elastic Weight Consolidation 和 Deep k-Nearest Neighbors
+等基线方法相比，Editable Training 在修正效果和效率上均占优。</li>
+</ul>
+<h2 id="conclusion">7. Conclusion</h2>
+<p>本文提出的 Editable Training
+方法有效地解决了神经网络的错误修复问题，通过元学习技术增强了模型的编辑能力，同时保持整体性能，具有广泛的实际应用前景。</p>
 
                 
               </div>
@@ -473,8 +437,8 @@ p_{new} = x_2 + fb_1
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>论文笔记 - Memory-assisted prompt editing to improve GPT-3 after deployment</div>
-      <div>http://hellochuanyang.github.io/2025/01/26/论文笔记-Memory-assisted-prompt-editing-to-improve-GPT-3-after-deployment/</div>
+      <div>论文笔记 - Editable Neural Networks</div>
+      <div>http://hellochuanyang.github.io/2025/01/26/论文笔记-Editable-Neural-Networks/</div>
     </div>
     <div class="license-meta">
       
@@ -518,18 +482,12 @@ p_{new} = x_2 + fb_1
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/01/26/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Editable-Neural-Networks/" title="论文笔记 - Editable Neural Networks">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">论文笔记 - Editable Neural Networks</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/01/26/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-MQuAKE-Assessing-Knowledge-Editing-in-Language-Models-via-Multi-Hop-Questions/" title="论文笔记 - MQuAKE: Assessing Knowledge Editing in Language Models via Multi-Hop Questions">
-                        <span class="hidden-mobile">论文笔记 - MQuAKE: Assessing Knowledge Editing in Language Models via Multi-Hop Questions</span>
+                      <a href="/2025/01/26/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Memory-assisted-prompt-editing-to-improve-GPT-3-after-deployment/" title="论文笔记 - Memory-assisted prompt editing to improve GPT-3 after deployment">
+                        <span class="hidden-mobile">论文笔记 - Memory-assisted prompt editing to improve GPT-3 after deployment</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
