@@ -19,26 +19,26 @@
   <meta name="author" content="阿阳">
   <meta name="keywords" content="">
   
-    <meta name="description" content="1. Information Title: Transformer-Patcher: One Mistake worth One Neuron Link: T-Patcher Paper Source: International Conference on Learning Representations Date: 2023 2. Summary 本文提出了一个名为 Transformer-P">
+    <meta name="description" content="1. Information Title: MQuAKE: Assessing Knowledge Editing in Language Models via Multi-Hop Questions Link: MeLLo Paper Source: Empirical Methods in Natural Language Processing (EMNLP) Date: 2023 2. Su">
 <meta property="og:type" content="article">
-<meta property="og:title" content="论文笔记 - Transformer-Patcher: One Mistake worth One Neuron">
-<meta property="og:url" content="http://hellochuanyang.github.io/2025/01/25/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Transformer-Patcher-One-Mistake-worth-One-Neuron/index.html">
+<meta property="og:title" content="论文笔记 - MQuAKE: Assessing Knowledge Editing in Language Models via Multi-Hop Questions">
+<meta property="og:url" content="http://hellochuanyang.github.io/2025/01/26/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-MQuAKE-Assessing-Knowledge-Editing-in-Language-Models-via-Multi-Hop-Questions/index.html">
 <meta property="og:site_name" content="Ayang&#39;s home">
-<meta property="og:description" content="1. Information Title: Transformer-Patcher: One Mistake worth One Neuron Link: T-Patcher Paper Source: International Conference on Learning Representations Date: 2023 2. Summary 本文提出了一个名为 Transformer-P">
+<meta property="og:description" content="1. Information Title: MQuAKE: Assessing Knowledge Editing in Language Models via Multi-Hop Questions Link: MeLLo Paper Source: Empirical Methods in Natural Language Processing (EMNLP) Date: 2023 2. Su">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://hellochuanyang.github.io/2025/01/25/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Transformer-Patcher-One-Mistake-worth-One-Neuron/1.png">
-<meta property="article:published_time" content="2025-01-25T12:06:21.000Z">
-<meta property="article:modified_time" content="2025-01-26T09:25:29.890Z">
+<meta property="og:image" content="http://hellochuanyang.github.io/2025/01/26/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-MQuAKE-Assessing-Knowledge-Editing-in-Language-Models-via-Multi-Hop-Questions/1.png">
+<meta property="article:published_time" content="2025-01-26T01:17:22.000Z">
+<meta property="article:modified_time" content="2025-01-26T09:26:46.070Z">
 <meta property="article:author" content="阿阳">
 <meta property="article:tag" content="深度学习">
 <meta property="article:tag" content="NLP">
 <meta property="article:tag" content="知识编辑">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://hellochuanyang.github.io/2025/01/25/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Transformer-Patcher-One-Mistake-worth-One-Neuron/1.png">
+<meta name="twitter:image" content="http://hellochuanyang.github.io/2025/01/26/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-MQuAKE-Assessing-Knowledge-Editing-in-Language-Models-via-Multi-Hop-Questions/1.png">
   
   
   
-  <title>论文笔记 - Transformer-Patcher: One Mistake worth One Neuron - Ayang&#39;s home</title>
+  <title>论文笔记 - MQuAKE: Assessing Knowledge Editing in Language Models via Multi-Hop Questions - Ayang&#39;s home</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -217,7 +217,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="论文笔记 - Transformer-Patcher: One Mistake worth One Neuron"></span>
+            <span id="subtitle" data-typed-text="论文笔记 - MQuAKE: Assessing Knowledge Editing in Language Models via Multi-Hop Questions"></span>
           
         </div>
 
@@ -228,8 +228,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-01-25 20:06" pubdate>
-          2025年1月25日 晚上
+        <time datetime="2025-01-26 09:17" pubdate>
+          2025年1月26日 上午
         </time>
       </span>
     
@@ -240,7 +240,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.4k 字
+          899 字
         
       </span>
     
@@ -251,7 +251,7 @@
         
         
         
-          20 分钟
+          8 分钟
         
       </span>
     
@@ -297,236 +297,82 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">论文笔记 - Transformer-Patcher: One Mistake worth One Neuron</h1>
+            <h1 id="seo-header">论文笔记 - MQuAKE: Assessing Knowledge Editing in Language Models via Multi-Hop Questions</h1>
             
             
               <div class="markdown-body">
                 
                 <h2 id="information">1. Information</h2>
-<p><strong>Title</strong>: Transformer-Patcher: One Mistake worth One
-Neuron<br />
-<strong>Link</strong>: <a
-target="_blank" rel="noopener" href="http://arxiv.org/pdf/2301.09785">T-Patcher Paper</a><br />
-<strong>Source</strong>: International Conference on Learning
-Representations<br />
+<p><strong>Title</strong>: MQuAKE: Assessing Knowledge Editing in
+Language Models via Multi-Hop Questions<br />
+<strong>Link</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2305.14795">MeLLo
+Paper</a><br />
+<strong>Source</strong>: Empirical Methods in Natural Language
+Processing (EMNLP)<br />
 <strong>Date</strong>: 2023</p>
 <h2 id="summary">2. Summary</h2>
-<p>本文提出了一个名为 Transformer-Patcher 的方法，用于对基于 Transformer
-的预训练语言模型 (PLMs) 进行连续的错误修正。该方法通过在 Transformer
-模型的最后一层前馈网络 (FFN)
-中添加少量可训练的神经元（称为“patches”），实现了对模型行为的高效修正。实验表明，Transformer-Patcher
-能够在保持模型整体性能的同时，连续修正多达数千个错误，并且具有良好的泛化能力。该方法在顺序模型编辑
-(Sequential Model Editing, SME) 任务中达到了最先进的性能。</p>
+<p>本文介绍了 MQuAKE (Multi-hop Question Answering for Knowledge
+Editing)，这是一个用于评估大型语言模型 (LLMs)
+知识编辑效果的基准测试，通过多跳问题来评估。作者指出，当前的知识编辑方法虽然能够成功回忆编辑过的事实，但在需要基于编辑事实进行推理的多跳问题上表现糟糕。为此，他们提出了
+MeLLo (Memory-based Editing for Large Language
+Models)，这是一种新颖的方法，通过将编辑过的事实存储在外部记忆中，并迭代地提示语言模型生成一致的答案。MeLLo
+在处理多跳问题上显著优于现有方法，且无需额外训练。</p>
 <h2 id="background">3. Background</h2>
-<p>基于 Transformer 的预训练语言模型 (PLMs) 在自然语言处理 (NLP)
-任务中取得了显著的成果，但仍然会偶尔产生错误输出。在工业环境中部署这些模型时，快速且稳健地修正这些错误对于提升用户体验至关重要。以往的研究主要关注单次模型编辑
-(Model Editing,
-ME)，即修正单个错误。然而，实际应用中模型会不断出现新的错误，且同一错误可能多次出现。因此，本文将
-ME 任务扩展到顺序模型编辑 (SME) 任务，旨在开发更实用的编辑方法。</p>
+<p>随着大型语言模型 (LLMs)
+在各种应用中的广泛部署，其知识迅速过时的问题日益凸显。由于重新训练这些模型的成本过高，因此出现了通过更新模型权重来注入新事实的技术。然而，现有的评估范式主要关注模型是否能够回忆起新注入的事实，而忽略了模型在编辑事实后是否能够处理答案应随之改变的问题。这一评估缺口至关重要，因为它反映了模型整合新知识并进行推理的能力。</p>
 <h2 id="research-objective">4. Research Objective</h2>
-<p>本文的主要目标是提出一种能够连续修正模型错误的方法，以满足实际应用中不断出现错误的场景需求。具体而言，该方法需要满足以下三个属性：</p>
-<ol type="1">
-<li>可靠性
-(Reliability)：修正后的模型能够针对特定输入给出期望的输出。</li>
-<li>泛化性
-(Generality)：修正后的模型能够泛化到等价的输入（例如语义相似的句子）。</li>
-<li>局部性
-(Locality)：修正仅影响特定错误，不影响模型在其他无关输入上的表现。</li>
-</ol>
+<p>本研究的主要目标是开发一个全面的基准测试 MQuAKE，以评估 LLMs
+的知识编辑方法的有效性。具体来说，该基准旨在评估编辑后的模型是否能够正确回答多跳问题，这些问题的答案应基于编辑事实的逻辑后果而改变。此外，作者还旨在提出一种新的方法
+MeLLo，通过利用外部记忆存储编辑过的事实，并确保与编辑知识的一致性，从而有效处理多跳问题。</p>
 <h2 id="method">5. Method</h2>
-<h3 id="transformer-patcher-架构">5.1 Transformer-Patcher 架构</h3>
-<p>Transformer-Patcher 的核心思想是在 Transformer 模型的最后一层 FFN
-中添加少量可训练的神经元 (patches)。这些patches
-仅在遇到特定错误输入时被激活，从而修正模型的输出。具体来说，对于分类任务，添加一个
-patch 即可修正模型；对于自回归生成任务，根据错误生成的 token
-数量添加相应数量的 patches。</p>
-<h3 id="patch-的定义与训练">5.2 Patch 的定义与训练</h3>
-<p align="center">
-<img src="1.png" srcset="/img/loading.gif" lazyload style="zoom:50%;" />
-</p>
-<ul>
-<li><p><strong>Patch 的定义</strong>： Patch 可以被视为 FFN
-层中的一个额外的键值对 (key-value pair)。给定一个查询向量 <span
-class="math inline">\(q\)</span>，标准 FFN 的输出为： <span
-class="math display">\[
-a=\operatorname{Act}\left(q \cdot K+b_k\right)
-\]</span></p>
-<p><span class="math display">\[
-\operatorname{FFN}(q)=a \cdot V+b_v
-\]</span></p>
-<p>其中，Act 是非线性激活函数（如 ReLU 或 GeLU），<span
-class="math inline">\(a\)</span> 是激活值向量，<span
-class="math inline">\(b_k\)</span> 和 <span
-class="math inline">\(b_v\)</span> 是偏置向量。添加一个 patch
-后，新的输出为： <span class="math display">\[
-\left[\begin{array}{ll}
-a, a_p
-\end{array}\right]=\operatorname{Act}\left(q \cdot
-\left[\begin{array}{ll}
-K, \left.\left.k_p\right]+\left[b_k, b_p\right]\right)
-\end{array}\right.\right.
-\]</span> 其中，<span class="math inline">\(k_p\)</span> 是 patch
-的键，<span class="math inline">\(v_p\)</span> 是 patch 的值，<span
-class="math inline">\(b_p\)</span> 是 patch 的偏置，<span
-class="math inline">\(a_p\)</span> 是 patch
-的激活值。通过上述公式，patch 的输出可以表示为： <span
-class="math display">\[
-\operatorname{FFN}_p(q)=\operatorname{FFN}(q)+a_p \cdot v_p
-\]</span></p></li>
-<li><p><strong>训练 Patch</strong>： 为了训练
-patch，作者提出了三种损失函数：</p>
+<h3 id="问题定义">5.1 <strong>问题定义</strong></h3>
 <ol type="1">
-<li><p><strong>激活损失（Activation Loss）</strong>： 为了确保 patch
-在遇到错误输入时被激活，定义激活损失为： <span class="math display">\[
-l_a=\exp \left(-q_e \cdot k_p-b_p\right)
-\]</span> 其中，<span class="math inline">\(q_e\)</span>
-是错误输入的查询向量。该损失函数的目标是最大化 patch 的激活值。</p></li>
-<li><p><strong>编辑损失（Edit Loss）</strong>：
-编辑损失使用任务的原始损失函数，确保修正后的模型输出与目标输出一致：
-<span class="math display">\[
-l_e=L\left(y_e, p_e\right)
-\]</span> 其中，<span class="math inline">\(L(\cdot)\)</span>
-是任务的损失函数，<span class="math inline">\(y_e\)</span>
-是目标输出，<span class="math inline">\(p_e\)</span>
-是修正后模型的输出。</p></li>
-<li><p><strong>记忆损失（Memory Loss）</strong>：</p>
-<p>为了确保 patch 仅对特定错误输入响应，而不影响不相关的输入，需要满足：
-<span class="math display">\[
-\forall i \in \mathbb{I}_{x_e}, \boldsymbol{q}_i \cdot
-\boldsymbol{k}_p+b_p \leq \beta \rightarrow \max
-_i\left(\boldsymbol{q}_i \cdot \boldsymbol{k}_p+b_p\right) \leq \beta
-\]</span> 由此定义记忆损失为： <span class="math display">\[
-l_m=l_{m 1}+l_{m 2}
-\]</span> 其中，<span class="math inline">\(l_{m 1}\)</span> 用于确保
-patch 对记忆中的查询向量不激活。记忆损失 <span
-class="math inline">\(l_{m 1}\)</span> 通过限制 patch
-对之前见过的样本（记忆）的激活值，确保 patch
-不会对这些无关的输入产生响应，从而保证模型在修正特定错误时不会影响其他已学习的内容。：
-<span class="math display">\[
-l_{m 1}=\mathrm{S}\left(M \cdot k_p+b_p-\beta ; k\right)
-\]</span> <span class="math inline">\(l_{m 2}\)</span> 用于进一步强化
-patch 对错误输入的专一性。它通过确保 patch
-对错误输入的激活值大于对记忆中查询向量的激活值，进一步拉开激活值的差距，使得
-patch 能够更准确地识别和响应特定的错误输入： <span
-class="math display">\[
-l_{m 2}=\mathrm{S}\left(\left(M-q_e\right) \cdot k_p+b_p-\gamma ;
-k\right)
-\]</span> 其中，<span class="math inline">\(M\)</span>
-是从之前见过的样本中随机保留的查询向量矩阵，<span
-class="math inline">\(\beta\)</span> 和 <span
-class="math inline">\(\gamma\)</span>
-是超参数，用于控制激活值的阈值，<span class="math inline">\(S\)</span>
-函数接收一个向量 <strong>v</strong> 和一个整数 <span
-class="math inline">\(k\)</span>，输出一个标量,具体定义为： <span
-class="math display">\[
-S(\mathbf{v} ; k)=\operatorname{Avg}[\operatorname{TopK}(\exp
-(\mathbf{v}) ; k)]
-\]</span></p></li>
+<li><p><strong>知识表示</strong></p>
+<ul>
+<li>事实表示为三元组 <span class="math inline">\((s, r,
+o)\)</span>，其中 <span class="math inline">\(s\)</span> 为主体，<span
+class="math inline">\(r\)</span> 为关系，<span
+class="math inline">\(o\)</span> 为客体。</li>
+<li>模板 <span class="math inline">\(t_r(s)\)</span>
+用于将三元组转化为自然语言问题。</li>
+</ul>
+<p><strong>公式</strong>： <span class="math display">\[
+f^*(t_r(s)) = o^*
+\]</span> 其中 <span class="math inline">\(f^*\)</span>
+表示编辑后的模型。</p></li>
+<li><p><strong>多跳问题构造</strong></p></li>
+</ol>
+<p align="center">
+<img src="1.png" srcset="/img/loading.gif" lazyload style="zoom:30%;" />
+</p>
+<p>多跳问题链： <span class="math display">\[
+   C=\left\langle\left(s_1, r_1, o_1\right),\left(s_2, r_2, o_2\right),
+\ldots,\left(s_n, r_n, o_n\right)\right\rangle
+   \]</span> 满足 <span class="math inline">\(o_i = s_{i+1}\)</span></p>
+<ol start="3" type="1">
+<li><p><strong>知识编辑公式</strong></p>
+<ul>
+<li>单个编辑： <span class="math inline">\(e = (s, r, o \to
+o^*)\)</span></li>
+<li>多个编辑： <span class="math inline">\(K(f, E) = f^*\)</span> 其中
+<span class="math inline">\(K\)</span> 为知识编辑函数。</li>
+</ul></li>
+</ol>
+<h3 id="mello-方法">5.2 <strong>Mello 方法</strong></h3>
+<ul>
+<li>提出了新的知识编辑方法 MeLLo，核心思想如下：
+<ol type="1">
+<li><strong>存储已编辑事实</strong>：将编辑事实存储在外部记忆中。</li>
+<li><strong>逐步推理</strong>：将多跳问题分解为子问题，模型逐步回答并检查答案与已编辑事实的一致性。</li>
+<li><strong>自我校验</strong>：模型检查推理步骤中是否违反已编辑知识，必要时用检索到的已编辑事实覆盖冲突答案，从而确保推理结果与已编辑知识一致。</li>
 </ol></li>
-<li><p>最终的 patch 训练损失为： <span class="math display">\[
-l_p=l_e+\alpha l_a+\mu l_m
-\]</span> 其中，<span class="math inline">\(\alpha\)</span> 和 <span
-class="math inline">\(\mu\)</span>
-是超参数，用于平衡不同损失函数的权重。</p></li>
+<li>MeLLo 不需要额外训练，可以应用于大型黑箱 LMs，如 GPT-3.5。</li>
 </ul>
 <h2 id="conclusion">6. Conclusion</h2>
-<p>本文提出了顺序模型编辑 (SME) 任务，并设计了 Transformer-Patcher
-方法来高效地修正 Transformer 模型中的错误。该方法通过在模型的最后一层
-FFN 中添加少量可训练的神经元
-(patches)，实现了对模型行为的快速修正。实验结果表明，Transformer-Patcher
-能够在连续修正多达数千个错误的同时，保持模型的整体性能，并且具有良好的泛化能力。该方法为实际应用中快速修正模型错误提供了一种有效的解决方案。</p>
-<h2 id="notes">7. Notes</h2>
-<h3 id="每次模型编辑增加一个神经元还是多个">7.1
-每次模型编辑增加一个神经元还是多个？</h3>
-<blockquote>
-<p><strong>Transformer-Patcher</strong>
-的设计允许在每次编辑中<strong>添加多个神经元补丁</strong>，具体数量取决于任务类型和模型错误的复杂性。</p>
-<hr />
-<h3 id="分类任务-classification-tasks">1. <strong>分类任务
-(Classification Tasks)</strong></h3>
-<p>对于分类任务，一般情况下<strong>每次编辑只添加一个神经元补丁</strong>：</p>
-<ul>
-<li>每次编辑用于修正单个错误（一个错误输入 <span
-class="math inline">\(x_e\)</span>）。</li>
-<li>补丁由一个键值对 <span class="math inline">\((k_p, v_p)\)</span>
-和偏置 <span class="math inline">\(b_p\)</span> 组成，用于在目标输入
-<span class="math inline">\(q_e\)</span> 上激活并修正模型行为。</li>
-</ul>
-<p>这种方式足够解决分类任务中的单个误分类问题。</p>
-<hr />
-<h3 id="生成任务-autoregressive-generation-tasks">2. <strong>生成任务
-(Autoregressive Generation Tasks)</strong></h3>
-<p>在生成任务中，模型可能会在<strong>多个位置</strong>生成错误的输出，因此需要<strong>为每个错误生成一个独立的补丁</strong>：</p>
-<ul>
-<li>每个错误对应一个查询 <span
-class="math inline">\(q_e\)</span>，因此需要为每个错误添加一个补丁。</li>
-<li>如果一个输入序列中有 <span class="math inline">\(n\)</span>
-个错误，则需要添加 <span class="math inline">\(n\)</span> 个补丁。</li>
-</ul>
-</blockquote>
-<h3 id="每次模型编辑是否都要进行训练">7.2
-每次模型编辑是否都要进行训练？</h3>
-<blockquote>
-<p>根据 <strong>Transformer-Patcher</strong>
-的机制，每进行一次模型编辑（修正一个错误），都需要对新增的补丁进行训练。然而，这种训练只需优化补丁参数（如
-<span class="math inline">\(k_p\)</span>、<span
-class="math inline">\(v_p\)</span>、<span
-class="math inline">\(b_p\)</span>），而不影响原始模型参数，因此训练过程非常高效。</p>
-<p>每次编辑的核心步骤：</p>
-<ul>
-<li><strong>新增补丁</strong>：为每次编辑新增一个神经元补丁，该补丁只与特定错误相关联。</li>
-<li><strong>训练补丁</strong>：新增补丁的参数需要训练，以确保该补丁能修正目标错误，同时不影响其他输入的预测能力。</li>
-</ul>
-<p>是否需要重新训练整个模型？</p>
-<p>不需要重新训练整个模型，只需训练新增补丁的参数。这种方式避免了大规模模型重训练，显著降低了计算成本。实验中显示，<strong>每次训练补丁的耗时</strong>：</p>
-<ul>
-<li>FEVER 数据集：每次编辑耗时约 <strong>7.1 秒</strong>。</li>
-<li>zsRE 数据集：每次编辑耗时约 <strong>18.9 秒</strong>。</li>
-</ul>
-</blockquote>
-<h3 id="编辑时训练数据如何构建">7.3 编辑时训练数据如何构建？</h3>
-<blockquote>
-<p>训练补丁需要以下几类数据，以满足论文提出的三个关键特性（可靠性、通用性和局部性）：</p>
-<h4 id="编辑样本-edit-example"><strong>(1) 编辑样本 (Edit
-Example)</strong></h4>
-<p>用于修正错误的核心样本，表示为 <span class="math inline">\((x_e,
-y_e)\)</span>，其中：</p>
-<ul>
-<li><span
-class="math inline">\(x_e\)</span>：输入数据（模型预测错误的输入）。</li>
-<li><span
-class="math inline">\(y_e\)</span>：目标输出（正确的标签或目标预测）。</li>
-</ul>
-<p><strong>作用</strong>：确保补丁能够修正该错误（满足可靠性）。
-训练损失： <span class="math display">\[
-l_e=L\left(y_e, p_e\right)
-\]</span> 其中，<span class="math inline">\(L\)</span>
-是任务的原始损失函数（如交叉熵损失）。</p>
-<h4 id="等价样本-equivalent-examples"><strong>(2) 等价样本 (Equivalent
-Examples)</strong></h4>
-<p><span class="math inline">\(x_e\)</span>
-的等价变体（如输入重述、同义表述），这些样本的目标输出与 <span
-class="math inline">\(y_e\)</span> 一致。</p>
-<ul>
-<li><strong>生成方法</strong>：可以通过数据增强方法生成等价样本，例如反向翻译
-(back-translation)。</li>
-</ul>
-<p><strong>作用</strong>：提高补丁的通用性，确保补丁不仅能修正 <span
-class="math inline">\(x_e\)</span>，也能修正等价输入。</p>
-<h4 id="无关样本-irrelevant-examples"><strong>(3) 无关样本 (Irrelevant
-Examples)</strong></h4>
-<p>这些样本与目标错误无关，目标是保证补丁不会对这些样本产生不必要的影响。</p>
-<ul>
-<li><strong>来源</strong>：随机从模型的训练集 <span
-class="math inline">\(D_{\text {train }}^{\prime}\)</span> 或测试集
-<span class="math inline">\(D_{\text {test }}\)</span> 中选取。</li>
-<li>为了减少计算开销，论文中保留了一部分历史样本的特征表示（记忆向量）。</li>
-</ul>
-<p><strong>作用</strong>：避免补丁对无关样本激活（满足局部性）。
-训练损失： <span class="math display">\[
-l_{m 1}=S\left(M \cdot k_p+b_p-\beta ; k\right)
-\]</span></p>
-</blockquote>
+<p>本文提出了 MQuAKE，这是一个用于评估 LLMs
+知识编辑方法的基准测试，通过多跳问题来评估。结果表明，现有方法在处理多跳问题时效果不佳，突显了开发更忠实的知识编辑技术的必要性。提出的
+MeLLo
+方法通过利用外部记忆存储编辑过的事实，并通过迭代提示确保一致性，展示了卓越的性能。</p>
 
                 
               </div>
@@ -576,8 +422,8 @@ l_{m 1}=S\left(M \cdot k_p+b_p-\beta ; k\right)
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>论文笔记 - Transformer-Patcher: One Mistake worth One Neuron</div>
-      <div>http://hellochuanyang.github.io/2025/01/25/论文笔记-Transformer-Patcher-One-Mistake-worth-One-Neuron/</div>
+      <div>论文笔记 - MQuAKE: Assessing Knowledge Editing in Language Models via Multi-Hop Questions</div>
+      <div>http://hellochuanyang.github.io/2025/01/26/论文笔记-MQuAKE-Assessing-Knowledge-Editing-in-Language-Models-via-Multi-Hop-Questions/</div>
     </div>
     <div class="license-meta">
       
@@ -589,7 +435,7 @@ l_{m 1}=S\left(M \cdot k_p+b_p-\beta ; k\right)
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年1月25日</div>
+          <div>2025年1月26日</div>
         </div>
       
       
@@ -621,18 +467,12 @@ l_{m 1}=S\left(M \cdot k_p+b_p-\beta ; k\right)
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/01/26/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-MQuAKE-Assessing-Knowledge-Editing-in-Language-Models-via-Multi-Hop-Questions/" title="论文笔记 - MQuAKE: Assessing Knowledge Editing in Language Models via Multi-Hop Questions">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">论文笔记 - MQuAKE: Assessing Knowledge Editing in Language Models via Multi-Hop Questions</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/01/25/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Calibrating-Factual-Knowledge-in-Pretrained-Language-Models/" title="论文笔记 - Calibrating Factual Knowledge in Pretrained Language Models">
-                        <span class="hidden-mobile">论文笔记 - Calibrating Factual Knowledge in Pretrained Language Models</span>
+                      <a href="/2025/01/25/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Transformer-Patcher-One-Mistake-worth-One-Neuron/" title="论文笔记 - Transformer-Patcher: One Mistake worth One Neuron">
+                        <span class="hidden-mobile">论文笔记 - Transformer-Patcher: One Mistake worth One Neuron</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
