@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>论文笔记 - Generative Adversarial Nets</title>
+    <link href="/2025/02/26/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Generative-Adversarial-Nets/"/>
+    <url>/2025/02/26/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Generative-Adversarial-Nets/</url>
+    
+    <content type="html"><![CDATA[<h2 id="information">1. Information</h2><p><strong>Title</strong>: Generative Adversarial Nets<br /><strong>Link</strong>: <ahref="https://papers.nips.cc/paper_files/paper/2014/file/5ca3e9b122f61f8f06494c97b1afccf3-Paper.pdf">GANPaper</a><br /><strong>Source</strong>: Annual Conference on Neural InformationProcessing Systems (NeurIPS)<br /><strong>Date</strong>: 2014</p><h2 id="summary">2. Summary</h2><p>本文提出了一种新的生成模型训练框架——生成对抗网络（GAN），通过对抗过程同时训练两个模型：</p><ol type="1"><li><strong>生成器（G）</strong>：学习数据分布，生成逼真样本以欺骗判别器；</li><li><strong>判别器（D）</strong>：区分真实数据与生成数据。核心贡献包括：</li></ol><ul><li>提出极小极大博弈目标函数，无需马尔可夫链或近似推断；</li><li>理论证明全局最优解为生成分布等于真实数据分布（<spanclass="math inline">\(p_g=p_{\text {data}}\)</span>），此时判别器输出概率恒为1/2；</li><li>实验验证框架有效性，生成样本质量与现有模型相当，且计算效率更高。</li></ul><h2 id="background">3. Background</h2><p>深度学习的主要成功集中在判别模型上，这些模型将高维的感知输入映射到类标签。然而，深度生成模型的影响较小，主要是因为在最大似然估计等策略中存在很多计算难题。为了解决这些问题，本文提出了生成对抗网络（GAN），它通过对抗过程训练生成模型，避免了传统生成模型的复杂性。</p><h2 id="research-objective">4. Research Objective</h2><ul><li><strong>核心目标</strong>：设计一种高效生成模型框架，避免复杂概率计算，直接通过对抗博弈逼近真实数据分布。</li><li><strong>关键要求</strong>：<ul><li>生成器与判别器均为可微函数（如多层感知机）；</li><li>训练过程仅依赖反向传播，无需近似推断。</li></ul></li></ul><h2 id="method">5. Method</h2><h3 id="对抗框架">5.1 对抗框架</h3><ul><li><strong>生成器（G）</strong>：输入噪声 <span class="math inline">\(z\sim p_z(z)\)</span>，输出生成样本 <spanclass="math inline">\(G(z)\)</span>；</li><li><strong>判别器（D）</strong>：输入样本 <spanclass="math inline">\(x\)</span>，输出 <span class="math inline">\(D(x)\in[0,1]\)</span> 表示其为真实数据的概率。</li></ul><h3 id="目标函数">5.2 目标函数</h3><p><strong>极小极大博弈</strong>： <span class="math display">\[\min _G \max _D V(D, G)=\mathbb{E}_{x \sim p_{\text {data }}}[\logD(x)]+\mathbb{E}_{z \sim p_z}[\log (1-D(G(z)))]\]</span></p><ul><li><strong>判别器优化</strong>：固定 G，最大化 <spanclass="math inline">\(V(D, G)\)</span>，即区分真实与生成样本；</li><li><strong>生成器优化</strong>：固定 D，最小化 <spanclass="math inline">\(V(D, G)\)</span>，即生成样本欺骗D。</li></ul><h3 id="训练策略">5.3 训练策略</h3><ul><li><strong>交替训练</strong>：每轮先更新判别器 k 次，再更新生成器 1次，防止过拟合；</li><li><strong>梯度修正</strong>：早期训练中，将生成器目标从 <spanclass="math inline">\(\min \log (1-D(G(z)))\)</span> 改为 <spanclass="math inline">\(\max \logD(G(z))\)</span>，缓解梯度消失问题。</li></ul><p>在训练初期，生成器 <em>G</em>的性能通常较差，生成的样本与真实样本差异较大。此时，判别器 <em>D</em>可以很容易地区分生成样本和真实样本，因此 <spanclass="math inline">\(D(G(z))\)</span> 的值会非常接近 0（表示 <em>D</em>认为生成样本是假的）。此时，生成器 <em>G</em> 的目标函数为： <spanclass="math display">\[\log (1-D(G(z)))\]</span> 由于 <span class="math inline">\(D(G(z)) \approx0\)</span>，因此 <span class="math inline">\(1-D(G(z)) \approx1\)</span>，进而： <span class="math display">\[\log (1-D(G(z))) \approx \log (1)=0\]</span> 这意味着生成器 <em>G</em> 的目标函数在训练初期接近于0，导致梯度非常小，甚至接近于零。这种情况下，生成器很难通过梯度下降进行有效的更新，从而出现梯度消失问题。</p><p>为了解决这一问题，论文提出将生成器 <em>G</em> 的目标改为最大化 <spanclass="math inline">\(\logD(G(z))\)</span>。这种目标函数在数学上等价于原始目标函数，但在训练初期可以提供更强的梯度。具体来说：</p><p>当 <span class="math inline">\(D(G(z)) \approx 0\)</span> 时，<spanclass="math inline">\(\log D(G(z))\)</span> 的梯度为： <spanclass="math display">\[\nabla_{\theta_g} \log D(G(z))=\frac{1}{D(G(z))} \cdot \nabla_{\theta_g}D(G(z))\]</span> 此时，分母 <em>D</em>(<em>G</em>(<em>z</em>))非常小，导致整体梯度非常大，从而为生成器 <em>G</em>提供了更强的更新信号。</p><h3 id="理论分析">5.4 理论分析</h3><p>在非参数极限下，假设 <em>G</em> 和 <em>D</em>具有足够的容量，可以证明：</p><ol type="1"><li><p><strong>最优判别器</strong>：对于固定的 <em>G</em>，最优判别器<span class="math inline">\(D_G^*(x)\)</span> 为： <spanclass="math display">\[D_G^*(x)=\frac{p_{\text {data }}(x)}{p_{\text {data }}(x)+p_g(x)}\]</span> 其中 <span class="math inline">\(p_g(x)\)</span>是生成模型的分布。</p></li><li><p><strong>全局最优性</strong>：当 <spanclass="math inline">\(p_g=p_{\text {data }}\)</span>时，博弈的全局最小值 <span class="math inline">\(C(G)=-\log4\)</span>被达到，此时 <spanclass="math inline">\(D_G^*(x)=0.5\)</span>。</p></li></ol><h2 id="evaluation">6. Evaluation</h2><p>为了评估生成对抗网络的性能，作者在多个数据集上进行了实验，包括MNIST、Toronto Face Database (TFD) 和 CIFAR-10。通过使用高斯 Parzen窗口方法对生成样本进行似然估计，结果表明生成对抗网络在生成样本的质量上表现出色，且在生成的样本上具有竞争力。</p><h2 id="conclusion">7. Conclusion</h2><p>生成对抗网络（GANs）通过对抗训练的方式，成功地避免了传统生成模型中复杂的概率计算和推理过程，仅通过反向传播即可训练生成模型。实验结果表明，GANs在生成高质量样本方面具有显著潜力。然而，GANs也存在一些缺点，例如没有显式的概率分布表示，且在训练过程中需要保持生成器和判别器的同步。未来的研究方向包括扩展到条件生成模型、学习近似推理、半监督学习以及提高训练效率等。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>论文阅读</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>CV</tag>
+      
+      <tag>AIGC</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>论文笔记 - MIKE: A New Benchmark for Fine-grained Multimodal Entity Knowledge Editing Editing</title>
     <link href="/2025/02/12/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-MIKE-A-New-Benchmark-for-Fine-grained-Multimodal-Entity-Knowledge-Editing/"/>
     <url>/2025/02/12/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-MIKE-A-New-Benchmark-for-Fine-grained-Multimodal-Entity-Knowledge-Editing/</url>
