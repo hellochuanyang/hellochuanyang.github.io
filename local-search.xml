@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>论文笔记 - Masked Autoencoders Are Scalable Vision Learners</title>
+    <link href="/2025/03/02/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Masked-Autoencoders-Are-Scalable-Vision-Learners/"/>
+    <url>/2025/03/02/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Masked-Autoencoders-Are-Scalable-Vision-Learners/</url>
+    
+    <content type="html"><![CDATA[<h2 id="information">1. Information</h2><p><strong>Title</strong>: Masked Autoencoders Are Scalable VisionLearners<br /><strong>Link</strong>: <a href="https://arxiv.org/pdf/2111.06377">MAEPaper</a><br /><strong>Source</strong>: Conference on Computer Vision and PatternRecognition (CVPR)<br /><strong>Date</strong>: 2022</p><h2 id="summary">2. Summary</h2><p>该论文提出了一种简单但有效的自监督学习方法——<strong>MaskedAutoencoders (MAE)</strong>，用于视觉表示学习。其核心思想是：</p><ol type="1"><li><strong>随机屏蔽输入图像的一部分，并仅基于可见部分进行重建</strong>。</li><li>采用非对称的编码器-解码器架构：<ul><li>编码器（encoder）仅处理未屏蔽的可见部分，不使用mask token。</li><li>解码器（decoder）使用轻量级设计，从编码表示和masktokens恢复原始图像。</li></ul></li><li><strong>高屏蔽率（75%）提高训练效率和任务难度</strong>，促进模型学习有意义的视觉特征。</li></ol><p>该方法实现了：</p><ul><li><strong>高效的训练（加速3倍以上）</strong>，同时提高了模型的泛化能力。</li><li><strong>在ImageNet-1K上，ViT-Huge 87.8%最高精度</strong>，超越其他仅使用ImageNet-1K数据的方法。</li><li><strong>在多个下游任务（目标检测、语义分割）中优于监督预训练</strong>，表现出良好的扩展性。</li></ul><h2 id="background">3. Background</h2><p>深度学习模型对数据的需求不断增长，NLP领域已广泛采用<strong>自监督学习（SSL）</strong>，例如：</p><ul><li><strong>GPT系列</strong>（基于自回归建模）</li><li><strong>BERT</strong>（基于Masked Language Modeling）</li></ul><p>然而，计算机视觉中的自监督学习进展相对滞后，原因包括：</p><ol type="1"><li><strong>架构差异</strong>：早期视觉模型主要是CNN，不适合直接引入masktokens或位置编码。而ViT（Vision Transformer）的出现消除了这一障碍。</li><li>信息密度差异：<ul><li>NLP中的文本高度语义化，预测缺失单词可促进模型理解句子结构。</li><li>视觉数据存在空间冗余，许多缺失部分可通过邻近区域推断，降低了任务难度。</li></ul></li><li>解码器的角色不同：<ul><li>NLP解码器生成语义丰富的词。</li><li>视觉解码器重建像素，导致学习到的特征更偏向低级信息。</li></ul></li></ol><h2 id="research-objective">4. Research Objective</h2><ul><li>探索Masked Autoencoders在计算机视觉中的可行性和扩展性。</li><li>设计高效的自监督学习方法，使其适用于大规模视觉任务。</li></ul><h2 id="method">5. Method</h2><p align="center"><img src="1.png" style="zoom:60%;" /></p><h3 id="输入图像的-masking-策略">5.1 <strong>输入图像的 Masking策略</strong></h3><ul><li>将图像划分为固定大小（如16×16）的 patches（与 ViT 一致）。</li><li>随机屏蔽高比例的patches（默认75%），保证剩余部分的信息密度足够高，以促进学习。</li></ul><h3 id="非对称编码器-解码器架构">5.2<strong>非对称编码器-解码器架构</strong></h3><ul><li>编码器（Encoder）：<ul><li>仅处理未被 mask 的 patches（不同于 BERT，它不会插入 masktokens）。</li><li>采用标准 ViT，但计算量仅为完整 ViT 的 25%。</li></ul></li><li>解码器（Decoder）：<ul><li>仅在预训练阶段使用，采用轻量级设计。</li><li>输入包括编码器输出的 visible patches + mask tokens。</li><li>采用 Transformer 架构，最终输出重建的像素值。</li></ul></li></ul><h3 id="重建目标reconstruction-target">5.3<strong>重建目标（Reconstruction Target）</strong></h3><ul><li><p>直接在像素空间（pixel space）计算均方误差（MSE）损失： <spanclass="math display">\[\mathcal{L}=\frac{1}{|\mathcal{M}|} \sum_{i \in\mathcal{M}}\left\|x_i-\hat{x}_i\right\|^2\]</span> 其中：</p><ul><li><span class="math inline">\(\mathcal{M}\)</span> 为被 mask 的 patch集合。</li><li><span class="math inline">\(x_i\)</span> 为原始图像 patch。</li><li><span class="math inline">\(\hat{x}_i\)</span> 为模型重建的patch。</li></ul></li></ul><p>该设计类似于传统去噪自编码器（Denoising Autoencoder,DAE），但更高效。</p><h2 id="conclusion">6. Conclusion</h2><p>MAE作为一种简单的自监督学习方法，在计算机视觉领域展现了与自然语言处理中BERT 类似的可扩展性。通过高比例掩码策略和非对称编码器-解码器设计，MAE能够高效地学习视觉表示，并在多种下游任务中超越监督预训练方法。此外，MAE的像素级重建方法比基于标记的方法更简单、更高效，且不依赖于额外的预训练步骤。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>论文阅读</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>深度学习</tag>
+      
+      <tag>CV</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>论文笔记 - Generative Adversarial Nets</title>
     <link href="/2025/02/26/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Generative-Adversarial-Nets/"/>
     <url>/2025/02/26/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Generative-Adversarial-Nets/</url>

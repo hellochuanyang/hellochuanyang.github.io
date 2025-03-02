@@ -19,23 +19,25 @@
   <meta name="author" content="阿阳">
   <meta name="keywords" content="">
   
-    <meta name="description" content="1. Information Title: Generative Adversarial Nets Link: GAN Paper Source: Annual Conference on Neural Information Processing Systems (NeurIPS) Date: 2014 2. Summary 本文提出了一种新的生成模型训练框架——生成对抗网络（GAN），通过对抗">
+    <meta name="description" content="1. Information Title: Masked Autoencoders Are Scalable Vision Learners Link: MAE Paper Source: Conference on Computer Vision and Pattern Recognition (CVPR) Date: 2022 2. Summary 该论文提出了一种简单但有效的自监督学习方法—">
 <meta property="og:type" content="article">
-<meta property="og:title" content="论文笔记 - Generative Adversarial Nets">
-<meta property="og:url" content="http://hellochuanyang.github.io/2025/02/26/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Generative-Adversarial-Nets/index.html">
+<meta property="og:title" content="论文笔记 - Masked Autoencoders Are Scalable Vision Learners">
+<meta property="og:url" content="http://hellochuanyang.github.io/2025/03/02/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Masked-Autoencoders-Are-Scalable-Vision-Learners/index.html">
 <meta property="og:site_name" content="Ayang&#39;s home">
-<meta property="og:description" content="1. Information Title: Generative Adversarial Nets Link: GAN Paper Source: Annual Conference on Neural Information Processing Systems (NeurIPS) Date: 2014 2. Summary 本文提出了一种新的生成模型训练框架——生成对抗网络（GAN），通过对抗">
+<meta property="og:description" content="1. Information Title: Masked Autoencoders Are Scalable Vision Learners Link: MAE Paper Source: Conference on Computer Vision and Pattern Recognition (CVPR) Date: 2022 2. Summary 该论文提出了一种简单但有效的自监督学习方法—">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-02-26T21:06:25.000Z">
-<meta property="article:modified_time" content="2025-02-27T05:08:36.180Z">
+<meta property="og:image" content="http://hellochuanyang.github.io/2025/03/02/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Masked-Autoencoders-Are-Scalable-Vision-Learners/1.png">
+<meta property="article:published_time" content="2025-03-02T05:17:00.000Z">
+<meta property="article:modified_time" content="2025-03-02T13:18:27.495Z">
 <meta property="article:author" content="阿阳">
+<meta property="article:tag" content="深度学习">
 <meta property="article:tag" content="CV">
-<meta property="article:tag" content="AIGC">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://hellochuanyang.github.io/2025/03/02/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Masked-Autoencoders-Are-Scalable-Vision-Learners/1.png">
   
   
   
-  <title>论文笔记 - Generative Adversarial Nets - Ayang&#39;s home</title>
+  <title>论文笔记 - Masked Autoencoders Are Scalable Vision Learners - Ayang&#39;s home</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -214,7 +216,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="论文笔记 - Generative Adversarial Nets"></span>
+            <span id="subtitle" data-typed-text="论文笔记 - Masked Autoencoders Are Scalable Vision Learners"></span>
           
         </div>
 
@@ -225,8 +227,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-02-27 05:06" pubdate>
-          2025年2月27日 凌晨
+        <time datetime="2025-03-02 13:17" pubdate>
+          2025年3月2日 下午
         </time>
       </span>
     
@@ -237,7 +239,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.3k 字
+          884 字
         
       </span>
     
@@ -248,7 +250,7 @@
         
         
         
-          11 分钟
+          8 分钟
         
       </span>
     
@@ -294,122 +296,116 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">论文笔记 - Generative Adversarial Nets</h1>
+            <h1 id="seo-header">论文笔记 - Masked Autoencoders Are Scalable Vision Learners</h1>
             
             
               <div class="markdown-body">
                 
                 <h2 id="information">1. Information</h2>
-<p><strong>Title</strong>: Generative Adversarial Nets<br />
-<strong>Link</strong>: <a
-target="_blank" rel="noopener" href="https://papers.nips.cc/paper_files/paper/2014/file/5ca3e9b122f61f8f06494c97b1afccf3-Paper.pdf">GAN
+<p><strong>Title</strong>: Masked Autoencoders Are Scalable Vision
+Learners<br />
+<strong>Link</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2111.06377">MAE
 Paper</a><br />
-<strong>Source</strong>: Annual Conference on Neural Information
-Processing Systems (NeurIPS)<br />
-<strong>Date</strong>: 2014</p>
+<strong>Source</strong>: Conference on Computer Vision and Pattern
+Recognition (CVPR)<br />
+<strong>Date</strong>: 2022</p>
 <h2 id="summary">2. Summary</h2>
-<p>本文提出了一种新的生成模型训练框架——生成对抗网络（GAN），通过对抗过程同时训练两个模型：</p>
+<p>该论文提出了一种简单但有效的自监督学习方法——<strong>Masked
+Autoencoders (MAE)</strong>，用于视觉表示学习。其核心思想是：</p>
 <ol type="1">
-<li><strong>生成器（G）</strong>：学习数据分布，生成逼真样本以欺骗判别器；</li>
-<li><strong>判别器（D）</strong>：区分真实数据与生成数据。
-核心贡献包括：</li>
-</ol>
+<li><strong>随机屏蔽输入图像的一部分，并仅基于可见部分进行重建</strong>。</li>
+<li>采用非对称的编码器-解码器架构：
 <ul>
-<li>提出极小极大博弈目标函数，无需马尔可夫链或近似推断；</li>
-<li>理论证明全局最优解为生成分布等于真实数据分布（<span
-class="math inline">\(p_g=p_{\text {data
-}}\)</span>），此时判别器输出概率恒为1/2；</li>
-<li>实验验证框架有效性，生成样本质量与现有模型相当，且计算效率更高。</li>
+<li>编码器（encoder）仅处理未屏蔽的可见部分，不使用mask token。</li>
+<li>解码器（decoder）使用轻量级设计，从编码表示和mask
+tokens恢复原始图像。</li>
+</ul></li>
+<li><strong>高屏蔽率（75%）提高训练效率和任务难度</strong>，促进模型学习有意义的视觉特征。</li>
+</ol>
+<p>该方法实现了：</p>
+<ul>
+<li><strong>高效的训练（加速3倍以上）</strong>，同时提高了模型的泛化能力。</li>
+<li><strong>在ImageNet-1K上，ViT-Huge 87.8%
+最高精度</strong>，超越其他仅使用ImageNet-1K数据的方法。</li>
+<li><strong>在多个下游任务（目标检测、语义分割）中优于监督预训练</strong>，表现出良好的扩展性。</li>
 </ul>
 <h2 id="background">3. Background</h2>
-<p>深度学习的主要成功集中在判别模型上，这些模型将高维的感知输入映射到类标签。然而，深度生成模型的影响较小，主要是因为在最大似然估计等策略中存在很多计算难题。为了解决这些问题，本文提出了生成对抗网络（GAN），它通过对抗过程训练生成模型，避免了传统生成模型的复杂性。</p>
+<p>深度学习模型对数据的需求不断增长，NLP领域已广泛采用<strong>自监督学习（SSL）</strong>，例如：</p>
+<ul>
+<li><strong>GPT系列</strong>（基于自回归建模）</li>
+<li><strong>BERT</strong>（基于Masked Language Modeling）</li>
+</ul>
+<p>然而，计算机视觉中的自监督学习进展相对滞后，原因包括：</p>
+<ol type="1">
+<li><strong>架构差异</strong>：早期视觉模型主要是CNN，不适合直接引入mask
+tokens或位置编码。而ViT（Vision Transformer）的出现消除了这一障碍。</li>
+<li>信息密度差异：
+<ul>
+<li>NLP中的文本高度语义化，预测缺失单词可促进模型理解句子结构。</li>
+<li>视觉数据存在空间冗余，许多缺失部分可通过邻近区域推断，降低了任务难度。</li>
+</ul></li>
+<li>解码器的角色不同：
+<ul>
+<li>NLP解码器生成语义丰富的词。</li>
+<li>视觉解码器重建像素，导致学习到的特征更偏向低级信息。</li>
+</ul></li>
+</ol>
 <h2 id="research-objective">4. Research Objective</h2>
 <ul>
-<li><strong>核心目标</strong>：设计一种高效生成模型框架，避免复杂概率计算，直接通过对抗博弈逼近真实数据分布。</li>
-<li><strong>关键要求</strong>：
-<ul>
-<li>生成器与判别器均为可微函数（如多层感知机）；</li>
-<li>训练过程仅依赖反向传播，无需近似推断。</li>
-</ul></li>
+<li>探索Masked Autoencoders在计算机视觉中的可行性和扩展性。</li>
+<li>设计高效的自监督学习方法，使其适用于大规模视觉任务。</li>
 </ul>
 <h2 id="method">5. Method</h2>
-<h3 id="对抗框架">5.1 对抗框架</h3>
+<p align="center">
+<img src="1.png" srcset="/img/loading.gif" lazyload style="zoom:60%;" />
+</p>
+<h3 id="输入图像的-masking-策略">5.1 <strong>输入图像的 Masking
+策略</strong></h3>
 <ul>
-<li><strong>生成器（G）</strong>：输入噪声 <span class="math inline">\(z
-\sim p_z(z)\)</span>，输出生成样本 <span
-class="math inline">\(G(z)\)</span>；</li>
-<li><strong>判别器（D）</strong>：输入样本 <span
-class="math inline">\(x\)</span>，输出 <span class="math inline">\(D(x)
-\in[0,1]\)</span> 表示其为真实数据的概率。</li>
+<li>将图像划分为固定大小（如16×16）的 patches（与 ViT 一致）。</li>
+<li>随机屏蔽高比例的
+patches（默认75%），保证剩余部分的信息密度足够高，以促进学习。</li>
 </ul>
-<h3 id="目标函数">5.2 目标函数</h3>
-<p><strong>极小极大博弈</strong>： <span class="math display">\[
-\min _G \max _D V(D, G)=\mathbb{E}_{x \sim p_{\text {data }}}[\log
-D(x)]+\mathbb{E}_{z \sim p_z}[\log (1-D(G(z)))]
-\]</span></p>
+<h3 id="非对称编码器-解码器架构">5.2
+<strong>非对称编码器-解码器架构</strong></h3>
 <ul>
-<li><strong>判别器优化</strong>：固定 G，最大化 <span
-class="math inline">\(V(D, G)\)</span>，即区分真实与生成样本；</li>
-<li><strong>生成器优化</strong>：固定 D，最小化 <span
-class="math inline">\(V(D, G)\)</span>，即生成样本欺骗D。</li>
-</ul>
-<h3 id="训练策略">5.3 训练策略</h3>
+<li>编码器（Encoder）：
 <ul>
-<li><strong>交替训练</strong>：每轮先更新判别器 k 次，再更新生成器 1
-次，防止过拟合；</li>
-<li><strong>梯度修正</strong>：早期训练中，将生成器目标从 <span
-class="math inline">\(\min \log (1-D(G(z)))\)</span> 改为 <span
-class="math inline">\(\max \log
-D(G(z))\)</span>，缓解梯度消失问题。</li>
+<li>仅处理未被 mask 的 patches（不同于 BERT，它不会插入 mask
+tokens）。</li>
+<li>采用标准 ViT，但计算量仅为完整 ViT 的 25%。</li>
+</ul></li>
+<li>解码器（Decoder）：
+<ul>
+<li>仅在预训练阶段使用，采用轻量级设计。</li>
+<li>输入包括编码器输出的 visible patches + mask tokens。</li>
+<li>采用 Transformer 架构，最终输出重建的像素值。</li>
+</ul></li>
 </ul>
-<p>在训练初期，生成器 <em>G</em>
-的性能通常较差，生成的样本与真实样本差异较大。此时，判别器 <em>D</em>
-可以很容易地区分生成样本和真实样本，因此 <span
-class="math inline">\(D(G(z))\)</span> 的值会非常接近 0（表示 <em>D</em>
-认为生成样本是假的）。此时，生成器 <em>G</em> 的目标函数为： <span
+<h3 id="重建目标reconstruction-target">5.3
+<strong>重建目标（Reconstruction Target）</strong></h3>
+<ul>
+<li><p>直接在像素空间（pixel space）计算均方误差（MSE）损失： <span
 class="math display">\[
-\log (1-D(G(z)))
-\]</span> 由于 <span class="math inline">\(D(G(z)) \approx
-0\)</span>，因此 <span class="math inline">\(1-D(G(z)) \approx
-1\)</span>，进而： <span class="math display">\[
-\log (1-D(G(z))) \approx \log (1)=0
-\]</span> 这意味着生成器 <em>G</em> 的目标函数在训练初期接近于
-0，导致梯度非常小，甚至接近于零。这种情况下，生成器很难通过梯度下降进行有效的更新，从而出现梯度消失问题。</p>
-<p>为了解决这一问题，论文提出将生成器 <em>G</em> 的目标改为最大化 <span
-class="math inline">\(\log
-D(G(z))\)</span>。这种目标函数在数学上等价于原始目标函数，但在训练初期可以提供更强的梯度。具体来说：</p>
-<p>当 <span class="math inline">\(D(G(z)) \approx 0\)</span> 时，<span
-class="math inline">\(\log D(G(z))\)</span> 的梯度为： <span
-class="math display">\[
-\nabla_{\theta_g} \log D(G(z))=\frac{1}{D(G(z))} \cdot \nabla_{\theta_g}
-D(G(z))
-\]</span> 此时，分母 <em>D</em>(<em>G</em>(<em>z</em>))
-非常小，导致整体梯度非常大，从而为生成器 <em>G</em>
-提供了更强的更新信号。</p>
-<h3 id="理论分析">5.4 理论分析</h3>
-<p>在非参数极限下，假设 <em>G</em> 和 <em>D</em>
-具有足够的容量，可以证明：</p>
-<ol type="1">
-<li><p><strong>最优判别器</strong>：对于固定的 <em>G</em>，最优判别器
-<span class="math inline">\(D_G^*(x)\)</span> 为： <span
-class="math display">\[
-D_G^*(x)=\frac{p_{\text {data }}(x)}{p_{\text {data }}(x)+p_g(x)}
-\]</span> 其中 <span class="math inline">\(p_g(x)\)</span>
-是生成模型的分布。</p></li>
-<li><p><strong>全局最优性</strong>：当 <span
-class="math inline">\(p_g=p_{\text {data }}\)</span>
-时，博弈的全局最小值 <span class="math inline">\(C(G)=-\log
-4\)</span>被达到，此时 <span
-class="math inline">\(D_G^*(x)=0.5\)</span>。</p></li>
-</ol>
-<h2 id="evaluation">6. Evaluation</h2>
-<p>为了评估生成对抗网络的性能，作者在多个数据集上进行了实验，包括
-MNIST、Toronto Face Database (TFD) 和 CIFAR-10。通过使用高斯 Parzen
-窗口方法对生成样本进行似然估计，结果表明生成对抗网络在生成样本的质量上表现出色，且在生成的样本上具有竞争力。</p>
-<h2 id="conclusion">7. Conclusion</h2>
-<p>生成对抗网络（GANs）通过对抗训练的方式，成功地避免了传统生成模型中复杂的概率计算和推理过程，仅通过反向传播即可训练生成模型。实验结果表明，GANs
-在生成高质量样本方面具有显著潜力。然而，GANs
-也存在一些缺点，例如没有显式的概率分布表示，且在训练过程中需要保持生成器和判别器的同步。未来的研究方向包括扩展到条件生成模型、学习近似推理、半监督学习以及提高训练效率等。</p>
+\mathcal{L}=\frac{1}{|\mathcal{M}|} \sum_{i \in
+\mathcal{M}}\left\|x_i-\hat{x}_i\right\|^2
+\]</span> 其中：</p>
+<ul>
+<li><span class="math inline">\(\mathcal{M}\)</span> 为被 mask 的 patch
+集合。</li>
+<li><span class="math inline">\(x_i\)</span> 为原始图像 patch。</li>
+<li><span class="math inline">\(\hat{x}_i\)</span> 为模型重建的
+patch。</li>
+</ul></li>
+</ul>
+<p>该设计类似于传统去噪自编码器（Denoising Autoencoder,
+DAE），但更高效。</p>
+<h2 id="conclusion">6. Conclusion</h2>
+<p>MAE
+作为一种简单的自监督学习方法，在计算机视觉领域展现了与自然语言处理中
+BERT 类似的可扩展性。通过高比例掩码策略和非对称编码器-解码器设计，MAE
+能够高效地学习视觉表示，并在多种下游任务中超越监督预训练方法。此外，MAE
+的像素级重建方法比基于标记的方法更简单、更高效，且不依赖于额外的预训练步骤。</p>
 
                 
               </div>
@@ -443,9 +439,9 @@ MNIST、Toronto Face Database (TFD) 和 CIFAR-10。通过使用高斯 Parzen
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/CV/" class="print-no-link">#CV</a>
+        <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" class="print-no-link">#深度学习</a>
       
-        <a href="/tags/AIGC/" class="print-no-link">#AIGC</a>
+        <a href="/tags/CV/" class="print-no-link">#CV</a>
       
     </div>
   
@@ -457,8 +453,8 @@ MNIST、Toronto Face Database (TFD) 和 CIFAR-10。通过使用高斯 Parzen
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>论文笔记 - Generative Adversarial Nets</div>
-      <div>http://hellochuanyang.github.io/2025/02/26/论文笔记-Generative-Adversarial-Nets/</div>
+      <div>论文笔记 - Masked Autoencoders Are Scalable Vision Learners</div>
+      <div>http://hellochuanyang.github.io/2025/03/02/论文笔记-Masked-Autoencoders-Are-Scalable-Vision-Learners/</div>
     </div>
     <div class="license-meta">
       
@@ -470,7 +466,7 @@ MNIST、Toronto Face Database (TFD) 和 CIFAR-10。通过使用高斯 Parzen
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年2月27日</div>
+          <div>2025年3月2日</div>
         </div>
       
       
@@ -502,18 +498,12 @@ MNIST、Toronto Face Database (TFD) 和 CIFAR-10。通过使用高斯 Parzen
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/03/02/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Masked-Autoencoders-Are-Scalable-Vision-Learners/" title="论文笔记 - Masked Autoencoders Are Scalable Vision Learners">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">论文笔记 - Masked Autoencoders Are Scalable Vision Learners</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/02/12/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-MIKE-A-New-Benchmark-for-Fine-grained-Multimodal-Entity-Knowledge-Editing/" title="论文笔记 - MIKE: A New Benchmark for Fine-grained Multimodal Entity Knowledge Editing Editing">
-                        <span class="hidden-mobile">论文笔记 - MIKE: A New Benchmark for Fine-grained Multimodal Entity Knowledge Editing Editing</span>
+                      <a href="/2025/02/26/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Generative-Adversarial-Nets/" title="论文笔记 - Generative Adversarial Nets">
+                        <span class="hidden-mobile">论文笔记 - Generative Adversarial Nets</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
