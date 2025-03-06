@@ -4,6 +4,37 @@
   
   
   <entry>
+    <title>论文笔记 - BLIP Bootstrapping Language-Image Pre-training for Unified Vision-Language Understanding and Generation</title>
+    <link href="/2025/03/05/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-BLIP-Bootstrapping-Language-Image-Pre-training-for-Unified-Vision-Language-Understanding-and-Generation/"/>
+    <url>/2025/03/05/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-BLIP-Bootstrapping-Language-Image-Pre-training-for-Unified-Vision-Language-Understanding-and-Generation/</url>
+    
+    <content type="html"><![CDATA[<h2 id="information">1. Information</h2><p><strong>Title</strong>: BLIP: Bootstrapping Language-ImagePre-training for Unified Vision-Language Understanding andGeneration<br /><strong>Link</strong>: <a href="https://arxiv.org/pdf/2201.12086">BLIPPaper</a><br /><strong>Source</strong>: International Conference on Machine Learning(ICML)<br /><strong>Date</strong>: 2022</p><h2 id="summary">2. Summary</h2><p>BLIP提出了一种统一的视觉-语言预训练框架，解决了现有方法的两大局限性：</p><ol type="1"><li><strong>模型局限性</strong>：现有模型要么仅擅长理解任务（如检索），要么仅擅长生成任务（如图像描述），而BLIP通过<strong>多模态混合编码器-解码器（MED）</strong>实现了多任务统一建模。</li><li><strong>数据局限性</strong>：传统方法依赖具有噪声网络数据，BLIP提出<strong>Captioning andFiltering（CapFilt）</strong>方法，通过生成合成标题并过滤噪声数据，显著提升了数据质量。实验表明，BLIP 在图像-文本检索（+2.7% Recall@1）、图像描述生成（+2.8%CIDEr）和视觉问答（+1.6% VQA 分数）等任务中达到SOTA，并在零样本视频-语言任务中展现了强泛化能力。</li></ol><h2 id="background">3. Background</h2><ul><li><p>近年来，VLP 取得了显著进展，但现有方法存在两个主要局限性：</p><ul><li><strong>模型层面</strong>: 仅使用编码器（如 CLIP,ALBEF）无法直接适应文本生成任务，而编码-解码模型（如SimVLM）在图像-文本检索任务中表现不佳。</li><li><strong>数据层面</strong>: 现有方法主要依赖 Web爬取的图像-文本对数据，但噪声较大，影响模型性能。</li></ul><p>BLIP 通过 MED 和 CapFilt 解决了上述问题，提升了 VLP的适应性和数据利用效率。</p></li></ul><h2 id="research-objective">4. Research Objective</h2><ul><li>设计一个灵活的视觉-语言模型，支持<strong>理解任务（如检索）</strong>和<strong>生成任务（如图像描述）</strong>。</li><li>通过数据增强方法（CapFilt）提升噪声数据的利用率。</li><li>在多种下游任务中实现性能突破，并验证零样本迁移能力。</li></ul><h2 id="method">5. Method</h2><h3 id="多模态编码-解码混合模型med">5.1多模态编码-解码混合模型（MED）</h3><p>BLIP 采用了一种新的 MED结构，使模型能够同时用于理解（检索、匹配）和生成（描述、回答）任务。MED具有三种模式：</p><ol type="1"><li><strong>单模态编码器 (Unimodal Encoder)</strong>:独立对图像和文本进行编码，并使用 <strong>图像-文本对比损失 (Image-TextContrastive Loss, ITC)</strong> 进行优化。</li><li><strong>图像引导文本编码器 (Image-grounded Text Encoder)</strong>:通过 <strong>图像-文本匹配损失 (Image-Text Matching Loss,ITM)</strong>，学习细粒度的视觉-语言表示。</li><li><strong>图像引导文本解码器 (Image-grounded Text Decoder)</strong>:使用 <strong>语言建模损失 (Language Modeling Loss,LM)</strong>，生成图像描述或回答问题。</li></ol><p align="center"><img src="1.png" style="zoom:60%;" /></p><h4 id="图像-文本对比损失itc"><strong>(1)图像-文本对比损失（ITC）</strong></h4><p>目标是最大化匹配的图像-文本对 <span class="math inline">\((I,T)\)</span> 之间的相似度，同时最小化不匹配对 <spanclass="math inline">\((I, T&#39;)\)</span> 的相似度。 <spanclass="math display">\[L_{I T C}=-\log \frac{\exp \left(\operatorname{sim}\left(E_I(I),E_T(T)\right) / \tau\right)}{\sum_{T^{\prime} \in \mathcal{B}} \exp\left(\operatorname{sim}\left(E_I(I), E_T\left(T^{\prime}\right)\right)/ \tau\right)}\]</span> 其中：</p><ul><li><span class="math inline">\(E_I(I)\)</span> 和 <spanclass="math inline">\(E_T(T)\)</span>分别是图像编码器和文本编码器的输出。</li><li><span class="math inline">\(\text{sim}(\cdot, \cdot)\)</span>表示相似度计算（通常为余弦相似度）。</li><li><span class="math inline">\(\tau\)</span> 是温度参数。</li><li><span class="math inline">\(\mathcal{B}\)</span> 是训练 batch。</li></ul><h4 id="图像-文本匹配损失itm"><strong>(2)图像-文本匹配损失（ITM）</strong></h4><p>目标是预测给定图像-文本对是否匹配，采用二元交叉熵损失： <spanclass="math display">\[L_{I T M}=-y \log p-(1-y) \log (1-p)\]</span> 其中 <span class="math inline">\(y \in {0,1}\)</span>，<spanclass="math inline">\(p\)</span> 是 ITM 头部输出的匹配概率。</p><h4 id="语言建模损失lm"><strong>(3) 语言建模损失（LM）</strong></h4><p>用于文本生成任务，采用自回归损失： <span class="math display">\[L_{L M}=-\sum_{t=1}^N \log P\left(w_t \mid w_{&lt;t}, I\right)\]</span> 其中：</p><ul><li><span class="math inline">\(w_t\)</span> 是时间步 <spanclass="math inline">\(t\)</span> 处的单词。</li><li><span class="math inline">\(P(w_t | w_{&lt;t}, I)\)</span>是解码器生成的概率。</li></ul><h3 id="数据增强captioning-and-filteringcapfilt">5.2数据增强：Captioning and Filtering（CapFilt）</h3><p align="center"><img src="2.png" style="zoom:60%;" /></p><ul><li>CapFilt（Captioning and Filtering）的流程可以概括为以下步骤：<ol type="1"><li><strong>初始化模型</strong>：基于预训练的多模态混合编码器-解码器（MED），分别微调两个模块：<ul><li><strong>Captioner（生成器）</strong>：使用 MED的解码器部分，在高质量数据集（如COCO）上微调，使其能够根据输入图像生成文本描述。</li><li><strong>Filter（过滤器）</strong>：使用 MED的编码器部分，在同一高质量数据集上微调，使其能判断图像-文本对是否匹配（例如，通过图像-文本匹配损失ITM）。</li></ul></li><li><strong>生成合成标题</strong>： 对网络爬取的图像（<spanclass="math inline">\(I_w\)</span>），使用 Captioner 生成合成标题（<spanclass="math inline">\(T_s\)</span>）。生成时采用<strong>核采样（nucleussampling）</strong>（而非确定性方法如束搜索），以增加标题的多样性。例如，对一张海滩图片，Captioner可能生成“阳光下的沙滩与椰树”或“海边度假的宁静场景”等多样化描述。</li><li><strong>过滤噪声数据</strong>： 将原始网络文本（<spanclass="math inline">\(T_w\)</span>）和合成文本（<spanclass="math inline">\(T_s\)</span>​）输入Filter，判断它们与对应图像的匹配程度。Filter会为每对图像-文本计算匹配概率，若概率低于阈值（或通过二分类），则判定为噪声并剔除。例如，原始网络文本“我的周末旅行”可能因与图像内容无关而被过滤，而合成文本“蓝天下的沙滩与遮阳伞”则被保留。</li><li><strong>构建增强数据集</strong>：将过滤后的高质量文本（包括保留的原始文本 <spanclass="math inline">\(T_w^{\prime}\)</span> 和合成文本 <spanclass="math inline">\(T_s^{\prime}\)</span>）与人工标注数据（如 COCO的<spanclass="math inline">\(T_h\)</span>）合并，形成最终训练集。例如，原始 14M噪声数据经过 CapFilt 处理后，可能保留 10M 高质量数据，并与 COCO 的 50万标注数据结合，用于训练更鲁棒的模型。</li><li><strong>重新预训练模型</strong>：使用增强后的数据集对MED模型进行预训练，联合优化对比学习（ITC）、匹配（ITM）和生成（LM）目标。</li></ol></li></ul><h2 id="evaluation">6. Evaluation</h2><ul><li><strong>图像-文本检索</strong>：BLIP 在COCO 数据集上达到了 80.6%的文本检索召回率 <span class="citation"data-cites="1">@1</span>（TR@1）和 63.1% 的图像检索召回率 <spanclass="citation" data-cites="1">@1</span>（IR@1），在 Flickr30K数据集上达到了 96.0% 的 TR@1 和 85.0% 的 IR@1，均优于现有方法。</li><li><strong>图像字幕生成</strong>：在 COCO 数据集上，BLIP 的CIDEr分数达到了 129.7，SPICE 分数达到了 14.4；在NoCaps 数据集上，CIDEr分数达到了 105.1，SPICE 分数达到了 14.4，显著优于其他方法。</li><li><strong>视觉问答（VQA）</strong>：BLIP 在 VQA2.0 数据集上达到了78.24% 的准确率，优于 ALBEF 等方法。</li><li><strong>零样本视频语言任务</strong>：在 MSRVTT 数据集上，BLIP在零样本文本到视频检索任务中达到了 43.3%的召回率@1，显著优于其他方法。</li></ul><h2 id="conclusion">7. Conclusion</h2><p>BLIP通过提出新的模型架构和数据引导方法，在多种视觉-语言任务上取得了显著的性能提升，并展现了强大的泛化能力。该研究证明了通过优化数据质量和模型架构来提升视觉-语言预训练模型性能的有效性。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>论文阅读</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>深度学习</tag>
+      
+      <tag>Pre-training</tag>
+      
+      <tag>Fine-tuning</tag>
+      
+      <tag>MLLMs</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>论文笔记 - Masked Autoencoders Are Scalable Vision Learners</title>
     <link href="/2025/03/02/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Masked-Autoencoders-Are-Scalable-Vision-Learners/"/>
     <url>/2025/03/02/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Masked-Autoencoders-Are-Scalable-Vision-Learners/</url>
