@@ -1,0 +1,987 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/logo_M.png">
+  <link rel="icon" href="/images/logo_M.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="阿阳">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="1. Information Title: MMKE-Bench: A Multimodal Editing Benchmark for Diverse Visual Knowledge Link: MMKE-Bench Paper Source: International Conference on Learning Representations (ICLR) Date: 2025 2. S">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文呢笔记 - MMKE-Bench: A Multimodal Editing Benchmark for Diverse Visual Knowledge">
+<meta property="og:url" content="http://hellochuanyang.github.io/2025/03/10/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-MMKE-Bench-A-Multimodal-Editing-Benchmark-for-Diverse-Visual-Knowledge/index.html">
+<meta property="og:site_name" content="Ayang&#39;s home">
+<meta property="og:description" content="1. Information Title: MMKE-Bench: A Multimodal Editing Benchmark for Diverse Visual Knowledge Link: MMKE-Bench Paper Source: International Conference on Learning Representations (ICLR) Date: 2025 2. S">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-03-10T05:22:26.000Z">
+<meta property="article:modified_time" content="2025-03-10T13:23:28.935Z">
+<meta property="article:author" content="阿阳">
+<meta property="article:tag" content="深度学习">
+<meta property="article:tag" content="知识编辑">
+<meta property="article:tag" content="多模态">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>论文呢笔记 - MMKE-Bench: A Multimodal Editing Benchmark for Diverse Visual Knowledge - Ayang&#39;s home</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"hellochuanyang.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"paNCkP60fMrzKoXyrhLMqLhH-MdYXbMMI","app_key":"KV5bADO39sBHj01DMtjLUvoL","server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Code &amp; Coffee</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="论文呢笔记 - MMKE-Bench: A Multimodal Editing Benchmark for Diverse Visual Knowledge"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-03-10 13:22" pubdate>
+          2025年3月10日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          27 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">论文呢笔记 - MMKE-Bench: A Multimodal Editing Benchmark for Diverse Visual Knowledge</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="information">1. Information</h2>
+<p><strong>Title</strong>: MMKE-Bench: A Multimodal Editing Benchmark
+for Diverse Visual Knowledge<br />
+<strong>Link</strong>: <a
+target="_blank" rel="noopener" href="https://arxiv.org/pdf/2502.19870">MMKE-Bench Paper</a><br />
+<strong>Source</strong>: International Conference on Learning
+Representations (ICLR)<br />
+<strong>Date</strong>: 2025</p>
+<h2 id="summary">2. Summary</h2>
+<p>本文提出了
+<strong>MMKE-Bench</strong>，一个面向真实场景的多模态知识编辑基准测试，旨在评估大型多模态模型（LMMs）对复杂视觉知识的编辑能力。与现有基于三元组的实体级编辑基准不同，MMKE-Bench采用自由形式的自然语言描述与图像结合的知识表示方式，并设计了三种编辑任务：</p>
+<ol type="1">
+<li><strong>视觉实体编辑</strong>（更新实体相关视觉知识，如替换图像并修改关键属性）；</li>
+<li><strong>视觉语义编辑</strong>（修改复杂行为或关系，如裁判手势的规则）；</li>
+<li><strong>用户特定编辑</strong>（注入个性化知识，如用户与物品的关系）。</li>
+</ol>
+<p>实验表明，现有方法在视觉语义和用户特定编辑任务中表现较差，且<strong>无单一方法能在所有评估指标上表现优异</strong>。MMKE-Bench
+包含 2,940 条知识条目和 8,363 张图像，覆盖 33
+个类别，显著提升了多模态知识编辑的挑战性。</p>
+<h2 id="background">3. Background</h2>
+<p>大规模语言模型（LLMs）和大规模多模态模型（LMMs）已在多个任务上取得成功。然而：</p>
+<ul>
+<li>其知识会随着时间推移而<strong>过时或错误</strong>，需要<strong>知识编辑</strong>技术来进行更新，而非重新训练整个模型。</li>
+<li>现有的知识编辑基准（如
+VLKEB、MMEdit、MIKE）大多基于<strong>三元组表示</strong>（subject,
+relation,
+object），主要关注<strong>实体级知识</strong>，无法充分模拟现实中<strong>多模态知识的复杂性</strong>（如动作、姿态、物体关系等）。</li>
+<li>在 VLKEB 基准上，简单微调 LLaVA 模型即可达到<strong>99.59%
+可靠性</strong>、<strong>99.43% 文本泛化性</strong>、<strong>95.48%
+图像泛化性</strong>，表明现有基准已被模型“学透”，缺乏挑战性。</li>
+</ul>
+<p>MMKE-Bench
+旨在解决这些问题，引入<strong>更具挑战性的多模态知识编辑任务</strong>。</p>
+<h2 id="research-objective">4. Research Objective</h2>
+<ol type="1">
+<li><strong>构建更全面的多模态知识编辑基准</strong>，不仅涵盖<strong>视觉实体编辑</strong>，还包括<strong>视觉语义编辑</strong>和<strong>用户特定编辑</strong>。</li>
+<li><strong>提供更真实的知识表达</strong>，使用自由格式的自然语言（而非三元组）来表示知识，提高可读性和灵活性。</li>
+<li><strong>定义四个核心评估标准</strong>（可靠性、局部性、泛化性、可迁移性），系统评估知识编辑方法的表现。</li>
+<li><strong>分析当前 LMMs
+的知识编辑能力</strong>，揭示现有方法的局限性，并推动新方法的发展。</li>
+</ol>
+<h2 id="method">5. Method</h2>
+<h3 id="知识编辑任务定义"><strong>5.1 知识编辑任务定义</strong></h3>
+<p>MMKE-Bench 设计了三种知识编辑任务：</p>
+<ol type="1">
+<li><strong>视觉实体编辑</strong>：针对实体中心的修改，描述涵盖实体的多个方面。通过替换同类型的实体图像，并将关键信息修改为反事实内容，以纠正模型对实体的错误识别或过时信息。</li>
+<li><strong>视觉语义编辑</strong>：专注于复杂的视觉语义中心修改，包括肢体动作、物体行为和关系等。通过替换同类型的语义动作图像，并修改规则或含义为反事实内容，以纠正模型对语义的错误理解和识别。</li>
+<li><strong>用户特定编辑</strong>：关注将个性化用户信息注入
+LMMs，描述用户与对象之间的关系及其体验。由于这是为模型添加全新的个性化知识，因此不需要进行反事实编辑，直接使用原始知识作为编辑知识。</li>
+</ol>
+<p>知识表示采用： <span class="math display">\[
+k=(i, d)
+\]</span> 其中：</p>
+<ul>
+<li><span class="math inline">\(i\)</span> 为图像，</li>
+<li><span class="math inline">\(d\)</span>
+为自由格式的文本描述（包括主要对象、视觉内容或用户个性化信息）。</li>
+</ul>
+<p>编辑后知识表示：</p>
+<ul>
+<li>视觉实体/语义编辑：<span class="math inline">\(k_e=(i_e,
+d_e)\)</span></li>
+<li>用户特定编辑：<span class="math inline">\(k_e = (i, d)\)</span>
+（不涉及图像或文本修改，只是插入新知识）</li>
+</ul>
+<h3 id="数据集构建">5.2 数据集构建</h3>
+<p>基准测试的构建分为四个步骤：</p>
+<ul>
+<li><strong>原始知识收集</strong>：列出候选的细粒度实体、视觉语义或用户特定项目，并收集相应的图像和描述。对于视觉实体编辑，从
+MMpedia 和 OVEN
+数据集中获取候选实体，并进行筛选和图像收集；对于视觉语义编辑，定义了 14
+个广泛类别的语义知识，并从相关数据集或通过爬取和人工验证收集图像和描述；对于用户特定编辑，考虑了
+9 个类别的个性化信息，并从不同来源收集图像和描述。</li>
+<li><strong>编辑知识生成</strong>：对视觉实体和视觉语义知识进行编辑，而用户特定知识保持不变。在视觉模态中，采用图像替换方法，将实体或语义动作的图像随机替换为同类型的另一张图像；在文本模态中，将实体的关键信息和语义动作的规则或含义修改为反事实内容，并更新动作描述以与新的视觉内容一致。</li>
+<li><strong>评估问题生成</strong>：遵循可靠性、局部性、泛化能力和可移植性四个关键评估原则，自动生成问题和答案，并进行人工验证和修订。具体来说：
+<ul>
+<li><strong>可靠性问题生成</strong>：评估编辑后的知识是否正确生成，考虑文本可靠性和图像可靠性，分别衡量
+LMM 在文本和视觉模态中的编辑能力。通过提示 LLM
+生成与编辑后的反事实内容相关的问题，并要求问题必须涉及编辑内容的一个方面。例如，对于足球裁判的越位手势，可以生成关于越位手势处罚位置的问题。</li>
+<li><strong>局部性问题生成</strong>：评估编辑模型中未涉及的知识保持不变的程度，通过比较编辑前后模型的输出来衡量。对于文本和图像局部性，分别从
+VLKEB 基准测试中获取问题和答案，其中文本问题来自 NQ 数据集，图像问题由
+VLKEB 特别设计。</li>
+<li><strong>泛化能力问题生成</strong>：评估模型对邻近样本的响应效果。由于知识表示为自由形式，仅关注图像泛化能力。通过随机选择同一实体、视觉行为或个性化项目的另一张图像，并重复使用图像可靠性中的相同问题和答案来生成泛化问题。</li>
+<li><strong>可移植性问题生成</strong>：评估编辑后的知识是否能够成功应用于相关的内容。对于视觉实体编辑，利用
+Wikipedia
+中的补充信息生成关于编辑内容的问题，并结合另一个关于编辑内容的问题来形成最终的可移植性问题。对于视觉语义和用户特定编辑，将主行为或项目的图像与同类型的另一张图像组合成新图像，并提出关于两张图像之间差异的问题，如头发颜色或物体形状，然后将该问题与涉及编辑内容的问题结合起来生成最终的可移植性问题。</li>
+</ul></li>
+<li><strong>人工检查与基准测试统计</strong>：在基准测试构建过程中，多次手动收集、审查和筛选样本，确保收集的图像质量，并在反事实编辑和问题生成后，人工审查问题，修订不适当的问题，纠正错误的答案。</li>
+</ul>
+<h3 id="评估标准">5.3 评估标准</h3>
+<ul>
+<li><p><strong>可靠性（Reliability）</strong>：验证编辑后的知识是否被正确应用；
+<span class="math display">\[
+\mathbb{E}_{\left(i_e, q_r, a_r\right) \sim Q_{r e l}}
+\mathbb{I}\left[M_\theta^{\prime}\left(i_e, q_r\right)=a_r\right]
+\]</span></p></li>
+<li><p><strong>局部性（Locality）</strong>：确保无关知识未被修改； <span
+class="math display">\[
+\mathbb{E}_{\left(i_l, q_l\right) \sim Q_{l o c}}
+\mathbb{I}\left[M_\theta\left(i_l,
+q_l\right)=M_\theta^{\prime}\left(i_l, q_l\right)\right]
+\]</span></p></li>
+<li><p><strong>泛化性（Generalization）</strong>：测试模型对同类图像的泛化能力；
+<span class="math display">\[
+\mathbb{E}_{\left(i_e^g, q_g, a_g\right) \sim Q_{g e n}}
+\mathbb{I}\left[M_\theta^{\prime}\left(i_e^g, q_g\right)=a_g\right]
+\]</span></p></li>
+<li><p><strong>可移植性（Portability）</strong>：评估知识在新上下文中的应用能力；
+<span class="math display">\[
+\mathbb{E}_{\left(i_e^p, q_p, a_p\right) \sim Q_{p o r t}}
+\mathbb{I}\left[M_\theta^{\prime}\left(i_e^p, q_p\right)=a_p\right]
+\]</span></p></li>
+</ul>
+<h2 id="evaluation">6. Evaluation</h2>
+<h3 id="实验设置">6.1 实验设置</h3>
+<ul>
+<li><strong>模型</strong>：BLIP-2、MiniGPT-4、LLaVA-1.5；</li>
+<li><strong>编辑方法</strong>：Fine-tuning（FT）、IKE、SERAC、MEND、KE；</li>
+<li><strong>任务类型</strong>：单次编辑（Single
+Editing）和连续编辑（Sequential Editing）。</li>
+</ul>
+<h3 id="主要发现">6.2 主要发现</h3>
+<ol type="1">
+<li><strong>IKE在可靠性和泛化性上表现最佳</strong>（如LLaVA-1.5的文本可靠性达75.65%）；</li>
+<li><strong>SERAC和MEND在局部性上最优</strong>（图像局部性&gt;99%）；</li>
+<li><strong>视觉语义和用户特定编辑更具挑战性</strong>（可靠性比视觉实体低10-20%）；</li>
+<li><strong>现有方法在可移植性上普遍较差</strong>（KE表现最佳，但平均仅25.4%）；</li>
+<li><strong>LLaVA-1.5整体性能最优</strong>，得益于更大的模型规模和指令调优设计。</li>
+</ol>
+<h2 id="conclusion">7. Conclusion</h2>
+<ul>
+<li>MMKE-Bench 提供<strong>更真实的知识编辑任务</strong>，推动 LMMs
+研究。</li>
+<li><strong>没有单一方法能在所有指标上表现最佳</strong>，需要进一步优化。</li>
+<li><strong>现有方法在视觉和个性化编辑方面仍有较大挑战</strong>。</li>
+</ul>
+<h2 id="notes">8. Notes</h2>
+<h3 id="使用反事实编辑潜在的问题">8.1 使用反事实编辑潜在的问题</h3>
+<blockquote>
+<h4 id="反事实内容的合理性"><strong>1. 反事实内容的合理性</strong></h4>
+<p><strong>问题：</strong></p>
+<ul>
+<li>如果<strong>生成的反事实不够自然或合理</strong>，可能会导致模型在编辑后仍然无法正确理解内容。</li>
+<li>例如，将“<strong>伊布是瑞典人</strong>”改为“<strong>伊布是日本人</strong>”可能明显不符合常识，而如果改为“<strong>伊布是挪威人</strong>”可能更自然。</li>
+</ul>
+<p><strong>影响：</strong></p>
+<ul>
+<li>如果反事实内容过于随机或不符合语境，可能会误导模型，使其学习到不合理的知识结构。</li>
+<li>可能影响评测结果，使得知识编辑任务变得过于简单或难以评估。</li>
+</ul>
+<hr />
+<h4 id="反事实可能引发模型的误解"><strong>2.
+反事实可能引发模型的误解</strong></h4>
+<p><strong>问题：</strong></p>
+<ul>
+<li>反事实内容可能会<strong>影响模型的已有知识</strong>，导致模型在知识编辑后对<strong>原始事实和反事实的区分不清</strong>。</li>
+<li>例如，如果反事实内容是“<strong>Eiffel Tower 位于
+London</strong>”，模型可能会混淆 <strong>London</strong> 和
+<strong>Paris</strong> 之间的关系。</li>
+</ul>
+<p><strong>影响：</strong></p>
+<ul>
+<li>如果知识编辑方法不能很好地局部更新知识，则可能影响模型对未修改内容的理解，例如：
+<ul>
+<li>修改“伊布是瑞典人”为“伊布是挪威人”，可能导致模型对其他瑞典球员（如拉尔森）的认知也受到干扰。</li>
+<li>编辑“裁判举手表示越位”为“裁判举手表示点球”，可能导致模型错误回答未被编辑的问题。</li>
+</ul></li>
+</ul>
+<hr />
+<h4 id="反事实知识的冲突"><strong>3. 反事实知识的冲突</strong></h4>
+<p><strong>问题：</strong></p>
+<ul>
+<li>反事实知识可能与<strong>模型已有知识冲突</strong>，导致编辑失败或产生不一致的输出。</li>
+<li>例如，若 LMM 之前已经学习到“Eiffel Tower 在
+Paris”，但编辑任务要求改为“Eiffel Tower 在 London”，模型可能会：
+<ul>
+<li>拒绝修改，仍然输出 Paris（知识编辑失败）。</li>
+<li>在不同回答中输出 Paris 和 London（知识冲突）。</li>
+<li>仅在某些场景下记住 London，但在其他场景下仍然回答
+Paris（部分编辑成功）。</li>
+</ul></li>
+</ul>
+<p><strong>影响：</strong></p>
+<ul>
+<li>多轮编辑可能导致矛盾：
+<ul>
+<li>例如，模型先被编辑为“伊布是挪威人”，后又被编辑为“伊布是巴西人”，可能导致模型输出不稳定。</li>
+</ul></li>
+<li><strong>影响模型一致性</strong>，使得相同问题在不同对话轮次或不同场景下给出不同答案。</li>
+</ul>
+<hr />
+<h4 id="泛化性问题"><strong>4. 泛化性问题</strong></h4>
+<p><strong>问题：</strong></p>
+<ul>
+<li>反事实知识编辑通常只修改<strong>单个知识点</strong>，但现实世界的知识往往是<strong>互相关联的</strong>，模型可能无法正确泛化。</li>
+<li>例如：
+<ul>
+<li>编辑“伊布是瑞典人”为“伊布是挪威人”，但模型仍然回答“伊布出生于瑞典”。</li>
+<li>编辑“越位判罚后在犯规点开球”为“越位判罚后在球门区开球”，但模型在其他足球规则相关问题中仍然使用旧规则。</li>
+</ul></li>
+</ul>
+<p><strong>影响：</strong></p>
+<ul>
+<li>反事实编辑后，模型可能对相关知识的推理能力下降，只能在特定问题中表现正确，而在新问题上仍然依赖旧知识。</li>
+<li>可能导致<strong>知识编辑的效果有限</strong>，无法真正模拟现实场景中的知识变化。</li>
+</ul>
+<hr />
+<h4 id="可迁移性问题"><strong>5. 可迁移性问题</strong></h4>
+<p><strong>问题：</strong></p>
+<ul>
+<li>反事实编辑可能仅适用于<strong>特定场景</strong>，但无法<strong>迁移到类似场景</strong>。</li>
+<li>例如：
+<ul>
+<li>修改“伊布是瑞典人”为“伊布是挪威人”，但如果问“瑞典足球史上最著名的球员是谁？”，模型可能仍然回答伊布，而不是拉尔森。</li>
+</ul></li>
+</ul>
+<p><strong>影响：</strong></p>
+<ul>
+<li>影响模型对新输入的适应能力，导致知识编辑的作用<strong>局限于特定案例</strong>，无法真正推广到整个知识库。</li>
+</ul>
+</blockquote>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" class="category-chain-item">论文阅读</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" class="print-no-link">#深度学习</a>
+      
+        <a href="/tags/%E7%9F%A5%E8%AF%86%E7%BC%96%E8%BE%91/" class="print-no-link">#知识编辑</a>
+      
+        <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/" class="print-no-link">#多模态</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>论文呢笔记 - MMKE-Bench: A Multimodal Editing Benchmark for Diverse Visual Knowledge</div>
+      <div>http://hellochuanyang.github.io/2025/03/10/论文笔记-MMKE-Bench-A-Multimodal-Editing-Benchmark-for-Diverse-Visual-Knowledge/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>阿阳</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年3月10日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/03/10/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-ComprehendEdit-A-Comprehensive-Dataset-and-Evaluation-Framework-for-Multimodal-Knowledge-Editing/" title="论文笔记 - ComprehendEdit: A Comprehensive Dataset and Evaluation Framework for Multimodal Knowledge Editing">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">论文笔记 - ComprehendEdit: A Comprehensive Dataset and Evaluation Framework for Multimodal Knowledge Editing</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/03/10/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-InstructBLIP-Towards-General-purpose-Vision-Language-Models-with-Instruction-Tuning/" title="论文笔记 - InstructBLIP: Towards General-purpose Vision-Language Models with Instruction Tuning">
+                        <span class="hidden-mobile">论文笔记 - InstructBLIP: Towards General-purpose Vision-Language Models with Instruction Tuning</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      <script src="https://utteranc.es/client.js"
+        repo="hellochuanyang/ayang-blog-comments"
+        issue-term="title"
+        theme="preferred-color-scheme"
+        crossorigin="anonymous"
+        async>
+</script>
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <span>晚安～</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

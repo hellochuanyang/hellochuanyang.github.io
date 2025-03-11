@@ -1,0 +1,914 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/logo_M.png">
+  <link rel="icon" href="/images/logo_M.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="阿阳">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="1. Information Title: ComprehendEdit: A Comprehensive Dataset and Evaluation Framework for Multimodal Knowledge Editing Link: ComprehendEdit Paper Source: arxiv Date: 2024.12.17 2. Summary  提出了 Compre">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文笔记 - ComprehendEdit: A Comprehensive Dataset and Evaluation Framework for Multimodal Knowledge Editing">
+<meta property="og:url" content="http://hellochuanyang.github.io/2025/03/10/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-ComprehendEdit-A-Comprehensive-Dataset-and-Evaluation-Framework-for-Multimodal-Knowledge-Editing/index.html">
+<meta property="og:site_name" content="Ayang&#39;s home">
+<meta property="og:description" content="1. Information Title: ComprehendEdit: A Comprehensive Dataset and Evaluation Framework for Multimodal Knowledge Editing Link: ComprehendEdit Paper Source: arxiv Date: 2024.12.17 2. Summary  提出了 Compre">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-03-10T19:54:22.000Z">
+<meta property="article:modified_time" content="2025-03-11T03:54:51.352Z">
+<meta property="article:author" content="阿阳">
+<meta property="article:tag" content="深度学习">
+<meta property="article:tag" content="知识编辑">
+<meta property="article:tag" content="多模态">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>论文笔记 - ComprehendEdit: A Comprehensive Dataset and Evaluation Framework for Multimodal Knowledge Editing - Ayang&#39;s home</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"hellochuanyang.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"paNCkP60fMrzKoXyrhLMqLhH-MdYXbMMI","app_key":"KV5bADO39sBHj01DMtjLUvoL","server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Code &amp; Coffee</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="论文笔记 - ComprehendEdit: A Comprehensive Dataset and Evaluation Framework for Multimodal Knowledge Editing"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-03-11 03:54" pubdate>
+          2025年3月11日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          11 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">论文笔记 - ComprehendEdit: A Comprehensive Dataset and Evaluation Framework for Multimodal Knowledge Editing</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="information">1. Information</h2>
+<p><strong>Title</strong>: ComprehendEdit: A Comprehensive Dataset and
+Evaluation Framework for Multimodal Knowledge Editing<br />
+<strong>Link</strong>: <a
+target="_blank" rel="noopener" href="https://arxiv.org/pdf/2412.12821">ComprehendEdit Paper</a><br />
+<strong>Source</strong>: arxiv<br />
+<strong>Date</strong>: 2024.12.17</p>
+<h2 id="summary">2. Summary</h2>
+<ul>
+<li>提出了
+<strong>ComprehendEdit</strong>，一个用于多模态知识编辑的基准数据集和评测框架。</li>
+<li>设计了新的评估指标 <strong>知识泛化指数 (KGI, Knowledge
+Generalization Index)</strong> 和 <strong>知识保持指数 (KPI, Knowledge
+Preservation
+Index)</strong>，用于衡量编辑后模型对相似任务的泛化能力以及对原有正确知识的保持能力。</li>
+<li>引入 <strong>层次化上下文编辑 (HICE, Hierarchical In-Context
+Editing)</strong>，作为基线方法，旨在在不影响外部样本的情况下改进模型的编辑能力。</li>
+<li>进行了广泛的实验，包括对比现有方法（如
+<strong>IKE、SERAC、MEND</strong>），并展示了 HICE
+方法在多个关键指标上的优势。</li>
+</ul>
+<h2 id="background">3. Background</h2>
+<p>随着大型多模态语言模型（MLLMs）的发展，其在自然语言处理和视觉理解方面取得了显著进展，但这些模型常常包含过时或不准确的信息。现有的多模态知识编辑评估方法存在局限性，例如评估范围狭窄、依赖
+AI
+合成样本导致评估偏差，以及仅关注与编辑任务无关的样本。这些问题限制了对多模态知识编辑技术的全面评估和改进。</p>
+<h2 id="research-objective">4. Research Objective</h2>
+<ul>
+<li>构建一个全面的基准数据集 <strong>ComprehendEdit</strong>，包含 8
+种任务（如
+<strong>目标识别、目标计数、空间关系、文本识别</strong>）。</li>
+<li>设计新的评估指标 <strong>KGI 和
+KPI</strong>，衡量模型在知识编辑后对相似任务的泛化能力以及是否破坏了原有正确知识。</li>
+<li>提出 <strong>HICE
+方法</strong>，在不修改模型参数的情况下，通过上下文学习提高编辑性能。</li>
+</ul>
+<h2 id="method">5. Method</h2>
+<h3 id="数据集构建"><strong>5.1 数据集构建</strong></h3>
+<ul>
+<li><strong>ComprehendEdit</strong> 由 <strong>8 种任务</strong>
+组成，数据来源包括
+<strong>GQA、TallyQA、VSR、TextVQA、MathVista</strong>
+等，确保任务多样性。</li>
+<li>采用 <strong>BLIP-2 OPT 2.7B</strong> 和 <strong>MiniGPT-4
+7B</strong> 进行预测，并过滤掉两个模型都无法正确预测的样本。</li>
+<li>训练集与测试集的比例约为 <strong>3:1</strong>。</li>
+</ul>
+<h3 id="评估指标">5.2 评估指标</h3>
+<h4 id="传统指标cheng-et-al.-2023">传统指标（Cheng et al. 2023）</h4>
+<ul>
+<li><strong>可靠性（Reliability）</strong>：编辑后目标样本的正确率。</li>
+<li><strong>泛化性（Generality）</strong>：改写问题（T-G）与生成图像（M-G）的正确率。</li>
+<li><strong>局部性（Locality）</strong>：跨领域样本的输出一致性。</li>
+</ul>
+<h4 id="新指标kgi与kpi">新指标：KGI与KPI</h4>
+<ul>
+<li><p><strong>知识泛化指数（KGI）</strong>：衡量编辑后模型对同领域<strong>原错误样本</strong>的改进效果。
+<span class="math display">\[
+\mathcal{M}_{K G I}=\mathbb{E}_{s \in \mathcal{D}_e, s^{\prime} \in
+\mathcal{D}_{K G I}(s)} \mathbb{I}\left(f\left(i^{\prime}, x^{\prime} ;
+\theta_e\right)=y^{\prime}\right)
+\]</span></p></li>
+<li><p><strong>知识保持指数（KPI）</strong>：衡量编辑后模型对同领域<strong>原正确样本</strong>的保持能力。
+<span class="math display">\[
+\mathcal{M}_{K P I}=\mathbb{E}_{s \in \mathcal{D}_e, s^{\prime} \in
+\mathcal{D}_{K P I}(s)} \mathbb{I}\left(f\left(i^{\prime}, x^{\prime} ;
+\theta_e\right)=y^{\prime}\right)
+\]</span></p></li>
+<li><p><strong>高效采样策略</strong>：基于图像/文本相似性，从 KGI/KPI
+子集中选取最相似与最不相似的样本（k=4），降低计算开销。</p></li>
+</ul>
+<h3 id="层次化上下文编辑hice"><strong>5.3
+层次化上下文编辑（HICE）</strong></h3>
+<ol type="1">
+<li><p><strong>计算分类器</strong> <span
+class="math inline">\(W^*\)</span>：</p>
+<ul>
+<li>提取文本特征 <span class="math inline">\(F \in \mathbb{R}^{4 N
+\times d}\)</span> 并投影到高维空间：</li>
+</ul>
+<p><span class="math display">\[
+F_p=F W_r \in \mathbb{R}^{4 N \times M}
+\]</span></p>
+<ul>
+<li>通过带正则项的最小二乘优化计算 <span
+class="math inline">\(W^*\)</span>：</li>
+</ul>
+<p><span class="math display">\[
+W^*=\arg \min _W\left\|Y-F_p W\right\|^2+\lambda\|W\|^2
+\]</span></p>
+<ul>
+<li>解析解：</li>
+</ul>
+<p><span class="math display">\[
+W^*=\left(F_p^{\top} F_p+\lambda I\right)^{-1} F_p^{\top} Y
+\]</span></p>
+<p>其中 <span class="math inline">\(\lambda\)</span>
+为正则化系数。</p></li>
+<li><p><strong>构建记忆存储</strong>：</p>
+<ul>
+<li>维护两个记忆：
+<ul>
+<li><strong>文本记忆</strong> <span
+class="math inline">\(M_1\)</span>：存储训练样本，通过 <strong>k-means
+聚类</strong> 选择代表样本。</li>
+<li><strong>外部难样本记忆</strong> <span
+class="math inline">\(M_2\)</span>：存储难以分类的外部样本，以提高分类器
+<span class="math inline">\(W^*\)</span> 的准确率。</li>
+</ul></li>
+</ul></li>
+<li><p><strong>推理阶段</strong>：</p>
+<ul>
+<li><p><strong>判断样本是否需要编辑</strong>：如果问题 <span
+class="math inline">\(x\)</span> 与 <span
+class="math inline">\(M_2\)</span> 中样本的最大相似度低于阈值 <span
+class="math inline">\(T\)</span>，且被分类为
+<strong>同域数据</strong>，则进行编辑。</p></li>
+<li><p><strong>构造新的输入问题</strong>： <span class="math display">\[
+x_{\text {new }}=\left[s_1 ; s_2 ; \ldots ; s_{k_0} ; s_o ; x\right]
+\]</span> 其中 <span
+class="math inline">\(\left\{s_i\right\}_{i=1}^{k_0}\)</span> 是从 <span
+class="math inline">\(M_1\)</span> 中检索的相似示例，<span
+class="math inline">\(s_o\)</span> 是当前问题的转换版本。</p></li>
+</ul></li>
+</ol>
+<h2 id="evaluation">6. Evaluation</h2>
+<h3 id="实验设置">6.1 实验设置</h3>
+<ul>
+<li><strong>对比方法</strong>：FT-L（微调语言模型）、FT-V（微调视觉模型）、IKE（上下文学习）、SERAC（反事实模型）、MEND（元学习）。</li>
+<li><strong>评估指标</strong>：Rel、T-G、T-L、M-L、KGI、KPI。</li>
+</ul>
+<h3 id="主要结果">6.2 主要结果</h3>
+<ul>
+<li><strong>ComprehendEdit基准</strong>：HICE 在 KGI（13.9）和
+KPI（46.34）上显著优于其他方法，验证其对同领域样本的平衡能力。</li>
+<li><strong>跨数据集对比</strong>：在 E-VQA 上，HICE 的
+M-L（81.58%）优于 MEND（52.56%），表明其分类器有效区分跨领域样本。</li>
+</ul>
+<h3 id="消融实验">6.3 消融实验</h3>
+<ul>
+<li><strong>关键模块</strong>：记忆库 <span
+class="math inline">\(M_1\)</span> 对提升泛化性（T-G
++76.34%）至关重要，分类器W∗<em>W</em>∗与记忆库M2<em>M</em>2显著改善跨领域局部性（M-L
++44.94%）。</li>
+<li><strong>参数敏感性</strong>：投影维度 <em>M</em>=10,000
+时效果最佳；阈值 <em>T</em>=0.85 平衡了编辑效果与局部性。</li>
+</ul>
+<h2 id="conclusion">7. Conclusion</h2>
+<ul>
+<li><strong>ComprehendEdit</strong> 提供了
+<strong>更全面的多模态知识编辑评测</strong>，克服了现有数据集的缺陷。</li>
+<li>提出的 <strong>HICE 方法</strong> 在
+<strong>知识泛化（KGI）、知识保持（KPI）、文本局部性（T-L）、多模态局部性（M-L）</strong>
+上取得平衡。</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" class="category-chain-item">论文阅读</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" class="print-no-link">#深度学习</a>
+      
+        <a href="/tags/%E7%9F%A5%E8%AF%86%E7%BC%96%E8%BE%91/" class="print-no-link">#知识编辑</a>
+      
+        <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/" class="print-no-link">#多模态</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>论文笔记 - ComprehendEdit: A Comprehensive Dataset and Evaluation Framework for Multimodal Knowledge Editing</div>
+      <div>http://hellochuanyang.github.io/2025/03/10/论文笔记-ComprehendEdit-A-Comprehensive-Dataset-and-Evaluation-Framework-for-Multimodal-Knowledge-Editing/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>阿阳</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年3月11日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/03/10/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-MMKE-Bench-A-Multimodal-Editing-Benchmark-for-Diverse-Visual-Knowledge/" title="论文呢笔记 - MMKE-Bench: A Multimodal Editing Benchmark for Diverse Visual Knowledge">
+                        <span class="hidden-mobile">论文呢笔记 - MMKE-Bench: A Multimodal Editing Benchmark for Diverse Visual Knowledge</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      <script src="https://utteranc.es/client.js"
+        repo="hellochuanyang/ayang-blog-comments"
+        issue-term="title"
+        theme="preferred-color-scheme"
+        crossorigin="anonymous"
+        async>
+</script>
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <span>晚安～</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
